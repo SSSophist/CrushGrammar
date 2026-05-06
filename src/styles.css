@@ -82,8 +82,9 @@ button:disabled {
   max-width: 720px;
   margin-bottom: 14px;
   color: var(--green-dark);
-  font-size: clamp(2.2rem, 6vw, 4.7rem);
+  font-size: clamp(2.2rem, 5vw, 4rem);
   line-height: 1;
+  word-break: keep-all;
 }
 
 .home-lede {
@@ -684,6 +685,10 @@ blockquote {
 
   .home-intro {
     grid-template-columns: 1fr;
+  }
+
+  .home-intro h1 {
+    font-size: clamp(2.2rem, 12vw, 3.2rem);
   }
 
   .level-grid {
