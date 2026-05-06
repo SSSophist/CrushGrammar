@@ -1,9 +1,25 @@
+import { useState } from 'react';
+import HomePage from './pages/HomePage';
+
+type Screen = 'home' | 'level-1';
+
 export default function App() {
-  return (
-    <main className="app-shell">
-      <p className="eyebrow">Crush Grammar</p>
-      <h1>四六级语法速通</h1>
-      <p>第一个可玩切片搭建中：闯关地图 + 第 1 关 + 即时批改。</p>
-    </main>
-  );
+  const [screen, setScreen] = useState<Screen>('home');
+
+  if (screen === 'level-1') {
+    return (
+      <main className="page-shell">
+        <button type="button" className="text-action" onClick={() => setScreen('home')}>
+          返回闯关地图
+        </button>
+        <section className="lesson-preview">
+          <p className="eyebrow">Level 1</p>
+          <h1>先会看句子骨架</h1>
+          <p>关卡学习页会在下一步接入完整内容。</p>
+        </section>
+      </main>
+    );
+  }
+
+  return <HomePage onOpenLevel={(levelId) => levelId === 'level-1' && setScreen('level-1')} />;
 }
