@@ -1,15 +1,15 @@
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #17201b;
-  background: #f5f2e8;
-  --paper: #fffdf6;
-  --paper-strong: #f8f1dc;
+  background: #eef2ed;
+  --paper: #fffffb;
+  --paper-strong: #edf4ee;
   --ink: #17201b;
   --muted: #65736a;
   --green: #2f6b4f;
   --green-dark: #214d3b;
   --amber: #c27a1a;
-  --line: #ded5bd;
+  --line: #cbd8ce;
   --danger: #b4453d;
   --info: #315a74;
   font-synthesis: none;
@@ -22,6 +22,7 @@
 
 body {
   margin: 0;
+  background: #eef2ed;
 }
 
 button,
@@ -58,6 +59,12 @@ button {
   cursor: pointer;
 }
 
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(49, 90, 116, 0.36);
+  outline-offset: 2px;
+}
+
 button:disabled {
   cursor: not-allowed;
 }
@@ -67,7 +74,8 @@ button:disabled {
   grid-template-columns: minmax(0, 1fr) 420px;
   gap: 32px;
   align-items: start;
-  padding: 28px 0 24px;
+  padding: 34px 0 24px;
+  border-bottom: 1px solid var(--line);
 }
 
 .home-intro h1 {
@@ -96,7 +104,7 @@ button:disabled {
   gap: 8px;
   padding: 8px;
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: rgba(255, 255, 251, 0.92);
 }
 
 .route-option {
@@ -111,7 +119,7 @@ button:disabled {
 
 .route-option[aria-pressed='true'] {
   color: var(--ink);
-  background: #e9f3ea;
+  background: var(--paper-strong);
   outline: 2px solid rgba(47, 107, 79, 0.24);
 }
 
@@ -201,7 +209,7 @@ button:disabled {
   gap: 12px;
   padding: 18px;
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: rgba(255, 255, 251, 0.96);
 }
 
 .level-card.is-open {
@@ -211,14 +219,14 @@ button:disabled {
 
 .level-card.is-locked {
   color: #7b7467;
-  background: #eee8d8;
+  background: #eef0ea;
 }
 
 .level-number {
   width: fit-content;
   padding: 4px 9px;
   color: var(--green-dark);
-  background: #e2eddf;
+  background: var(--paper-strong);
   font-size: 0.82rem;
   font-weight: 800;
 }
@@ -241,7 +249,7 @@ button:disabled {
 
 .level-action:disabled {
   color: #7b7467;
-  background: #d7cfbd;
+  background: #d3ded6;
 }
 
 .lesson-preview {
@@ -334,7 +342,7 @@ button:disabled {
 .last-review,
 .term-sidebar {
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: rgba(255, 255, 251, 0.97);
 }
 
 .lesson-section,
@@ -370,7 +378,7 @@ button:disabled {
 .practice-shell {
   padding: 18px;
   border: 1px solid var(--line);
-  background: #fbf7eb;
+  background: #f8faf6;
 }
 
 .step-card h3,
@@ -413,7 +421,7 @@ blockquote {
 
 .exam-callout-warning {
   border-left-color: var(--amber);
-  background: #fff5dd;
+  background: #fff6df;
 }
 
 .exam-callout-warning strong {
@@ -445,7 +453,7 @@ blockquote {
 .term-card {
   padding: 14px;
   border: 1px solid var(--line);
-  background: #fbf7eb;
+  background: #f8faf6;
 }
 
 .term-card h3 {
@@ -554,7 +562,7 @@ blockquote {
   border: 1px solid var(--line);
   color: var(--ink);
   text-align: left;
-  background: #fbf7eb;
+  background: #f8faf6;
 }
 
 .answer-option span {
@@ -603,7 +611,7 @@ blockquote {
 
 .error-summary {
   border-left-color: var(--amber);
-  background: #fff7e7;
+  background: #fff6df;
 }
 
 .error-summary.is-clear {
@@ -621,7 +629,7 @@ blockquote {
   gap: 8px;
   padding: 14px;
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: #fffffb;
 }
 
 .summary-item div {
@@ -637,14 +645,14 @@ blockquote {
 
 .remediation-pending {
   border-left-color: var(--amber);
-  background: #fff7e7;
+  background: #fff6df;
 }
 
 .remediation-panel {
   display: grid;
   gap: 14px;
   border-left-color: var(--amber);
-  background: #fff7e7;
+  background: #fff6df;
 }
 
 .remediation-panel h3,
@@ -680,6 +688,12 @@ blockquote {
 
   .level-grid {
     grid-template-columns: 1fr;
+  }
+
+  .primary-action,
+  .text-action,
+  .level-action {
+    width: 100%;
   }
 
   .lesson-layout,
