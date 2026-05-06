@@ -250,6 +250,232 @@ button:disabled {
   background: var(--paper);
 }
 
+.lesson-page {
+  max-width: 1280px;
+}
+
+.lesson-hero {
+  padding: 24px 0 18px;
+}
+
+.lesson-hero h1 {
+  margin-bottom: 12px;
+  color: var(--green-dark);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+}
+
+.lesson-hero p {
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.lesson-hero strong {
+  color: var(--green-dark);
+}
+
+.lesson-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.lesson-facts span,
+.error-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  color: var(--green-dark);
+  background: #e2eddf;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.level-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 10px 0 24px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 246, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+.level-nav a {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  color: var(--green-dark);
+  text-decoration: none;
+  background: #edf3e8;
+  font-weight: 800;
+}
+
+.lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 24px;
+  align-items: start;
+}
+
+.lesson-main {
+  display: grid;
+  gap: 22px;
+}
+
+.lesson-section,
+.last-review,
+.term-sidebar {
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.lesson-section,
+.last-review {
+  padding: 24px;
+}
+
+.lesson-section h2,
+.last-review h2,
+.term-sidebar h2 {
+  color: var(--green-dark);
+}
+
+.lesson-section p,
+.lesson-section li,
+.last-review li,
+.term-card dd,
+.side-note {
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.step-list,
+.example-list,
+.trap-list {
+  display: grid;
+  gap: 14px;
+}
+
+.step-card,
+.example-card,
+.trap-card,
+.practice-shell {
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: #fbf7eb;
+}
+
+.step-card h3,
+.example-card h3,
+.trap-card h3 {
+  color: var(--ink);
+}
+
+blockquote {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--info);
+  background: #eef3f3;
+  color: #24333b;
+  line-height: 1.65;
+}
+
+.scene-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.exam-callout {
+  margin: 12px 0 0;
+  padding: 14px;
+  border-left: 4px solid var(--info);
+  background: #eef3f3;
+}
+
+.exam-callout strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--info);
+}
+
+.exam-callout p {
+  margin-bottom: 0;
+}
+
+.exam-callout-warning {
+  border-left-color: var(--amber);
+  background: #fff5dd;
+}
+
+.exam-callout-warning strong {
+  color: #8b5a12;
+}
+
+.exam-callout-success {
+  border-left-color: var(--green);
+  background: #edf6ed;
+}
+
+.exam-callout-success strong {
+  color: var(--green-dark);
+}
+
+.term-sidebar {
+  position: sticky;
+  top: 78px;
+  max-height: calc(100vh - 96px);
+  overflow: auto;
+  padding: 18px;
+}
+
+.term-list {
+  display: grid;
+  gap: 12px;
+}
+
+.term-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: #fbf7eb;
+}
+
+.term-card h3 {
+  margin-bottom: 10px;
+  color: var(--green-dark);
+}
+
+.term-card dl {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.term-card dt {
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.term-card dd {
+  margin: 0 0 8px;
+}
+
+.last-review ul {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
 @media (max-width: 860px) {
   .page-shell,
   .app-shell {
@@ -262,5 +488,15 @@ button:disabled {
 
   .level-grid {
     grid-template-columns: 1fr;
+  }
+
+  .lesson-layout,
+  .scene-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .term-sidebar {
+    position: static;
+    max-height: none;
   }
 }
