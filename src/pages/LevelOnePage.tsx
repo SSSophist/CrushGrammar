@@ -1,15 +1,44 @@
+import { useMemo, useState } from 'react';
 import ExamCallout from '../components/ExamCallout';
+import ErrorSummary from '../components/ErrorSummary';
 import LastMinuteReview from '../components/LastMinuteReview';
 import LessonSection from '../components/LessonSection';
 import LevelNav from '../components/LevelNav';
+import PracticeQuestion from '../components/PracticeQuestion';
 import TermRescueSidebar from '../components/TermRescueSidebar';
-import { lastMinuteReview, level1Examples, level1Steps, level1Terms, level1Traps } from '../data/level1';
+import {
+  errorTagInfo,
+  lastMinuteReview,
+  level1Examples,
+  level1Steps,
+  level1Terms,
+  level1Traps,
+  practiceQuestions
+} from '../data/level1';
+import type { AnswerRecord, ErrorTag } from '../types';
 
 interface LevelOnePageProps {
   onBack: () => void;
 }
 
 export default function LevelOnePage({ onBack }: LevelOnePageProps) {
+  const [answers, setAnswers] = useState<AnswerRecord[]>([]);
+  const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
+  const [completedRemediations] = useState<ErrorTag[]>([]);
+
+  const answeredIds = useMemo(() => new Set(answers.map((answer) => answer.questionId)), [answers]);
+  const allPracticeAnswered = answers.length >= practiceQuestions.length;
+
+  const handleAnswered = (record: AnswerRecord) => {
+    setAnswers((current) => {
+      if (current.some((answer) => answer.questionId === record.questionId)) {
+        return current;
+      }
+
+      return [...current, record];
+    });
+  };
+
   return (
     <main className="page-shell lesson-page">
       <button type="button" className="text-action" onClick={onBack}>
@@ -137,7 +166,34 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
 
           <LessonSection id="practice" title="过关练习" kicker="Practice">
             <div className="practice-shell">
-              <p>下一步接入 10 道题即时批改。每题会显示骨架、解析和错因标签。</p>
+              <p>每题选完立刻批改，马上显示骨架、解析和错因标签。最后再汇总错因。</p>
+              <div className="practice-progress">
+                已完成 {answers.length} / {practiceQuestions.length}
+              </div>
+              <div className="question-list">
+                {practiceQuestions.map((question) => (
+                  <PracticeQuestion
+                    key={question.id}
+                    question={question}
+                    errorInfo={errorTagInfo}
+                    onAnswered={handleAnswered}
+                  />
+                ))}
+              </div>
+              {allPracticeAnswered ? (
+                <ErrorSummary
+                  records={answers}
+                  errorInfo={errorTagInfo}
+                  completedTags={completedRemediations}
+                  onRemediate={setActiveRemediationTag}
+                />
+              ) : null}
+              {activeRemediationTag ? (
+                <p className="remediation-pending">下一步接入“{errorTagInfo[activeRemediationTag].title}”的补救题。</p>
+              ) : null}
+              {!allPracticeAnswered && answeredIds.size > 0 ? (
+                <p className="practice-hint">继续完成剩余题目，系统会在最后汇总你的主要错因。</p>
+              ) : null}
             </div>
           </LessonSection>
 
