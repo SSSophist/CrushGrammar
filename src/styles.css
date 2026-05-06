@@ -579,7 +579,9 @@ blockquote {
 .instant-feedback,
 .error-summary,
 .remediation-pending,
-.practice-hint {
+.practice-hint,
+.remediation-panel,
+.level-complete {
   padding: 14px;
   border-left: 4px solid var(--info);
   background: #eef3f3;
@@ -636,6 +638,34 @@ blockquote {
 .remediation-pending {
   border-left-color: var(--amber);
   background: #fff7e7;
+}
+
+.remediation-panel {
+  display: grid;
+  gap: 14px;
+  border-left-color: var(--amber);
+  background: #fff7e7;
+}
+
+.remediation-panel h3,
+.level-complete h3 {
+  color: var(--green-dark);
+}
+
+.remediation-action,
+.completion-note {
+  padding: 12px;
+  background: var(--paper);
+  font-weight: 800;
+}
+
+.completion-note {
+  color: var(--green-dark);
+}
+
+.level-complete {
+  border-left-color: var(--green);
+  background: #edf6ed;
 }
 
 @media (max-width: 860px) {

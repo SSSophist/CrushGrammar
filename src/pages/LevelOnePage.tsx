@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonSection from '../components/LessonSection';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
+import RemediationPanel from '../components/RemediationPanel';
 import TermRescueSidebar from '../components/TermRescueSidebar';
 import {
   errorTagInfo,
@@ -13,8 +14,10 @@ import {
   level1Steps,
   level1Terms,
   level1Traps,
-  practiceQuestions
+  practiceQuestions,
+  remediations
 } from '../data/level1';
+import { getErrorSummary } from '../lib/practice';
 import type { AnswerRecord, ErrorTag } from '../types';
 
 interface LevelOnePageProps {
@@ -24,10 +27,17 @@ interface LevelOnePageProps {
 export default function LevelOnePage({ onBack }: LevelOnePageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
-  const [completedRemediations] = useState<ErrorTag[]>([]);
+  const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
 
   const answeredIds = useMemo(() => new Set(answers.map((answer) => answer.questionId)), [answers]);
   const allPracticeAnswered = answers.length >= practiceQuestions.length;
+  const errorSummary = useMemo(() => getErrorSummary(answers), [answers]);
+  const activeRemediation = activeRemediationTag
+    ? remediations.find((remediation) => remediation.tag === activeRemediationTag)
+    : null;
+  const levelComplete =
+    allPracticeAnswered &&
+    (errorSummary.length === 0 || errorSummary.every((item) => completedRemediations.includes(item.tag)));
 
   const handleAnswered = (record: AnswerRecord) => {
     setAnswers((current) => {
@@ -37,6 +47,11 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
 
       return [...current, record];
     });
+  };
+
+  const handleRemediationComplete = (tag: ErrorTag) => {
+    setCompletedRemediations((current) => (current.includes(tag) ? current : [...current, tag]));
+    setActiveRemediationTag(null);
   };
 
   return (
@@ -188,8 +203,20 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
                   onRemediate={setActiveRemediationTag}
                 />
               ) : null}
-              {activeRemediationTag ? (
-                <p className="remediation-pending">下一步接入“{errorTagInfo[activeRemediationTag].title}”的补救题。</p>
+              {activeRemediation ? (
+                <RemediationPanel
+                  remediation={activeRemediation}
+                  errorInfo={errorTagInfo}
+                  onComplete={handleRemediationComplete}
+                />
+              ) : null}
+              {levelComplete ? (
+                <section className="level-complete">
+                  <p className="eyebrow">Level Clear</p>
+                  <h3>你已经完成第 1 关：先会看句子骨架。</h3>
+                  <p>现在你至少知道，英文长句不能一上来逐词翻译，要先找“谁 + 做/是 + 什么/怎么样”。</p>
+                  <p>下一关我们会继续解决：看到选词填空或长句空位时，怎么用位置判断词性。</p>
+                </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (
                 <p className="practice-hint">继续完成剩余题目，系统会在最后汇总你的主要错因。</p>
