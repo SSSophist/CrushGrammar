@@ -64,6 +64,24 @@ export interface PracticeOption {
   text: string;
 }
 
+export type SentencePartKind =
+  | 'background'
+  | 'subject'
+  | 'predicate'
+  | 'object'
+  | 'complement'
+  | 'modifier'
+  | 'detail'
+  | 'logic';
+
+export interface SentenceAnalysisPart {
+  id: string;
+  kind: SentencePartKind;
+  label: string;
+  text: string;
+  note?: string;
+}
+
 export interface PracticeQuestion {
   id: string;
   title: string;
@@ -73,6 +91,7 @@ export interface PracticeQuestion {
   correctOptionId: string;
   skeleton: string;
   explanation: string;
+  analysisParts?: SentenceAnalysisPart[];
   errorByOption: Partial<Record<string, ErrorTag[]>>;
 }
 

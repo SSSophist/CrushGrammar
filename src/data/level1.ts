@@ -264,6 +264,13 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'b',
     skeleton: 'Public libraries provide access.',
     explanation: 'In many cities 是地点背景，for local residents 是服务对象。主线是 public libraries provide access。',
+    analysisParts: [
+      { id: 'q1-background', kind: 'background', label: '地点背景', text: 'In many cities' },
+      { id: 'q1-subject', kind: 'subject', label: '主语', text: 'public libraries' },
+      { id: 'q1-predicate', kind: 'predicate', label: '主发动机', text: 'provide' },
+      { id: 'q1-object', kind: 'object', label: '宾语', text: 'free access to digital resources' },
+      { id: 'q1-detail', kind: 'detail', label: '服务对象', text: 'for local residents' }
+    ],
     errorByOption: {
       a: ['modifier-as-mainline'],
       c: ['mainline-missing'],
@@ -284,6 +291,18 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'c',
     skeleton: 'The habit can improve efficiency.',
     explanation: 'reviewing notes 是 habit 后面的说明，不是主发动机。真正说明 habit 作用的是 can improve。',
+    analysisParts: [
+      {
+        id: 'q2-subject',
+        kind: 'subject',
+        label: '主语',
+        text: 'The habit of reviewing notes after class',
+        note: '核心是 habit'
+      },
+      { id: 'q2-modifier', kind: 'modifier', label: '说明', text: 'of reviewing notes after class' },
+      { id: 'q2-predicate', kind: 'predicate', label: '主发动机', text: 'can improve' },
+      { id: 'q2-object', kind: 'object', label: '宾语', text: "students' learning efficiency" }
+    ],
     errorByOption: {
       a: ['predicate-confusion'],
       b: ['term-blocked'],
@@ -304,6 +323,18 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'a',
     skeleton: 'The ability is useful.',
     explanation: 'to express ideas clearly 是 ability 的说明，主语核心是 ability。',
+    analysisParts: [
+      {
+        id: 'q3-subject',
+        kind: 'subject',
+        label: '主语',
+        text: 'The ability to express ideas clearly',
+        note: '核心是 ability'
+      },
+      { id: 'q3-modifier', kind: 'modifier', label: '说明', text: 'to express ideas clearly' },
+      { id: 'q3-predicate', kind: 'predicate', label: '主发动机', text: 'is' },
+      { id: 'q3-complement', kind: 'complement', label: '状态补充', text: 'useful in both exams and future work' }
+    ],
     errorByOption: {
       b: ['modifier-as-mainline'],
       c: ['mainline-missing'],
@@ -324,6 +355,19 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'a',
     skeleton: 'Students feel less pressure.',
     explanation: 'who manage their time well 是 Students 后面的一坨，说明是哪类学生。',
+    analysisParts: [
+      {
+        id: 'q4-subject',
+        kind: 'subject',
+        label: '主语',
+        text: 'Students who manage their time well',
+        note: '核心是 Students'
+      },
+      { id: 'q4-modifier', kind: 'modifier', label: '修饰', text: 'who manage their time well' },
+      { id: 'q4-predicate', kind: 'predicate', label: '主发动机', text: 'feel' },
+      { id: 'q4-complement', kind: 'complement', label: '状态补充', text: 'less pressure' },
+      { id: 'q4-detail', kind: 'detail', label: '时间背景', text: 'before exams' }
+    ],
     errorByOption: {
       b: ['predicate-confusion'],
       c: ['modifier-target'],
@@ -344,6 +388,18 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'b',
     skeleton: 'Online learning has become a common choice.',
     explanation: 'With the development of mobile technology 是背景。主线是 online learning has become a common choice。',
+    analysisParts: [
+      {
+        id: 'q5-background',
+        kind: 'background',
+        label: '背景',
+        text: 'With the development of mobile technology'
+      },
+      { id: 'q5-subject', kind: 'subject', label: '主语', text: 'online learning' },
+      { id: 'q5-predicate', kind: 'predicate', label: '主发动机', text: 'has become' },
+      { id: 'q5-complement', kind: 'complement', label: '结果补充', text: 'a common choice' },
+      { id: 'q5-detail', kind: 'detail', label: '适用对象', text: 'for many college students' }
+    ],
     errorByOption: {
       a: ['modifier-as-mainline'],
       c: ['mainline-missing'],
@@ -364,6 +420,23 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'b',
     skeleton: 'The survey shows that many students prefer short videos.',
     explanation: 'conducted last month 是修饰 survey 的，不是主发动机。shows 才是主句动作。',
+    analysisParts: [
+      {
+        id: 'q6-subject',
+        kind: 'subject',
+        label: '主语',
+        text: 'The survey conducted last month',
+        note: '核心是 survey'
+      },
+      { id: 'q6-modifier', kind: 'modifier', label: '修饰', text: 'conducted last month' },
+      { id: 'q6-predicate', kind: 'predicate', label: '主发动机', text: 'shows' },
+      {
+        id: 'q6-object',
+        kind: 'object',
+        label: '说明内容',
+        text: 'that many students prefer short videos to long lectures'
+      }
+    ],
     errorByOption: {
       a: ['predicate-confusion'],
       c: ['clause-function'],
@@ -384,6 +457,12 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'b',
     skeleton: 'Planning helps students.',
     explanation: 'helps 后面先接 students，意思是“帮助学生”。avoid unnecessary stress 是学生去做的事。',
+    analysisParts: [
+      { id: 'q7-subject', kind: 'subject', label: '主语', text: 'Careful planning' },
+      { id: 'q7-predicate', kind: 'predicate', label: '主发动机', text: 'helps' },
+      { id: 'q7-object', kind: 'object', label: '宾语', text: 'students' },
+      { id: 'q7-complement', kind: 'complement', label: '补充动作', text: 'avoid unnecessary stress' }
+    ],
     errorByOption: {
       a: ['term-blocked'],
       c: ['predicate-confusion'],
@@ -404,6 +483,22 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'b',
     skeleton: 'It required careful reading and logical thinking.',
     explanation: 'Although 引出的“虽然一开始看起来简单”是让步背景。逗号后面才是主线转折重点。',
+    analysisParts: [
+      {
+        id: 'q8-logic',
+        kind: 'logic',
+        label: '让步背景',
+        text: 'Although the task seemed simple at first'
+      },
+      { id: 'q8-subject', kind: 'subject', label: '主语', text: 'it' },
+      { id: 'q8-predicate', kind: 'predicate', label: '主发动机', text: 'required' },
+      {
+        id: 'q8-object',
+        kind: 'object',
+        label: '宾语',
+        text: 'careful reading and logical thinking'
+      }
+    ],
     errorByOption: {
       a: ['logic-reversal'],
       c: ['mainline-missing'],
@@ -424,6 +519,12 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'a',
     skeleton: 'Good reading habits can help students understand articles.',
     explanation: '中文先搭骨架：习惯可以帮助学生理解文章。A 有完整主语和主发动机 can help。',
+    analysisParts: [
+      { id: 'q9-subject', kind: 'subject', label: '主语', text: 'Good reading habits' },
+      { id: 'q9-predicate', kind: 'predicate', label: '主发动机', text: 'can help' },
+      { id: 'q9-object', kind: 'object', label: '宾语', text: 'students' },
+      { id: 'q9-complement', kind: 'complement', label: '补充动作', text: 'understand articles faster' }
+    ],
     errorByOption: {
       b: ['writing-translation-basics'],
       c: ['mainline-missing'],
@@ -444,6 +545,23 @@ export const practiceQuestions: PracticeQuestion[] = [
     correctOptionId: 'b',
     skeleton: 'People are less likely to be misled.',
     explanation: 'In an age when information changes rapidly 是时代背景。people who can judge the quality of sources 是主语。',
+    analysisParts: [
+      {
+        id: 'q10-background',
+        kind: 'background',
+        label: '时代背景',
+        text: 'In an age when information changes rapidly'
+      },
+      {
+        id: 'q10-subject',
+        kind: 'subject',
+        label: '主语',
+        text: 'people who can judge the quality of sources',
+        note: '核心是 people'
+      },
+      { id: 'q10-modifier', kind: 'modifier', label: '修饰', text: 'who can judge the quality of sources' },
+      { id: 'q10-predicate', kind: 'predicate', label: '主发动机', text: 'are less likely to be misled' }
+    ],
     errorByOption: {
       a: ['modifier-as-mainline'],
       c: ['modifier-target'],

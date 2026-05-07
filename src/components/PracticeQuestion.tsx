@@ -69,6 +69,20 @@ export default function PracticeQuestion({ question, errorInfo, onAnswered }: Pr
             <strong>人话解析：</strong>
             {question.explanation}
           </p>
+          {question.analysisParts?.length ? (
+            <div className="component-breakdown">
+              <p className="breakdown-title">句子成分拆解</p>
+              <ul className="component-parts" aria-label="句子成分拆解">
+                {question.analysisParts.map((part) => (
+                  <li className={`analysis-part part-${part.kind}`} key={part.id}>
+                    <span className="part-label">{part.label}</span>
+                    <span className="part-text">{part.text}</span>
+                    {part.note ? <span className="part-note">{part.note}</span> : null}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           {!record.correct && record.errorTags.length > 0 ? (
             <div className="feedback-tags">
               {record.errorTags.map((tag) => (
