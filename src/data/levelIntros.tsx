@@ -124,5 +124,18 @@ export const levelIntros: Record<string, LevelIntro> = {
         先认信号，再还原成普通句，最后回到“谁做了什么/什么怎么样”。
       </>
     )
+  },
+  'level-10': {
+    levelNumber: 10,
+    title: '总复盘：语法秒杀流程',
+    body: (
+      <>
+        <strong>本关怎么用：</strong>这是对前 9 关的总复盘，不讲新知识，只给你考场上的
+        <strong>4 步 SOP</strong>（标准操作流程）。
+        <br />
+        <br />
+        按顺序：<strong>抓骨架 {'->'} 砍修饰 {'->'} 看逻辑 {'->'} 定词性</strong>。不管遇到什么题型，只要卡住，就顺着这四步重新看题。
+      </>
+    )
   }
 };

@@ -1,8 +1,12 @@
 import { Lock, PlayCircle } from 'lucide-react';
 import type { LevelMeta } from '../types';
 
+export interface MapLevelItem extends Omit<LevelMeta, 'group'> {
+  group: string;
+}
+
 interface LevelMapProps {
-  levels: LevelMeta[];
+  levels: MapLevelItem[];
   onOpenLevel: (levelId: string) => void;
 }
 

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import ExamCallout from '../components/ExamCallout';
 import ErrorSummary from '../components/ErrorSummary';
 import LastMinuteReview from '../components/LastMinuteReview';
@@ -25,9 +25,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 
 interface LevelFourPageProps {
   onBack: () => void;
+  onLevelComplete: () => void;
 }
 
-export default function LevelFourPage({ onBack }: LevelFourPageProps) {
+export default function LevelFourPage({ onBack, onLevelComplete }: LevelFourPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -41,6 +42,12 @@ export default function LevelFourPage({ onBack }: LevelFourPageProps) {
   const levelComplete =
     allPracticeAnswered &&
     (errorSummary.length === 0 || errorSummary.every((item) => completedRemediations.includes(item.tag)));
+
+  useEffect(() => {
+    if (levelComplete) {
+      onLevelComplete();
+    }
+  }, [levelComplete, onLevelComplete]);
 
   const handleAnswered = (record: AnswerRecord) => {
     setAnswers((current) => {

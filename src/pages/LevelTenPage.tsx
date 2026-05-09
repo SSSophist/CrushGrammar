@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import ExamCallout from '../components/ExamCallout';
 import ErrorSummary from '../components/ErrorSummary';
 import LastMinuteReview from '../components/LastMinuteReview';
@@ -8,27 +8,26 @@ import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
 import TermRescueSidebar from '../components/TermRescueSidebar';
 import VocabText from '../components/VocabText';
+import { errorTagInfo } from '../data/level1'; // Reusing errorTagInfo since it covers all basic errors
 import {
-  errorTagInfo,
   lastMinuteReview,
-  level1Examples,
-  level1Steps,
-  level1Terms,
-  level1Traps,
+  level10Examples,
+  level10Steps,
+  level10Terms,
+  level10Traps,
   practiceQuestions,
   remediations
-} from '../data/level1';
-import { level1Vocab } from '../data/levelVocab';
-import { useEffect } from 'react';
+} from '../data/level10';
+import { level10Vocab } from '../data/levelVocab';
 import { getErrorSummary } from '../lib/practice';
 import type { AnswerRecord, ErrorTag } from '../types';
 
-interface LevelOnePageProps {
+interface LevelTenPageProps {
   onBack: () => void;
   onLevelComplete: () => void;
 }
 
-export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePageProps) {
+export default function LevelTenPage({ onBack, onLevelComplete }: LevelTenPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -48,8 +47,7 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
       onLevelComplete();
     }
   }, [levelComplete, onLevelComplete]);
-
-  const renderVocabText = (text: string) => <VocabText text={text} entries={level1Vocab} />;
+  const renderVocabText = (text: string) => <VocabText text={text} entries={level10Vocab} />;
 
   const handleAnswered = (record: AnswerRecord) => {
     setAnswers((current) => {
@@ -73,17 +71,17 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
       </button>
 
       <section className="lesson-hero">
-        <p className="eyebrow">Level 1</p>
-        <h1>先会看句子骨架</h1>
+        <p className="eyebrow">Level 10</p>
+        <h1>总复盘：考场秒杀流程</h1>
         <p>
-          英文句子再长，第一步也先找它的核心骨架：
-          <strong>谁 + 做/是 + 什么/怎么样</strong>。
+          不要凭感觉瞎猜，考场上永远按这个顺序走：
+          <strong>抓骨架 {'->'} 砍修饰 {'->'} 看逻辑 {'->'} 定词性</strong>。
         </p>
         <div className="lesson-facts">
-          <span>4 步抓骨架</span>
-          <span>10 题即时批改</span>
-          <span>5 个常见错因</span>
-          <span>错因清零后通关</span>
+          <span>4 步解题 SOP</span>
+          <span>10 题综合实战</span>
+          <span>明确你的薄弱项</span>
+          <span>最后冲刺拿分</span>
         </div>
       </section>
 
@@ -93,16 +91,16 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
         <div className="lesson-main">
           <LessonSection id="position" title="这一关解决什么痛点" kicker="Position">
             <p>
-              很多同学不是单词完全不认识，而是看到英文长句时，不知道这句话到底在说谁、做了什么、对谁做。
+              很多同学学完了前面的零散语法点，但一上考场：看到三行长的阅读句子，还是习惯性地从左到右逐词翻译，最后脑子一团浆糊。做选词填空拿着单词一个个往里套意思，耗时巨长还错一半。
             </p>
             <ExamCallout title="本关不追求">
-              <p>不背五大基本句型，不系统讲所有句子成分。现在只练一件事：把主线信息从长句里拎出来。</p>
+              <p>这一关不讲任何新的语法点。如果遇到卡壳的地方，说明前 9 关还有漏洞，必须根据错因回到对应的关卡复习。</p>
             </ExamCallout>
           </LessonSection>
 
-          <LessonSection id="method" title="考场判断法" kicker="Method">
+          <LessonSection id="method" title="考场判断法（SOP）" kicker="Method">
             <div className="step-list">
-              {level1Steps.map((step) => (
+              {level10Steps.map((step) => (
                 <article className="step-card" key={step.id}>
                   <h3>{step.title}</h3>
                   {step.body.map((line) => (
@@ -116,25 +114,25 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
           <LessonSection id="scenes" title="四六级场景" kicker="CET Use">
             <div className="scene-grid">
               <ExamCallout title="阅读长难句">
-                <p>很多长句不是语法高级，而是修饰太多。先抓骨架，就能知道作者到底在说什么。</p>
+                <p>扫读时直接跳过括号里的修饰语，只看“谁+做了+什么”，阅读速度提升一倍，且不易被干扰项骗。</p>
               </ExamCallout>
               <ExamCallout title="选词填空">
-                <p>判断空格附近的句子骨架，可以帮助你知道空里大概要名词、动词、形容词还是副词。</p>
+                <p>不要上来就看选项意思。先看空格处缺什么词性，甚至缺单数还是复数，圈定 2-3 个词后再带入意思。</p>
               </ExamCallout>
               <ExamCallout title="翻译和写作">
-                <p>中文翻英文时，先搭英文骨架，再往上加修饰，句子会稳很多。</p>
+                <p>先写死核心骨架（主谓宾），然后再把定语和状语像挂件一样挂上去，最后检查动词时态和单复数。</p>
               </ExamCallout>
             </div>
           </LessonSection>
 
           <LessonSection id="examples" title="例句拆解" kicker="Examples">
             <div className="example-list">
-              {level1Examples.map((example) => (
+              {level10Examples.map((example) => (
                 <article className="example-card" key={example.id}>
                   <h3>{example.title}</h3>
                   <blockquote>{renderVocabText(example.sentence)}</blockquote>
                   <p>
-                    <strong>主发动机：</strong>
+                    <strong>核心动作：</strong>
                     {renderVocabText(example.engine)}
                   </p>
                   <p>
@@ -147,11 +145,11 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
                     ))}
                   </ul>
                   <p>
-                    <strong>整句：</strong>
+                    <strong>翻译/正解：</strong>
                     {example.translation}
                   </p>
                   {example.warning ? (
-                    <ExamCallout title="易错提醒" tone="warning">
+                    <ExamCallout title="SOP 提醒" tone="warning">
                       <p>{renderVocabText(example.warning)}</p>
                     </ExamCallout>
                   ) : null}
@@ -162,12 +160,12 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
 
           <LessonSection id="traps" title="常见坑" kicker="Traps">
             <div className="trap-list">
-              {level1Traps.map((trap) => (
+              {level10Traps.map((trap) => (
                 <article className="trap-card" key={trap.id}>
                   <h3>{trap.title}</h3>
                   <blockquote>{renderVocabText(trap.sentence)}</blockquote>
                   <p>
-                    <strong>错误读法：</strong>
+                    <strong>致命表现：</strong>
                     {renderVocabText(trap.wrongRead)}
                   </p>
                   <p>
@@ -179,15 +177,7 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
                       <li key={line}>{renderVocabText(line)}</li>
                     ))}
                   </ul>
-                  <p>
-                    <strong>骨架：</strong>
-                    {renderVocabText(trap.skeleton)}
-                  </p>
-                  <p>
-                    <strong>整句：</strong>
-                    {trap.translation}
-                  </p>
-                  <ExamCallout title="够用提醒" tone="success">
+                  <ExamCallout title="SOP 动作" tone="success">
                     <p>{renderVocabText(trap.quickRule)}</p>
                   </ExamCallout>
                 </article>
@@ -195,9 +185,9 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
             </div>
           </LessonSection>
 
-          <LessonSection id="practice" title="过关练习" kicker="Practice">
+          <LessonSection id="practice" title="综合实战演练" kicker="Practice">
             <div className="practice-shell">
-              <p>每题选完立刻批改，马上显示骨架、解析和错因标签。最后再汇总错因。</p>
+              <p>每题都会考察你是否真正掌握了四六级秒杀流水线，选完立刻批改并给出解析。</p>
               <div className="practice-progress">
                 已完成 {answers.length} / {practiceQuestions.length}
               </div>
@@ -208,7 +198,7 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
                     question={question}
                     errorInfo={errorTagInfo}
                     onAnswered={handleAnswered}
-                    vocabEntries={level1Vocab}
+                    vocabEntries={level10Vocab}
                   />
                 ))}
               </div>
@@ -225,19 +215,19 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
                   remediation={activeRemediation}
                   errorInfo={errorTagInfo}
                   onComplete={handleRemediationComplete}
-                  vocabEntries={level1Vocab}
+                  vocabEntries={level10Vocab}
                 />
               ) : null}
               {levelComplete ? (
                 <section className="level-complete">
                   <p className="eyebrow">Level Clear</p>
-                  <h3>你已经完成第 1 关：先会看句子骨架。</h3>
-                  <p>现在你至少知道，英文长句不能一上来逐词翻译，要先找“谁 + 做/是 + 什么/怎么样”。</p>
-                  <p>下一关我们会继续解决：看到选词填空或长句空位时，怎么用位置判断词性。</p>
+                  <h3>🎉 通关祝贺！你已完成四六级语法速通所有内容！</h3>
+                  <p>带着这套“骨架 {'->'} 修饰 {'->'} 逻辑 {'->'} 词性”的解题流水线，自信地去考场拿分吧！</p>
+                  <p>在四六级的考场上，“能看懂、填对空、写得对”就是唯一的真理。祝你过级顺利！</p>
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (
-                <p className="practice-hint">继续完成剩余题目，系统会在最后汇总你的主要错因。</p>
+                <p className="practice-hint">继续完成剩余题目，系统会在最后汇总你的薄弱项。</p>
               ) : null}
             </div>
           </LessonSection>
@@ -245,7 +235,7 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
           <LastMinuteReview items={lastMinuteReview} />
         </div>
 
-        <TermRescueSidebar terms={level1Terms} />
+        <TermRescueSidebar terms={level10Terms} />
       </div>
     </main>
   );

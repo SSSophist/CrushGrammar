@@ -584,6 +584,11 @@ blockquote {
   display: inline-block;
 }
 
+.vocab-shell:hover .vocab-word,
+.vocab-shell:focus-within .vocab-word {
+  font-weight: bold;
+}
+
 .scene-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

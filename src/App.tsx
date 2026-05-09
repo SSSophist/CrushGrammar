@@ -11,6 +11,8 @@ import LevelSevenPage from './pages/LevelSevenPage';
 import LevelSixPage from './pages/LevelSixPage';
 import LevelThreePage from './pages/LevelThreePage';
 import LevelTwoPage from './pages/LevelTwoPage';
+import LevelTenPage from './pages/LevelTenPage';
+import { useProgress } from './lib/useProgress';
 
 type Screen =
   | 'home'
@@ -22,11 +24,13 @@ type Screen =
   | 'level-6'
   | 'level-7'
   | 'level-8'
-  | 'level-9';
+  | 'level-9'
+  | 'level-10';
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>('home');
   const [dismissedIntroFor, setDismissedIntroFor] = useState<Screen | null>(null);
+  const { unlockedLevels, unlockNext, unlockAll } = useProgress();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -49,43 +53,49 @@ export default function App() {
   );
 
   if (screen === 'level-1') {
-    return renderWithIntro(<LevelOnePage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelOnePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-1')} />);
   }
 
   if (screen === 'level-2') {
-    return renderWithIntro(<LevelTwoPage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelTwoPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-2')} />);
   }
 
   if (screen === 'level-3') {
-    return renderWithIntro(<LevelThreePage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelThreePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-3')} />);
   }
 
   if (screen === 'level-4') {
-    return renderWithIntro(<LevelFourPage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelFourPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-4')} />);
   }
 
   if (screen === 'level-5') {
-    return renderWithIntro(<LevelFivePage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelFivePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-5')} />);
   }
 
   if (screen === 'level-6') {
-    return renderWithIntro(<LevelSixPage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelSixPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-6')} />);
   }
 
   if (screen === 'level-7') {
-    return renderWithIntro(<LevelSevenPage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelSevenPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-7')} />);
   }
 
   if (screen === 'level-8') {
-    return renderWithIntro(<LevelEightPage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelEightPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-8')} />);
   }
 
   if (screen === 'level-9') {
-    return renderWithIntro(<LevelNinePage onBack={() => setScreen('home')} />);
+    return renderWithIntro(<LevelNinePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-9')} />);
+  }
+
+  if (screen === 'level-10') {
+    return renderWithIntro(<LevelTenPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-10')} />);
   }
 
   return (
     <HomePage
+      unlockedLevels={unlockedLevels}
+      onUnlockAll={unlockAll}
       onOpenLevel={(levelId) => {
         if (
           levelId === 'level-1' ||
@@ -96,7 +106,8 @@ export default function App() {
           levelId === 'level-6' ||
           levelId === 'level-7' ||
           levelId === 'level-8' ||
-          levelId === 'level-9'
+          levelId === 'level-9' ||
+          levelId === 'level-10'
         ) {
           setScreen(levelId);
         }

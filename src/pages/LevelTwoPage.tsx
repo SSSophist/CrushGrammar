@@ -20,14 +20,16 @@ import {
   level2Traps
 } from '../data/level2';
 import { level2Vocab } from '../data/levelVocab';
+import { useEffect } from 'react';
 import { getErrorSummary } from '../lib/practice';
 import type { AnswerRecord, ErrorTag } from '../types';
 
 interface LevelTwoPageProps {
   onBack: () => void;
+  onLevelComplete: () => void;
 }
 
-export default function LevelTwoPage({ onBack }: LevelTwoPageProps) {
+export default function LevelTwoPage({ onBack, onLevelComplete }: LevelTwoPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -41,6 +43,12 @@ export default function LevelTwoPage({ onBack }: LevelTwoPageProps) {
   const levelComplete =
     allPracticeAnswered &&
     (errorSummary.length === 0 || errorSummary.every((item) => completedRemediations.includes(item.tag)));
+
+  useEffect(() => {
+    if (levelComplete) {
+      onLevelComplete();
+    }
+  }, [levelComplete, onLevelComplete]);
 
   const handleAnswered = (record: AnswerRecord) => {
     setAnswers((current) => {

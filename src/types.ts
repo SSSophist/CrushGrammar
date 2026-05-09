@@ -23,7 +23,10 @@ export interface LevelMeta {
   number: number;
   title: string;
   promise: string;
-  group: string;
+  group: {
+    'three-day': string;
+    'five-day': string;
+  };
   status: 'open' | 'locked' | 'complete';
 }
 
