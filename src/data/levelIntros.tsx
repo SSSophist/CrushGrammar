@@ -12,7 +12,8 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '先会看句子骨架',
     body: (
       <>
-        英文句子再长，第一步也先找它的核心骨架：<strong>谁 + 做/是 + 什么/怎么样</strong>。
+        <strong>本关怎么用：</strong>不要一上来逐词翻译，先把句子压成
+        <strong>谁 + 做/是 + 什么/怎么样</strong>。只要骨架稳住，长句就不会散。
         <br />
         <br />
         右侧术语急救卡不用背，卡住时看一眼，把术语翻成人话：<strong>主语 = 这句话说谁</strong>，
@@ -25,8 +26,11 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '词性和位置判断',
     body: (
       <>
-        选词填空不要一上来凭语感乱试。先看空格前后，判断它大概缺什么词，再用
-        <strong>意思和形式</strong>收口。
+        <strong>本关怎么用：</strong>选词填空不要先凭语感乱试。先看空格前后，判断这里大概缺名词、动词、形容词还是副词，
+        再用<strong>意思和形式</strong>收口。
+        <br />
+        <br />
+        这一关练的是“先缩小范围”，不是背词性定义。
       </>
     )
   },
@@ -35,8 +39,11 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '一个句子一个主发动机',
     body: (
       <>
-        动词再多，也不要一上来乱抓。先找能和主语连起来、撑起整句话的<strong>主发动机</strong>，
-        doing / done / to do 先别急着当主发动机。
+        <strong>本关怎么用：</strong>看到一串动词不要慌，先找能和主语连起来、撑起整句话的
+        <strong>主发动机</strong>。doing / done / to do 先降级看待。
+        <br />
+        <br />
+        目标是先知道“真正推动句子的动作是谁”，再处理旁边的小动作。
       </>
     )
   },
@@ -45,8 +52,11 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '从句只分三大类就够了',
     body: (
       <>
-        四六级不考你背从句分类表。我们只训练一个考场动作：看到一块从句，先判断它是在
+        <strong>本关怎么用：</strong>看到一坨从句，先问它在句子里干嘛：
         <strong>当一个东西</strong>、<strong>修饰一个东西</strong>，还是<strong>交代背景逻辑</strong>。
+        <br />
+        <br />
+        四六级不需要你背完整分类表，先会判断功能就够用。
       </>
     )
   },
@@ -55,8 +65,11 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '非谓语三件套',
     body: (
       <>
-        本关不讲完整语法体系，只训练够用判断：<strong>主动感</strong>、<strong>被动感</strong>、
-        <strong>目的感</strong>。先把假动作降级，再回去抓主线。
+        <strong>本关怎么用：</strong>看到 doing / done / to do，先别急着把它当主句动词。只问三件事：
+        <strong>主动感</strong>、<strong>被动感</strong>、<strong>目的感</strong>。
+        <br />
+        <br />
+        它们多数时候是在补充主线，不是在抢主线。
       </>
     )
   },
@@ -65,8 +78,11 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '并列、转折、因果和让步',
     body: (
       <>
-        本关只训练一件事：看到逻辑词，先判断作者是在<strong>同向补充</strong>、<strong>反向转折</strong>，
-        还是在给出<strong>因果方向</strong>。读懂方向，阅读题会轻很多。
+        <strong>本关怎么用：</strong>看到逻辑词，先判断作者是在
+        <strong>同向补充</strong>、<strong>反向转折</strong>，还是给出<strong>因果方向</strong>。
+        <br />
+        <br />
+        这一关的重点不是翻译连接词，而是读懂作者把信息往哪边推。
       </>
     )
   },
@@ -75,8 +91,11 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '修饰语和长难句压缩术',
     body: (
       <>
-        长句不是一口气硬翻。本关只训练三个动作：<strong>先删修饰</strong>、<strong>压回主干</strong>、
-        <strong>补回细节</strong>。先看懂句子骨架，再慢慢把细节放回去。
+        <strong>本关怎么用：</strong>长句不要一口气硬翻。先
+        <strong>删修饰</strong>，把句子压回主干；看懂主干后，再把细节慢慢补回来。
+        <br />
+        <br />
+        这一关会让你知道哪些内容是主线，哪些只是长尾巴。
       </>
     )
   },
@@ -85,8 +104,10 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '时态、语态、主谓一致够用规则',
     body: (
       <>
-        这一关不讲完整语法体系，只做写作和翻译最后的基础分检查：
+        <strong>本关怎么用：</strong>这一关不讲完整语法体系，只做写作和翻译最后的基础分检查：
         <strong>先定时间</strong>、<strong>再看主动被动</strong>、<strong>最后查主谓一致</strong>。
+        <br />
+        <br />
         目的很简单：句子读得懂，写出来不犯显眼低级错。
       </>
     )
@@ -96,7 +117,10 @@ export const levelIntros: Record<string, LevelIntro> = {
     title: '高频特殊结构先还原成人话',
     body: (
       <>
-        这一关只处理四类高频包装：<strong>比较</strong>、<strong>强调</strong>、<strong>倒装</strong>、<strong>形式 it</strong>。
+        <strong>本关怎么用：</strong>这一关只处理四类高频包装：
+        <strong>比较</strong>、<strong>强调</strong>、<strong>倒装</strong>、<strong>形式 it</strong>。
+        <br />
+        <br />
         先认信号，再还原成普通句，最后回到“谁做了什么/什么怎么样”。
       </>
     )

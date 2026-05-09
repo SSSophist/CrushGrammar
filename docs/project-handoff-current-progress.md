@@ -320,3 +320,29 @@ npm run build
 
 本次待后续继续：
 - 本地 commit：建议提交信息 `feat: add level 9 special structures`。
+
+## 2026-05-10 更新：前九关必读弹窗统一优化
+
+本次更新目标：让每一关开头弹窗都不是“糊上来挡一下”，而是明确告诉用户这一关该怎么学。
+
+已完成内容：
+- `src/data/levelIntros.tsx`：重写前 9 关必读弹窗文案。
+- 每一关弹窗都加入 `本关怎么用`，用一两句话说明本关学习动作。
+- Level 1 保留并强化“右侧术语急救卡”的使用教学：
+  - 术语卡不用背。
+  - 卡住时只看一眼，把术语翻成人话。
+  - 示例：主语 = 这句话说谁；谓语 = 它做什么/怎么样。
+- Level 2-9 不重复术语卡教学，避免反复打扰用户。
+- `src/components/LevelIntroModal.test.tsx`：新增测试，保证前 9 关都有 `本关怎么用`，并保证术语卡教学只出现在 Level 1。
+
+本次已验证：
+```bash
+npm test -- LevelIntroModal App
+npm test
+npm run build
+```
+
+验证结果：
+- 21 个测试文件通过。
+- 70 个测试通过。
+- 生产构建通过。
