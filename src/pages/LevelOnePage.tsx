@@ -7,6 +7,7 @@ import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
 import TermRescueSidebar from '../components/TermRescueSidebar';
+import VocabText from '../components/VocabText';
 import {
   errorTagInfo,
   lastMinuteReview,
@@ -17,6 +18,7 @@ import {
   practiceQuestions,
   remediations
 } from '../data/level1';
+import { level1Vocab } from '../data/levelVocab';
 import { getErrorSummary } from '../lib/practice';
 import type { AnswerRecord, ErrorTag } from '../types';
 
@@ -38,6 +40,7 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
   const levelComplete =
     allPracticeAnswered &&
     (errorSummary.length === 0 || errorSummary.every((item) => completedRemediations.includes(item.tag)));
+  const renderVocabText = (text: string) => <VocabText text={text} entries={level1Vocab} />;
 
   const handleAnswered = (record: AnswerRecord) => {
     setAnswers((current) => {
@@ -120,25 +123,29 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
               {level1Examples.map((example) => (
                 <article className="example-card" key={example.id}>
                   <h3>{example.title}</h3>
-                  <blockquote>{example.sentence}</blockquote>
+                  <blockquote>{renderVocabText(example.sentence)}</blockquote>
                   <p>
                     <strong>主发动机：</strong>
-                    {example.engine}
+                    {renderVocabText(example.engine)}
                   </p>
                   <p>
                     <strong>骨架：</strong>
-                    {example.skeleton}
+                    {renderVocabText(example.skeleton)}
                   </p>
                   <ul>
                     {example.details.map((detail) => (
-                      <li key={detail}>{detail}</li>
+                      <li key={detail}>{renderVocabText(detail)}</li>
                     ))}
                   </ul>
                   <p>
                     <strong>整句：</strong>
                     {example.translation}
                   </p>
-                  {example.warning ? <ExamCallout title="易错提醒" tone="warning"><p>{example.warning}</p></ExamCallout> : null}
+                  {example.warning ? (
+                    <ExamCallout title="易错提醒" tone="warning">
+                      <p>{renderVocabText(example.warning)}</p>
+                    </ExamCallout>
+                  ) : null}
                 </article>
               ))}
             </div>
@@ -149,30 +156,30 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
               {level1Traps.map((trap) => (
                 <article className="trap-card" key={trap.id}>
                   <h3>{trap.title}</h3>
-                  <blockquote>{trap.sentence}</blockquote>
+                  <blockquote>{renderVocabText(trap.sentence)}</blockquote>
                   <p>
                     <strong>错误读法：</strong>
-                    {trap.wrongRead}
+                    {renderVocabText(trap.wrongRead)}
                   </p>
                   <p>
                     <strong>为什么错：</strong>
-                    {trap.whyWrong}
+                    {renderVocabText(trap.whyWrong)}
                   </p>
                   <ul>
                     {trap.correctBreakdown.map((line) => (
-                      <li key={line}>{line}</li>
+                      <li key={line}>{renderVocabText(line)}</li>
                     ))}
                   </ul>
                   <p>
                     <strong>骨架：</strong>
-                    {trap.skeleton}
+                    {renderVocabText(trap.skeleton)}
                   </p>
                   <p>
                     <strong>整句：</strong>
                     {trap.translation}
                   </p>
                   <ExamCallout title="够用提醒" tone="success">
-                    <p>{trap.quickRule}</p>
+                    <p>{renderVocabText(trap.quickRule)}</p>
                   </ExamCallout>
                 </article>
               ))}
@@ -192,6 +199,7 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
                     question={question}
                     errorInfo={errorTagInfo}
                     onAnswered={handleAnswered}
+                    vocabEntries={level1Vocab}
                   />
                 ))}
               </div>
@@ -208,6 +216,7 @@ export default function LevelOnePage({ onBack }: LevelOnePageProps) {
                   remediation={activeRemediation}
                   errorInfo={errorTagInfo}
                   onComplete={handleRemediationComplete}
+                  vocabEntries={level1Vocab}
                 />
               ) : null}
               {levelComplete ? (

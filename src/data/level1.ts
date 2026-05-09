@@ -196,7 +196,7 @@ export const level1Traps: CommonTrap[] = [
   }
 ];
 
-export const errorTagInfo: Record<ErrorTag, ErrorTagInfo> = {
+export const errorTagInfo = {
   'mainline-missing': {
     title: '找不到主干',
     plain: '你现在的问题不是不会语法，而是没有先问“这句话到底说谁做了什么”。',
@@ -247,7 +247,7 @@ export const errorTagInfo: Record<ErrorTag, ErrorTagInfo> = {
     plain: '你不是完全不会做，而是被主语、谓语、宾语这些词吓住了。',
     action: '把术语换成人话：主语是主角，谓语是主发动机，宾语是动作对象。'
   }
-};
+} satisfies Partial<Record<ErrorTag, ErrorTagInfo>>;
 
 export const practiceQuestions: PracticeQuestion[] = [
   {

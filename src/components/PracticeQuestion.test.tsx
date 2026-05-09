@@ -45,4 +45,43 @@ describe('PracticeQuestion', () => {
     expect(subjectPart?.className).toContain('part-subject');
     expect(predicatePart?.className).toContain('part-predicate');
   });
+
+  it('shows a color-only original sentence map before the plain-language explanation', async () => {
+    const user = userEvent.setup();
+    const onAnswered = vi.fn();
+
+    render(<PracticeQuestion question={practiceQuestions[9]} errorInfo={errorTagInfo} onAnswered={onAnswered} />);
+
+    await user.click(screen.getByRole('button', { name: /People are less likely to be misled/ }));
+
+    const coloredSentence = screen.getByLabelText('原句标色');
+    const backgroundText = within(coloredSentence).getByText('In an age when information changes rapidly');
+    const subjectText = within(coloredSentence).getByText('people who can judge the quality of sources');
+    const explanationLine = screen.getByText(/人话解析/).closest('.explanation-line');
+
+    expect(coloredSentence.textContent).not.toContain('时代背景');
+    expect(coloredSentence.textContent).not.toContain('主语');
+    expect(backgroundText.closest('.sentence-highlight')?.className).toContain('part-background');
+    expect(subjectText.closest('.sentence-highlight')?.className).toContain('part-subject');
+    expect(explanationLine?.querySelector('.sentence-highlight')).toBeNull();
+  });
+
+  it('can show vocabulary hints in question sentences and options', () => {
+    const onAnswered = vi.fn();
+
+    render(
+      <PracticeQuestion
+        question={practiceQuestions[0]}
+        errorInfo={errorTagInfo}
+        onAnswered={onAnswered}
+        vocabEntries={[
+          { term: 'digital resources', meaning: '数字资源' },
+          { term: 'local residents', meaning: '当地居民' }
+        ]}
+      />
+    );
+
+    expect(screen.getByLabelText('digital resources：数字资源')).toBeTruthy();
+    expect(screen.getByLabelText('local residents：当地居民')).toBeTruthy();
+  });
 });

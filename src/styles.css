@@ -285,6 +285,48 @@ button:disabled {
   color: var(--green-dark);
 }
 
+.intro-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(23, 32, 27, 0.56);
+}
+
+.intro-modal {
+  width: min(680px, 100%);
+  padding: 24px;
+  border: 1px solid rgba(47, 107, 79, 0.42);
+  background: var(--paper);
+  box-shadow: 0 22px 60px rgba(23, 32, 27, 0.28);
+}
+
+.intro-modal h2 {
+  margin-bottom: 8px;
+  color: var(--green-dark);
+  font-size: 2rem;
+}
+
+.intro-modal h3 {
+  color: var(--ink);
+}
+
+.intro-modal-body {
+  margin: 14px 0 20px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--info);
+  background: #eef3f3;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.8;
+}
+
+.intro-modal-body strong {
+  color: var(--green-dark);
+}
+
 .lesson-facts {
   display: flex;
   flex-wrap: wrap;
@@ -310,12 +352,26 @@ button:disabled {
   z-index: 5;
   display: flex;
   gap: 8px;
+  align-items: center;
   overflow-x: auto;
   margin: 10px 0 24px;
   padding: 10px;
   border: 1px solid var(--line);
   background: rgba(255, 253, 246, 0.94);
   backdrop-filter: blur(8px);
+}
+
+.level-nav-title {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px 0 2px;
+  border-right: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 900;
+  white-space: nowrap;
 }
 
 .level-nav a {
@@ -388,6 +444,53 @@ button:disabled {
   color: var(--ink);
 }
 
+.example-options {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: #f8fbf8;
+}
+
+.example-options p {
+  margin: 0;
+  color: var(--info);
+  font-weight: 900;
+}
+
+.example-options div {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.example-option {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  background: #fffffb;
+  color: var(--ink);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.example-option.is-correct {
+  border-color: rgba(47, 107, 79, 0.36);
+  background: #edf6ed;
+  color: var(--green);
+}
+
+.example-option strong {
+  flex: 0 0 auto;
+  color: var(--green);
+  font-size: 0.78rem;
+}
+
 blockquote {
   margin: 0 0 14px;
   padding: 12px 14px;
@@ -395,6 +498,58 @@ blockquote {
   background: #eef3f3;
   color: #24333b;
   line-height: 1.65;
+}
+
+.vocab-shell {
+  position: relative;
+  display: inline;
+}
+
+.vocab-word {
+  display: inline;
+  color: inherit;
+  cursor: help;
+  outline: none;
+}
+
+.vocab-word:focus-visible {
+  background: #fff7d9;
+  box-shadow: 0 0 0 2px rgba(194, 122, 26, 0.22);
+}
+
+.vocab-tooltip {
+  position: absolute;
+  z-index: 20;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  display: none;
+  width: max-content;
+  max-width: min(260px, 70vw);
+  padding: 6px 9px;
+  border: 1px solid rgba(31, 77, 56, 0.2);
+  color: #fff;
+  background: var(--green-dark);
+  box-shadow: 0 8px 20px rgba(11, 34, 24, 0.18);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.35;
+  transform: translateX(-50%);
+}
+
+.vocab-tooltip::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--green-dark);
+  content: '';
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.vocab-shell:hover .vocab-tooltip,
+.vocab-shell:focus-within .vocab-tooltip {
+  display: inline-block;
 }
 
 .scene-grid {
@@ -577,6 +732,33 @@ blockquote {
   font-weight: 900;
 }
 
+.answer-option .option-text,
+.answer-option .vocab-shell,
+.answer-option .vocab-word,
+.answer-option .vocab-tooltip {
+  display: inline;
+  min-width: 0;
+  min-height: 0;
+  color: inherit;
+  background: transparent;
+}
+
+.answer-option .option-text {
+  flex: 1;
+}
+
+.answer-option .vocab-tooltip {
+  position: absolute;
+  display: none;
+  color: #fff;
+  background: var(--green-dark);
+}
+
+.answer-option .vocab-shell:hover .vocab-tooltip,
+.answer-option .vocab-shell:focus-within .vocab-tooltip {
+  display: inline-block;
+}
+
 .answer-option.is-selected {
   outline: 2px solid rgba(194, 122, 26, 0.36);
 }
@@ -607,6 +789,23 @@ blockquote {
   display: grid;
   gap: 8px;
   margin-top: 12px;
+}
+
+.colored-sentence-line,
+.explanation-line {
+  line-height: 1.9;
+}
+
+.sentence-highlight {
+  --part-accent: var(--info);
+  --part-bg: #f6f9f8;
+  display: inline;
+  padding: 1px 5px;
+  color: var(--part-accent);
+  background: var(--part-bg);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font-weight: 900;
 }
 
 .breakdown-title {
@@ -691,6 +890,21 @@ blockquote {
 .part-logic {
   --part-accent: #b4453d;
   --part-bg: #fff0ed;
+}
+
+.part-signal {
+  --part-accent: #315a74;
+  --part-bg: #edf5f8;
+}
+
+.part-answer {
+  --part-accent: #2f6b4f;
+  --part-bg: #edf6ed;
+}
+
+.part-form {
+  --part-accent: #a86a18;
+  --part-bg: #fff7e4;
 }
 
 .feedback-tags {
@@ -792,7 +1006,8 @@ blockquote {
   }
 
   .lesson-layout,
-  .scene-grid {
+  .scene-grid,
+  .example-options div {
     grid-template-columns: 1fr;
   }
 

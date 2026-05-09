@@ -10,7 +10,13 @@ export type ErrorTag =
   | 'modifier-target'
   | 'writing-translation-basics'
   | 'special-structure'
-  | 'term-blocked';
+  | 'term-blocked'
+  | 'position-ignored'
+  | 'noun-adjective-confusion'
+  | 'verb-noun-confusion'
+  | 'adverb-confusion'
+  | 'meaning-mismatch'
+  | 'form-mismatch';
 
 export interface LevelMeta {
   id: string;
@@ -34,6 +40,8 @@ export interface LessonExample {
   id: string;
   title: string;
   sentence: string;
+  options?: PracticeOption[];
+  correctOptionId?: string;
   engine: string;
   skeleton: string;
   details: string[];
@@ -64,6 +72,12 @@ export interface PracticeOption {
   text: string;
 }
 
+export interface VocabEntry {
+  term: string;
+  meaning: string;
+  note?: string;
+}
+
 export type SentencePartKind =
   | 'background'
   | 'subject'
@@ -72,7 +86,10 @@ export type SentencePartKind =
   | 'complement'
   | 'modifier'
   | 'detail'
-  | 'logic';
+  | 'logic'
+  | 'signal'
+  | 'answer'
+  | 'form';
 
 export interface SentenceAnalysisPart {
   id: string;

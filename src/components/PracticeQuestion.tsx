@@ -1,16 +1,60 @@
 import { useState } from 'react';
 import { gradeAnswer } from '../lib/practice';
-import type { AnswerRecord, ErrorTagInfo, PracticeQuestion as PracticeQuestionType } from '../types';
+import type { AnswerRecord, ErrorTagInfo, PracticeQuestion as PracticeQuestionType, SentenceAnalysisPart, VocabEntry } from '../types';
+import VocabText from './VocabText';
 
 interface PracticeQuestionProps {
   question: PracticeQuestionType;
-  errorInfo: Record<string, ErrorTagInfo>;
+  errorInfo: Partial<Record<string, ErrorTagInfo>>;
   onAnswered: (record: AnswerRecord) => void;
+  title?: string;
+  vocabEntries?: VocabEntry[];
 }
 
-export default function PracticeQuestion({ question, errorInfo, onAnswered }: PracticeQuestionProps) {
+const renderHighlightedSentence = (sentence: string, parts: SentenceAnalysisPart[] = []) => {
+  const matches = parts
+    .map((part) => {
+      const start = sentence.indexOf(part.text);
+      return start >= 0 ? { part, start, end: start + part.text.length } : null;
+    })
+    .filter((match): match is { part: SentenceAnalysisPart; start: number; end: number } => Boolean(match))
+    .sort((a, b) => a.start - b.start || b.part.text.length - a.part.text.length);
+
+  if (matches.length === 0) {
+    return sentence;
+  }
+
+  const nodes: Array<string | JSX.Element> = [];
+  let cursor = 0;
+
+  matches.forEach((match) => {
+    if (match.start < cursor) {
+      return;
+    }
+
+    if (match.start > cursor) {
+      nodes.push(sentence.slice(cursor, match.start));
+    }
+
+    nodes.push(
+      <span className={`sentence-highlight part-${match.part.kind}`} key={`${match.part.id}-${match.start}`}>
+        {sentence.slice(match.start, match.end)}
+      </span>
+    );
+    cursor = match.end;
+  });
+
+  if (cursor < sentence.length) {
+    nodes.push(sentence.slice(cursor));
+  }
+
+  return nodes;
+};
+
+export default function PracticeQuestion({ question, errorInfo, onAnswered, title, vocabEntries = [] }: PracticeQuestionProps) {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [record, setRecord] = useState<AnswerRecord | null>(null);
+  const renderVocabText = (text: string) => <VocabText text={text} entries={vocabEntries} />;
 
   const handleChoose = (optionId: string) => {
     if (record) {
@@ -33,10 +77,10 @@ export default function PracticeQuestion({ question, errorInfo, onAnswered }: Pr
   return (
     <article className={`practice-question ${record ? (record.correct ? 'is-correct' : 'is-wrong') : ''}`}>
       <div className="question-head">
-        <h3>{question.title}</h3>
+        <h3>{title ?? question.title}</h3>
         {record ? <span className="answer-state">{record.correct ? '答对' : '答错'}</span> : null}
       </div>
-      {question.sentence ? <blockquote>{question.sentence}</blockquote> : null}
+      {question.sentence ? <blockquote>{renderVocabText(question.sentence)}</blockquote> : null}
       <p className="question-prompt">{question.prompt}</p>
       <div className="option-list">
         {question.options.map((option) => (
@@ -50,7 +94,7 @@ export default function PracticeQuestion({ question, errorInfo, onAnswered }: Pr
             onClick={() => handleChoose(option.id)}
           >
             <span>{option.id.toUpperCase()}</span>
-            {option.text}
+            <span className="option-text">{renderVocabText(option.text)}</span>
           </button>
         ))}
       </div>
@@ -59,15 +103,21 @@ export default function PracticeQuestion({ question, errorInfo, onAnswered }: Pr
         <div className="instant-feedback">
           <p>
             <strong>正确答案：</strong>
-            {correctOption?.id.toUpperCase()} · {correctOption?.text}
+            {correctOption?.id.toUpperCase()} · {correctOption ? renderVocabText(correctOption.text) : null}
           </p>
           <p>
             <strong>这题骨架：</strong>
-            {question.skeleton}
+            {renderVocabText(question.skeleton)}
           </p>
-          <p>
+          {question.sentence && question.analysisParts?.length ? (
+            <p className="colored-sentence-line" aria-label="原句标色">
+              <strong>原句：</strong>
+              {renderHighlightedSentence(question.sentence, question.analysisParts)}
+            </p>
+          ) : null}
+          <p className="explanation-line">
             <strong>人话解析：</strong>
-            {question.explanation}
+            {renderVocabText(question.explanation)}
           </p>
           {question.analysisParts?.length ? (
             <div className="component-breakdown">

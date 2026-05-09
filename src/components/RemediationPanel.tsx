@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import PracticeQuestion from './PracticeQuestion';
-import type { AnswerRecord, ErrorTag, ErrorTagInfo, RemediationItem } from '../types';
+import type { AnswerRecord, ErrorTag, ErrorTagInfo, RemediationItem, VocabEntry } from '../types';
 
 interface RemediationPanelProps {
   remediation: RemediationItem;
-  errorInfo: Record<ErrorTag, ErrorTagInfo>;
+  errorInfo: Partial<Record<ErrorTag, ErrorTagInfo>>;
   onComplete: (tag: ErrorTag) => void;
+  vocabEntries?: VocabEntry[];
 }
 
-export default function RemediationPanel({ remediation, errorInfo, onComplete }: RemediationPanelProps) {
+export default function RemediationPanel({ remediation, errorInfo, onComplete, vocabEntries = [] }: RemediationPanelProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [attempt, setAttempt] = useState(1);
   const allAnswered = answers.length === remediation.questions.length;
   const allCorrect = allAnswered && answers.every((answer) => answer.correct);
   const hasWrong = allAnswered && !allCorrect;
+  const remediationInfo = errorInfo[remediation.tag];
 
   const handleAnswered = (record: AnswerRecord) => {
     setAnswers((current) => {
@@ -40,7 +42,7 @@ export default function RemediationPanel({ remediation, errorInfo, onComplete }:
       <p className="eyebrow">Remediation</p>
       <h3>{remediation.title}</h3>
       <p>{remediation.explanation}</p>
-      <p className="remediation-action">{errorInfo[remediation.tag].action}</p>
+      {remediationInfo ? <p className="remediation-action">{remediationInfo.action}</p> : null}
       <div className="question-list">
         {remediation.questions.map((question) => (
           <PracticeQuestion
@@ -48,6 +50,7 @@ export default function RemediationPanel({ remediation, errorInfo, onComplete }:
             question={question}
             errorInfo={errorInfo}
             onAnswered={handleAnswered}
+            vocabEntries={vocabEntries}
           />
         ))}
       </div>
