@@ -13,6 +13,10 @@ export const levelIntros: Record<string, LevelIntro> = {
     body: (
       <>
         英文句子再长，第一步也先找它的核心骨架：<strong>谁 + 做/是 + 什么/怎么样</strong>。
+        <br />
+        <br />
+        右侧术语急救卡不用背，卡住时看一眼，把术语翻成人话：<strong>主语 = 这句话说谁</strong>，
+        <strong>谓语 = 它做什么/怎么样</strong>。看懂意思后立刻回到题目，不要陷进定义里。
       </>
     )
   },

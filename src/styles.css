@@ -293,6 +293,7 @@ button:disabled {
   place-items: center;
   padding: 24px;
   background: rgba(23, 32, 27, 0.56);
+  animation: introBackdropIn 180ms ease-out both;
 }
 
 .intro-modal {
@@ -301,6 +302,8 @@ button:disabled {
   border: 1px solid rgba(47, 107, 79, 0.42);
   background: var(--paper);
   box-shadow: 0 22px 60px rgba(23, 32, 27, 0.28);
+  transform-origin: center;
+  animation: introModalIn 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .intro-modal h2 {
@@ -325,6 +328,35 @@ button:disabled {
 
 .intro-modal-body strong {
   color: var(--green-dark);
+}
+
+@keyframes introBackdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes introModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-modal-backdrop,
+  .intro-modal {
+    animation: none;
+  }
 }
 
 .lesson-facts {
