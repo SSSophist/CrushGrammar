@@ -72,11 +72,11 @@
 
 - 来源：当前代码有 Level 10 页面但未看到 `LevelTenPage.test.tsx`
 - 优先级：P1
-- 状态：待做
+- 状态：已完成（2026-05-14）
 - 验收标准：
-  - 新增 `src/pages/LevelTenPage.test.tsx`。
-  - 覆盖第十关页面标题、SOP 内容、练习题、首题反馈和全对通关。
-  - `npm test -- LevelTenPage` 通过。
+  - 新增 `src/pages/LevelTenPage.test.tsx`。已完成。
+  - 覆盖第十关页面标题、SOP 内容、练习题、首题反馈和全对通关。已完成。
+  - `npm test -- LevelTenPage` 通过。已验收。
   - 完成后 commit。
 
 ### V2-011 修复首页主按钮“开始第几关”不更新
@@ -210,4 +210,17 @@
   - `npm run typecheck` 通过。
   - `npm run build` 通过。
   - `npm test` 通过，21 个测试文件、71 个测试通过。
+  - 本记录完成后单独 commit。
+
+### 2026-05-14：完成 V2-002 Level 10 自动化测试
+
+- 状态：已完成
+- 内容：
+  - 新增 `src/pages/LevelTenPage.test.tsx`。
+  - 覆盖第 10 关 H1、SOP 信息、综合实战入口、首题答对反馈、进度变化和全对通关回调。
+- 验收：
+  - `npm test -- LevelTenPage` 通过，1 个测试文件、2 个测试通过。
+  - `npm run typecheck` 通过。
+  - `npm run build` 通过。
+  - `npm test` 通过，22 个测试文件、73 个测试通过。
   - 本记录完成后单独 commit。

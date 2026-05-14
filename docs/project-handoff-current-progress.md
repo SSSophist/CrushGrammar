@@ -65,32 +65,34 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-`V2-003` 已完成，类型检查和构建护栏恢复：
+`V2-003` 与 `V2-002` 已完成，当前工程护栏和第 10 关测试恢复：
 
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
-- `npm test` 通过。
+- `npm test` 通过，当前测试数量：22 个测试文件、73 个测试。
 - `package.json` 已新增 `typecheck: tsc --noEmit`。
+- `src/pages/LevelTenPage.test.tsx` 已新增，覆盖第 10 关 H1、SOP、首题反馈和全对通关。
 
-下一步从 `V2-002` 开始：
+下一步从 `V2-011` 开始：
 
-1. 新增 `LevelTenPage` 自动化测试。
-2. 覆盖第 10 关标题、SOP 内容、练习题、首题反馈和全对通关。
-3. 运行 `npm test -- LevelTenPage`。
-4. 运行全量测试。
-5. 更新 backlog 状态。
-6. commit。
+1. 修复首页主按钮“开始第几关”不随已解锁进度更新。
+2. 新用户显示 `开始第 1 关`。
+3. 已解锁到第 X 关时显示继续第 X 关。
+4. 全部解锁时显示查看总复盘或等价文案。
+5. 增加自动化测试。
+6. 运行 `npm run typecheck`、`npm run build`、`npm test`。
+7. 更新 backlog 状态。
+8. commit。
 
 之后按顺序处理：
 
-1. `V2-011` 首页主按钮进度同步
-2. `V2-009` 通关完成区底部返回/继续
-3. `V2-005` 阅读对比度
-4. `V2-006` 手机端响应式
-5. `V2-007` 单题翻页刷题体验
-6. `V2-004` 题目重复排查
-7. `V2-008` 术语解释精简
-8. `V2-010` 首页诊断测评
+1. `V2-009` 通关完成区底部返回/继续
+2. `V2-005` 阅读对比度
+3. `V2-006` 手机端响应式
+4. `V2-007` 单题翻页刷题体验
+5. `V2-004` 题目重复排查
+6. `V2-008` 术语解释精简
+7. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -175,4 +177,25 @@ git commit -m "test: restore current suite baseline"
 ```bash
 git add package.json src/components/LevelMap.test.tsx src/pages/HomePage.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "chore: add typecheck script"
+```
+
+## 2026-05-14 更新：V2-002 Level 10 自动化测试
+
+本次任务：
+
+- 新增 `src/pages/LevelTenPage.test.tsx`。
+- 覆盖第 10 关 H1、SOP、综合实战入口、首题答对反馈、进度变化和全对通关回调。
+
+验收结果：
+
+- `npm test -- LevelTenPage` 通过，1 个测试文件、2 个测试通过。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过，22 个测试文件、73 个测试通过。
+
+完成后应提交：
+
+```bash
+git add src/pages/LevelTenPage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "test: cover level ten page"
 ```
