@@ -77,6 +77,7 @@ describe('App', () => {
     expect(progressNav.classList.contains('level-nav')).toBe(true);
     expect(screen.getByText('本关导航')).toBeTruthy();
     expect(screen.getByRole('link', { name: '本关定位' }).getAttribute('href')).toBe('#position');
+    expect(screen.queryByRole('link', { name: '术语急救' })).toBeNull();
     expect(screen.getByRole('link', { name: '过关练习' }).getAttribute('href')).toBe('#practice');
   });
 });

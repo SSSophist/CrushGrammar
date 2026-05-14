@@ -446,3 +446,19 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：26 个测试文件，88 个测试。
+
+## 2026-05-15 调整：侧边进度目录移除术语急救
+
+用户反馈：
+- `术语急救` 不需要放在左侧本关进度导航中。
+
+本次实现：
+- `LevelNav` 从导航项中移除 `#terms / 术语急救`。
+- 页面右侧/正文中的术语急救内容保留，只是不作为主学习进度入口。
+- `LevelNav.test.tsx` 和 `App.test.tsx` 增加断言，防止该项回到左侧目录。
+
+验收结果：
+- `npm test -- LevelNav App` 通过：2 个测试文件，15 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件，88 个测试。
