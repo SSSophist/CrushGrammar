@@ -386,3 +386,23 @@ git commit -m "content: trim term explanations"
 git add src/App.tsx src/lib/useProgress.ts src/pages/HomePage.tsx src/pages/HomePage.test.tsx src/styles.css docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "feat: add diagnostic entry flow"
 ```
+
+## 2026-05-15 更新：课程目录侧边栏
+
+临时新增需求：
+- 在关卡页左侧增加常驻课程目录，模仿参考图的左侧章节导航。
+- 目录支持返回首页、查看所有 10 关、当前关卡高亮。
+- 点击目录中的任意关卡可直接跳转到对应关卡，并触发该关必读弹窗。
+- 手机端不强行挤压正文，目录改为页面顶部的横向分组滚动区。
+
+本次实现：
+- 新增 `src/components/CourseSidebar.tsx`，从 `src/data/levels.ts` 读取关卡数据，避免手写重复目录。
+- `src/App.tsx` 在关卡页统一包裹 `course-layout`，保留各关原有“返回闯关地图”按钮，同时新增侧边栏“返回首页”。
+- `src/styles.css` 新增桌面左栏、当前关高亮、移动端顶部滚动目录样式。
+- `src/App.test.tsx` 新增回归测试，覆盖侧边栏出现、当前关高亮、目录跳关、返回首页。
+
+验收结果：
+- `npm test -- App` 通过：1 个测试文件，15 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件，89 个测试。
