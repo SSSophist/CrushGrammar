@@ -65,25 +65,32 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-下一步从 `V2-003` 开始：
+`V2-003` 已完成，类型检查和构建护栏恢复：
 
-1. 补齐 `typecheck` 脚本。
-2. 运行 `npm run typecheck`。
-3. 运行 `npm run build`。
-4. 更新 backlog 状态。
-5. commit。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过。
+- `package.json` 已新增 `typecheck: tsc --noEmit`。
+
+下一步从 `V2-002` 开始：
+
+1. 新增 `LevelTenPage` 自动化测试。
+2. 覆盖第 10 关标题、SOP 内容、练习题、首题反馈和全对通关。
+3. 运行 `npm test -- LevelTenPage`。
+4. 运行全量测试。
+5. 更新 backlog 状态。
+6. commit。
 
 之后按顺序处理：
 
-1. `V2-002` Level 10 测试
-2. `V2-011` 首页主按钮进度同步
-3. `V2-009` 通关完成区底部返回/继续
-4. `V2-005` 阅读对比度
-5. `V2-006` 手机端响应式
-6. `V2-007` 单题翻页刷题体验
-7. `V2-004` 题目重复排查
-8. `V2-008` 术语解释精简
-9. `V2-010` 首页诊断测评
+1. `V2-011` 首页主按钮进度同步
+2. `V2-009` 通关完成区底部返回/继续
+3. `V2-005` 阅读对比度
+4. `V2-006` 手机端响应式
+5. `V2-007` 单题翻页刷题体验
+6. `V2-004` 题目重复排查
+7. `V2-008` 术语解释精简
+8. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -93,7 +100,7 @@ npm test
 npm run build
 ```
 
-当前 `package.json` 暂未提供 `typecheck` 脚本；`V2-003` 会补齐。
+当前 `package.json` 已提供 `typecheck` 脚本。
 
 ## Commit 规则
 
@@ -147,4 +154,25 @@ git commit -m "docs: restore v2 backlog and handoff"
 ```bash
 git add src/App.test.tsx src/data/levels.ts src/pages/LevelTwoPage.test.tsx src/pages/LevelThreePage.test.tsx src/pages/LevelFourPage.test.tsx src/pages/LevelFivePage.test.tsx src/pages/LevelSixPage.test.tsx src/pages/LevelSevenPage.test.tsx src/pages/LevelEightPage.test.tsx src/pages/LevelNinePage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "test: restore current suite baseline"
+```
+
+## 2026-05-14 更新：V2-003 类型检查护栏
+
+本次任务：
+
+- 新增 `typecheck` 脚本。
+- 修复 `LevelMap` 测试夹具类型。
+- 修复 `HomePage` 动态关卡列表的类型推断。
+
+验收结果：
+
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过，21 个测试文件、71 个测试通过。
+
+完成后应提交：
+
+```bash
+git add package.json src/components/LevelMap.test.tsx src/pages/HomePage.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "chore: add typecheck script"
 ```

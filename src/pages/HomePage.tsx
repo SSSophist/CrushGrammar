@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import LevelMap from '../components/LevelMap';
+import type { MapLevelItem } from '../components/LevelMap';
 import RouteSelector from '../components/RouteSelector';
 import { levels } from '../data/levels';
 import type { RouteMode } from '../types';
@@ -31,7 +32,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onOpenLevel }: H
   }, [clicks]);
 
   // Dynamically override level status and group based on unlockedLevels array and routeMode
-  const dynamicLevels = levels.map(level => ({
+  const dynamicLevels: MapLevelItem[] = levels.map(level => ({
     ...level,
     group: level.group[routeMode],
     status: unlockedLevels.includes(level.id) ? 'open' : 'locked'

@@ -58,14 +58,14 @@
 
 - 来源：2026-05-14 重启修复流程
 - 优先级：P0
-- 状态：待做
+- 状态：已完成（2026-05-14）
 - 当前观察：
   - `package.json` 的 `build` 已是 `tsc && vite build`。
   - 但当前缺少单独的 `typecheck` 脚本。
 - 验收标准：
-  - `package.json` 有 `typecheck`: `tsc --noEmit`。
-  - `npm run typecheck` 通过。
-  - `npm run build` 通过。
+  - `package.json` 有 `typecheck`: `tsc --noEmit`。已完成。
+  - `npm run typecheck` 通过。已验收。
+  - `npm run build` 通过。已验收。
   - 完成后 commit。
 
 ### V2-002 补 Level 10 自动化测试
@@ -197,4 +197,17 @@
 - 验收：
   - 定向测试：`npm test -- App LevelTwoPage LevelThreePage LevelFourPage LevelFivePage LevelSixPage LevelSevenPage LevelEightPage LevelNinePage`，28 个测试通过。
   - 全量测试：`npm test`，21 个测试文件、71 个测试通过。
+  - 本记录完成后单独 commit。
+
+### 2026-05-14：完成 V2-003 类型检查护栏
+
+- 状态：已完成
+- 内容：
+  - 新增 `typecheck` 脚本：`tsc --noEmit`。
+  - 修复 `LevelMap` 测试数据的类型声明，使其匹配当前扁平化关卡地图输入。
+  - 修复 `HomePage` 动态关卡列表的类型推断，避免 `status` 被放宽成普通字符串。
+- 验收：
+  - `npm run typecheck` 通过。
+  - `npm run build` 通过。
+  - `npm test` 通过，21 个测试文件、71 个测试通过。
   - 本记录完成后单独 commit。

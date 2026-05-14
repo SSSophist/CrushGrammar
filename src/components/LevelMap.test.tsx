@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import LevelMap from './LevelMap';
-import type { LevelMeta } from '../types';
+import type { MapLevelItem } from './LevelMap';
 
-const levels: LevelMeta[] = [
+const levels: MapLevelItem[] = [
   { id: 'level-1', number: 1, title: '先会看句子骨架', promise: '先抓谁做了什么', group: '句子骨架', status: 'open' },
   { id: 'level-2', number: 2, title: '词性和位置判断', promise: '选词填空先看位置', group: '句子骨架', status: 'open' },
   { id: 'level-3', number: 3, title: '一个句子一个主发动机', promise: '动词再多也先找主线', group: '句子骨架', status: 'open' },
