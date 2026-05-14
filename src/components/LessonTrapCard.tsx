@@ -16,24 +16,24 @@ export default function LessonTrapCard({ trap, vocabEntries, wrongLabel, skeleto
     <article className="trap-card">
       <h3>{trap.title}</h3>
       <blockquote>{renderVocabText(trap.sentence)}</blockquote>
-      <p>
+      <p className="analysis-copy">
         <strong>{wrongLabel}：</strong>
         {renderVocabText(trap.wrongRead)}
       </p>
-      <p>
+      <p className="analysis-copy">
         <strong>为什么错：</strong>
         {renderVocabText(trap.whyWrong)}
       </p>
-      <ul>
+      <ul className="analysis-list">
         {trap.correctBreakdown.map((line) => (
           <li key={line}>{renderVocabText(line)}</li>
         ))}
       </ul>
-      <p>
+      <p className="analysis-copy">
         <strong>{skeletonLabel}：</strong>
         {renderVocabText(trap.skeleton)}
       </p>
-      <p>
+      <p className="analysis-copy">
         <strong>整句：</strong>
         {trap.translation}
       </p>

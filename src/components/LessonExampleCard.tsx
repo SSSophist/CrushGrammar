@@ -42,20 +42,20 @@ export default function LessonExampleCard({
           </div>
         </div>
       ) : null}
-      <p>
+      <p className="analysis-copy">
         <strong>{engineLabel}：</strong>
         {renderVocabText(example.engine)}
       </p>
-      <p>
+      <p className="analysis-copy">
         <strong>{skeletonLabel}：</strong>
         {renderVocabText(example.skeleton)}
       </p>
-      <ul>
+      <ul className="analysis-list">
         {example.details.map((detail) => (
           <li key={detail}>{renderVocabText(detail)}</li>
         ))}
       </ul>
-      <p>
+      <p className="analysis-copy">
         <strong>整句：</strong>
         {example.translation}
       </p>
