@@ -229,8 +229,8 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q1',
     title: 'That 整坨当主语',
-    sentence: 'That he improved quickly surprised everyone.',
-    prompt: 'That he improved quickly 在句子里干嘛？',
+    sentence: 'That the new policy saved time pleased many workers.',
+    prompt: 'That the new policy saved time 在句子里干嘛？',
     options: [
       { id: 'a', text: '当一个东西：整坨当主语' },
       { id: 'b', text: '修饰 everyone' },
@@ -238,12 +238,12 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
       { id: 'd', text: '当主发动机' }
     ],
     correctOptionId: 'a',
-    skeleton: 'That he improved quickly surprised everyone.',
-    explanation: 'That he improved quickly 放在 surprised 前面，整坨表示“他进步很快这件事”，当主语。',
+    skeleton: 'That the new policy saved time pleased workers.',
+    explanation: 'That the new policy saved time 放在 pleased 前面，整坨表示“新政策节省了时间这件事”，当主语。',
     analysisParts: [
-      { id: 'l4-q1-subject', kind: 'subject', label: '当一个东西', text: 'That he improved quickly', note: '整坨当主语' },
-      { id: 'l4-q1-predicate', kind: 'predicate', label: '主发动机', text: 'surprised' },
-      { id: 'l4-q1-object', kind: 'object', label: '对象', text: 'everyone' }
+      { id: 'l4-q1-subject', kind: 'subject', label: '当一个东西', text: 'That the new policy saved time', note: '整坨当主语' },
+      { id: 'l4-q1-predicate', kind: 'predicate', label: '主发动机', text: 'pleased' },
+      { id: 'l4-q1-object', kind: 'object', label: '对象', text: 'many workers' }
     ],
     errorByOption: {
       b: ['modifier-target'],

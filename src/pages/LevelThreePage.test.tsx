@@ -23,8 +23,15 @@ describe('LevelThreePage', () => {
 
     const firstQuestion = level3PracticeQuestions[0];
     const firstCorrect = firstQuestion.options.find((option) => option.id === firstQuestion.correctOptionId);
+    const firstQuestionCard = document.querySelector('.practice-question');
+    const firstCorrectButton = firstQuestionCard
+      ? within(firstQuestionCard as HTMLElement)
+          .getAllByRole('button')
+          .find((button) => button.textContent?.trim().startsWith(firstCorrect?.id.toUpperCase() ?? ''))
+      : null;
 
-    await user.click(screen.getByRole('button', { name: new RegExp(firstCorrect?.text ?? '') }));
+    expect(firstCorrectButton).toBeTruthy();
+    await user.click(firstCorrectButton as HTMLElement);
 
     expect(screen.getByText('答对')).toBeTruthy();
     expect(screen.getByLabelText('原句标色').textContent).toContain(firstQuestion.analysisParts?.[0].text);

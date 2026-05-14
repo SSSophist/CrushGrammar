@@ -232,22 +232,22 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q1',
     title: '题 1：using 先别抢主线',
-    sentence: 'Students using online resources improve their reading skills.',
+    sentence: 'Students using study groups solve difficult problems quickly.',
     prompt: '哪一个是这句话的主线？',
     options: [
-      { id: 'a', text: 'Online resources improve skills.' },
-      { id: 'b', text: 'Students improve skills.' },
-      { id: 'c', text: 'Students use resources.' },
-      { id: 'd', text: 'Reading skills use resources.' }
+      { id: 'a', text: 'Study groups solve problems.' },
+      { id: 'b', text: 'Students solve problems.' },
+      { id: 'c', text: 'Students use groups.' },
+      { id: 'd', text: 'Problems use students.' }
     ],
     correctOptionId: 'b',
-    skeleton: 'Students improve skills.',
-    explanation: 'using online resources 贴着 Students，是修饰信息。真正能和 Students 连起来撑起主句的是 improve。',
+    skeleton: 'Students solve problems.',
+    explanation: 'using study groups 贴着 Students，是修饰信息。真正能和 Students 连起来撑起主句的是 solve。',
     analysisParts: [
       { id: 'l3-q1-subject', kind: 'subject', label: '主语', text: 'Students' },
-      { id: 'l3-q1-modifier', kind: 'modifier', label: '修饰动作', text: 'using online resources' },
-      { id: 'l3-q1-predicate', kind: 'predicate', label: '主发动机', text: 'improve' },
-      { id: 'l3-q1-object', kind: 'object', label: '动作对象', text: 'their reading skills' }
+      { id: 'l3-q1-modifier', kind: 'modifier', label: '修饰动作', text: 'using study groups' },
+      { id: 'l3-q1-predicate', kind: 'predicate', label: '主发动机', text: 'solve' },
+      { id: 'l3-q1-object', kind: 'object', label: '动作对象', text: 'difficult problems' }
     ],
     errorByOption: {
       a: ['modifier-target'],

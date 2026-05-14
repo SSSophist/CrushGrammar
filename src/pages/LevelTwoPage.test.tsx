@@ -27,7 +27,7 @@ describe('LevelTwoPage', () => {
     await user.click(screen.getByRole('button', { name: /choice/ }));
 
     expect(screen.getByText('答对')).toBeTruthy();
-    expect(screen.getByLabelText('原句标色').textContent).toContain('a common ____');
+    expect(screen.getByLabelText('原句标色').textContent).toContain('a practical ____');
     expect(screen.getByText(/位置只是第一轮筛选/)).toBeTruthy();
     expect(screen.getAllByLabelText('Online learning：在线学习').length).toBeGreaterThan(0);
   });

@@ -266,7 +266,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q1',
     title: '题 1：位置先筛词性',
-    sentence: 'Online learning has become a common ____ among college students.',
+    sentence: 'Online learning has become a practical ____ for busy college students.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'choice' },
@@ -275,10 +275,10 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
       { id: 'd', text: 'quickly' }
     ],
     correctOptionId: 'a',
-    skeleton: 'Online learning has become a common choice.',
-    explanation: '位置只是第一轮筛选：a common ____ 先怀疑名词。再看意思，“一种常见选择”通顺；最后看形式，a 后面用单数名词 choice。',
+    skeleton: 'Online learning has become a practical choice.',
+    explanation: '位置只是第一轮筛选：a practical ____ 先怀疑名词。再看意思，“一种实用选择”通顺；最后看形式，a 后面用单数名词 choice。',
     analysisParts: [
-      { id: 'l2-q1-signal', kind: 'signal', label: '位置信号', text: 'a common ____' },
+      { id: 'l2-q1-signal', kind: 'signal', label: '位置信号', text: 'a practical ____' },
       { id: 'l2-q1-answer', kind: 'answer', label: '最终答案', text: 'choice', note: '名词，意思和形式都对' }
     ],
     errorByOption: {
@@ -290,7 +290,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q2',
     title: '题 2：名词前面找标签',
-    sentence: 'Students need ____ information when they make decisions.',
+    sentence: 'Readers need ____ sources when they check online claims.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'reliability' },
@@ -299,10 +299,10 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
       { id: 'd', text: 'reliably' }
     ],
     correctOptionId: 'b',
-    skeleton: 'Students need reliable information.',
-    explanation: '____ information 先怀疑形容词，因为空格在给 information 贴标签。再看意思，可靠信息最自然。',
+    skeleton: 'Readers need reliable sources.',
+    explanation: '____ sources 先怀疑形容词，因为空格在给 sources 贴标签。再看意思，可靠来源最自然。',
     analysisParts: [
-      { id: 'l2-q2-signal', kind: 'signal', label: '位置信号', text: '____ information' },
+      { id: 'l2-q2-signal', kind: 'signal', label: '位置信号', text: '____ sources' },
       { id: 'l2-q2-answer', kind: 'answer', label: '最终答案', text: 'reliable' }
     ],
     errorByOption: {
@@ -314,7 +314,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q3',
     title: '题 3：can 后面先找动作',
-    sentence: "Good habits can ____ students' learning efficiency.",
+    sentence: 'Regular review can ____ students\' exam performance.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'improve' },
@@ -323,8 +323,8 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
       { id: 'd', text: 'clearly' }
     ],
     correctOptionId: 'a',
-    skeleton: "Good habits can improve students' learning efficiency.",
-    explanation: 'can ____ 先怀疑动词原形。意思上“提高效率”成立，所以 improve 最稳。',
+    skeleton: 'Regular review can improve performance.',
+    explanation: 'can ____ 先怀疑动词原形。意思上“提高表现”成立，所以 improve 最稳。',
     analysisParts: [
       { id: 'l2-q3-signal', kind: 'signal', label: '位置信号', text: 'can ____' },
       { id: 'l2-q3-answer', kind: 'answer', label: '最终答案', text: 'improve' }
@@ -434,7 +434,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q8',
     title: '题 8：意思像也要位置对',
-    sentence: 'A balanced diet can have a positive ____ on learning efficiency.',
+    sentence: 'A quiet study space can have a positive ____ on concentration.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'affect' },
@@ -443,7 +443,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
       { id: 'd', text: 'effectively' }
     ],
     correctOptionId: 'c',
-    skeleton: 'A balanced diet can have a positive effect.',
+    skeleton: 'A quiet study space can have a positive effect.',
     explanation: 'a positive ____ 先怀疑名词。affect 意思像“影响”，但它是动词；这里需要名词 effect。',
     analysisParts: [
       { id: 'l2-q8-signal', kind: 'signal', label: '位置信号', text: 'a positive ____' },

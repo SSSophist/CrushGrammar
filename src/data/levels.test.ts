@@ -1,11 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { level2PracticeQuestions, level2Remediations } from './level2';
-import { level3PracticeQuestions, level3Remediations } from './level3';
-import { level4PracticeQuestions, level4Remediations } from './level4';
-import { level5PracticeQuestions, level5Remediations } from './level5';
-import { level6PracticeQuestions, level6Remediations } from './level6';
-import { level7PracticeQuestions, level7Remediations } from './level7';
+import { level1Examples, level1Traps, practiceQuestions as level1PracticeQuestions } from './level1';
+import { level2Examples, level2PracticeQuestions, level2Remediations, level2Traps } from './level2';
+import { level3Examples, level3PracticeQuestions, level3Remediations, level3Traps } from './level3';
+import { level4Examples, level4PracticeQuestions, level4Remediations, level4Traps } from './level4';
+import { level5Examples, level5PracticeQuestions, level5Remediations, level5Traps } from './level5';
+import { level6Examples, level6PracticeQuestions, level6Remediations, level6Traps } from './level6';
+import { level7Examples, level7PracticeQuestions, level7Remediations, level7Traps } from './level7';
 import { level8Examples, level8PracticeQuestions, level8Remediations } from './level8';
+import { level8Traps } from './level8';
+import { level9Examples, level9PracticeQuestions, level9Traps } from './level9';
+import { level10Examples, level10Traps, practiceQuestions as level10PracticeQuestions } from './level10';
 import { levels } from './levels';
 
 describe('levels', () => {
@@ -216,5 +220,34 @@ describe('levels', () => {
     for (const tag of usedTags) {
       expect(remediationTags.has(tag)).toBe(true);
     }
+  });
+
+  it('does not reuse teaching example or trap sentences as practice prompts in the same level', () => {
+    const levelContent = [
+      { level: 1, examples: level1Examples, traps: level1Traps, practice: level1PracticeQuestions },
+      { level: 2, examples: level2Examples, traps: level2Traps, practice: level2PracticeQuestions },
+      { level: 3, examples: level3Examples, traps: level3Traps, practice: level3PracticeQuestions },
+      { level: 4, examples: level4Examples, traps: level4Traps, practice: level4PracticeQuestions },
+      { level: 5, examples: level5Examples, traps: level5Traps, practice: level5PracticeQuestions },
+      { level: 6, examples: level6Examples, traps: level6Traps, practice: level6PracticeQuestions },
+      { level: 7, examples: level7Examples, traps: level7Traps, practice: level7PracticeQuestions },
+      { level: 8, examples: level8Examples, traps: level8Traps, practice: level8PracticeQuestions },
+      { level: 9, examples: level9Examples, traps: level9Traps, practice: level9PracticeQuestions },
+      { level: 10, examples: level10Examples, traps: level10Traps, practice: level10PracticeQuestions }
+    ];
+
+    const duplicates = levelContent.flatMap(({ level, examples, traps, practice }) => {
+      const practiceSentences = new Set(practice.map((question) => question.sentence?.trim()).filter(Boolean));
+      const teachingSentences = [
+        ...examples.map((example) => ({ source: example.title, sentence: example.sentence.trim() })),
+        ...traps.map((trap) => ({ source: trap.title, sentence: trap.sentence.trim() }))
+      ];
+
+      return teachingSentences
+        .filter(({ sentence }) => practiceSentences.has(sentence))
+        .map(({ source, sentence }) => `Level ${level}: ${source} repeats "${sentence}"`);
+    });
+
+    expect(duplicates).toEqual([]);
   });
 });

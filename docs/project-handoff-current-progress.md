@@ -65,11 +65,11 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005`、`V2-006`、`V2-007` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作、解析区阅读对比度、手机端响应式基线和单题翻页刷题体验已恢复：
+`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005`、`V2-006`、`V2-007`、`V2-004` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作、解析区阅读对比度、手机端响应式基线、单题翻页刷题体验和例题/通关题去重护栏已恢复：
 
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
-- `npm test` 通过，当前测试数量：26 个测试文件、82 个测试。
+- `npm test` 通过，当前测试数量：26 个测试文件、83 个测试。
 - `package.json` 已新增 `typecheck: tsc --noEmit`。
 - `src/pages/LevelTenPage.test.tsx` 已新增，覆盖第 10 关 H1、SOP、首题反馈和全对通关。
 - `src/pages/HomePage.test.tsx` 已新增，覆盖首页主按钮开始/继续/查看总复盘。
@@ -81,21 +81,22 @@ C:\Users\23292\Desktop\Crush Grammar
 - `src/styles.css` 已增加 640px/430px 响应式规则：首页、关卡导航、练习题、术语卡、弹窗在手机端更稳。
 - `src/components/PracticeQuestionDeck.tsx` 已新增，Level 1-10 过关练习区统一改为单题翻页。
 - 答对后生产环境默认 0.9 秒自动进入下一题，下一题顶部保留约 2.6 秒 `答对 +1` 正反馈；答错后停留解析，点击继续后才进入下一题。
+- `src/data/levels.test.ts` 已新增例题/常见坑与通关题去重检查，覆盖 Level 1-10。
+- 已替换 Level 2 q1/q2/q3/q8、Level 3 q1、Level 4 q1、Level 9 q10 的重复通关题，并同步选项、骨架、解析和标色片段。
 - `vite.config.ts` 的 `testTimeout` 已调为 15000ms，适配当前长流程页面测试。
 
-下一步从 `V2-004` 开始：
+下一步从 `V2-008` 开始：
 
-1. 排查并替换 Level 1-10 教学例句/常见坑句子和通关题重复内容。
-2. 新增数据层测试，防止后续再次重复。
-3. 替换重复句子时同步更新选项、骨架、解析和标色片段。
+1. 精简每关末尾概念名词解释。
+2. 保留最关键、最影响做题的术语。
+3. 确保学生完成一关后第一眼看到通关反馈和核心动作总结。
 4. 运行 `npm run typecheck`、`npm run build`、`npm test`。
 5. 更新 backlog 状态。
 6. commit。
 
 之后按顺序处理：
 
-1. `V2-008` 术语解释精简
-2. `V2-010` 首页诊断测评
+1. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -328,4 +329,23 @@ git commit -m "style: add mobile responsive baseline"
 ```bash
 git add src/components/PracticeQuestionDeck.tsx src/components/PracticeQuestionDeck.test.tsx src/styles.css src/pages/LevelOnePage.tsx src/pages/LevelTwoPage.tsx src/pages/LevelThreePage.tsx src/pages/LevelFourPage.tsx src/pages/LevelFivePage.tsx src/pages/LevelSixPage.tsx src/pages/LevelSevenPage.tsx src/pages/LevelEightPage.tsx src/pages/LevelNinePage.tsx src/pages/LevelTenPage.tsx src/pages/LevelTwoPage.test.tsx src/pages/LevelThreePage.test.tsx src/pages/LevelFourPage.test.tsx src/pages/LevelFivePage.test.tsx src/pages/LevelSixPage.test.tsx src/pages/LevelSevenPage.test.tsx src/pages/LevelEightPage.test.tsx src/pages/LevelNinePage.test.tsx src/pages/LevelTenPage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "feat: add single-question practice flow"
+```
+
+## 2026-05-14 更新：V2-004 例题与通关题去重
+
+本次任务：
+- 新增 `levels.test.ts` 数据层检查，防止 Level 1-10 同关教学例句/常见坑句子直接复用为通关题。
+- TDD 红灯先抓出 7 处重复：Level 2 q1/q2/q3/q8、Level 3 q1、Level 4 q1、Level 9 q10。
+- 替换重复通关题句子，并同步选项、骨架、解析、标色分析片段和页面测试断言。
+
+验收结果：
+- `npm test -- levels LevelTwoPage LevelThreePage LevelFourPage LevelNinePage` 通过：5 个测试文件、32 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件、83 个测试。
+
+完成后应提交：
+```bash
+git add src/data/level2.ts src/data/level3.ts src/data/level4.ts src/data/level9.ts src/data/levels.test.ts src/pages/LevelTwoPage.test.tsx src/pages/LevelThreePage.test.tsx src/pages/LevelFourPage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "test: prevent repeated teaching and practice prompts"
 ```

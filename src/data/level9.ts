@@ -391,21 +391,21 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q10',
     title: 'neutral',
-    sentence: 'Rarely do students notice this small difference at first.',
+    sentence: 'Rarely do readers question this hidden assumption at first.',
     prompt: '这句话最稳的理解是：',
     options: [
-      { id: 'a', text: '学生一开始很少注意到这个小差别。' },
-      { id: 'b', text: '学生一开始总是注意到这个小差别。' },
+      { id: 'a', text: '读者一开始很少质疑这个隐藏假设。' },
+      { id: 'b', text: '读者一开始总是质疑这个隐藏假设。' },
       { id: 'c', text: '这是一个真实问句。' },
-      { id: 'd', text: '差别主动注意学生。' }
+      { id: 'd', text: '假设主动质疑读者。' }
     ],
     correctOptionId: 'a',
-    skeleton: 'Students rarely notice this difference at first.',
-    explanation: 'Rarely 放句首触发 do students 这种语序，但整句意思是“很少注意到”。',
+    skeleton: 'Readers rarely question this assumption at first.',
+    explanation: 'Rarely 放句首触发 do readers 这种语序，但整句意思是“很少质疑”。',
     analysisParts: [
       { id: 'l9-q10-signal', kind: 'signal', label: '频率信号', text: 'Rarely' },
-      { id: 'l9-q10-form', kind: 'form', label: '倒装形式', text: 'do students' },
-      { id: 'l9-q10-predicate', kind: 'predicate', label: '主线动作', text: 'notice this small difference' },
+      { id: 'l9-q10-form', kind: 'form', label: '倒装形式', text: 'do readers' },
+      { id: 'l9-q10-predicate', kind: 'predicate', label: '主线动作', text: 'question this hidden assumption' },
       { id: 'l9-q10-detail', kind: 'detail', label: '时间', text: 'at first' }
     ],
     errorByOption: { b: ['logic-reversal'], c: ['special-structure'], d: ['mainline-missing'] }
