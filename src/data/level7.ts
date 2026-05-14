@@ -60,14 +60,6 @@ export const level7Terms: TermCard[] = [
     function: '常常补充地点、范围、对象、方式。',
     examUse: 'of students / with clear goals 这种尾巴先别抢主语。',
     skipForNow: '不用背介词用法大全。'
-  },
-  {
-    id: 'insert',
-    term: '插入语',
-    plain: '夹在逗号中间的补充说明。',
-    function: '提供额外信息，但通常不是主线。',
-    examUse: '遇到双逗号包住的内容，先试着跳过去读主句。',
-    skipForNow: '不用深究同位语、插入语区别。'
   }
 ];
 

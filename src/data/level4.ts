@@ -38,14 +38,6 @@ export const level4Steps: LessonStep[] = [
 
 export const level4Terms: TermCard[] = [
   {
-    id: 'clause',
-    term: '从句',
-    plain: '一坨里面也有“谁 + 动作”的小句子。',
-    function: '它可以当一个东西、修饰一个东西，或者交代背景逻辑。',
-    examUse: '读长句时不用先背名字，先问它在句子里干嘛。',
-    skipForNow: '不用纠结名词性从句、定语从句、状语从句的完整定义。'
-  },
-  {
     id: 'thing-clause',
     term: '当一个东西',
     plain: '整坨从句像一个名词一样，被句子拿来当主语或宾语。',
@@ -68,14 +60,6 @@ export const level4Terms: TermCard[] = [
     function: '它像一句话的背景字幕，不一定是作者最想强调的主线。',
     examUse: 'because / when / if / although 开头时，先等主句出现再定重点。',
     skipForNow: '不用把所有状语从句类型一次性背完。'
-  },
-  {
-    id: 'signal-word',
-    term: '引导词',
-    plain: 'that / who / which / when / because / although / if 这类把从句带出来的词。',
-    function: '它能提示方向，但不能替你做最终判断。',
-    examUse: '考试里看到引导词，先提醒自己：后面可能是一坨从句。',
-    skipForNow: '不要只靠引导词硬套规则，同一个 that 可能干不同的活。'
   }
 ];
 

@@ -60,14 +60,6 @@ export const level5Terms: TermCard[] = [
     function: '常常贴着名词，补充这个名词的来源、状态、特点。',
     examUse: '阅读里 done 块特别容易冒充主发动机，要先降级。',
     skipForNow: '不用背过去分词所有用法，先抓“被动/完成”。'
-  },
-  {
-    id: 'to-do',
-    term: 'to do',
-    plain: '常带目的感：为了做、要去做、用来做。',
-    function: '可以说明目的，也可以贴着名词补充“要做什么”。',
-    examUse: '翻译写作里很常用，阅读里也常当长尾巴。',
-    skipForNow: '不用一次性吃完不定式所有句法功能。'
   }
 ];
 

@@ -71,22 +71,6 @@ export const level1Terms: TermCard[] = [
     function: '回答“做了什么、影响了谁、需要什么”。',
     examUse: '翻译和阅读时，找到宾语能让你读懂动作指向。',
     skipForNow: '先不用背双宾语、复合宾语，后面遇到再补。'
-  },
-  {
-    id: 'predicative',
-    term: '表语',
-    plain: '跟在 is / are / become / seem 后面，说明主语是什么或怎么样。',
-    function: '不是动作对象，而是给主语下判断。',
-    examUse: '读到 be 动词时，不要停在 is，要往后看它到底说主语怎么样。',
-    skipForNow: '先记住“be 后面往往是说明主语的内容”。'
-  },
-  {
-    id: 'modifier',
-    term: '修饰语',
-    plain: '给主线加细节的说明书。',
-    function: '说明时间、地点、原因、方式、对象范围、名词特征等。',
-    examUse: '阅读长句里先把修饰语括起来，别让它挡住主干。',
-    skipForNow: '现在先不用细分定语、状语、补语，先会判断“这是主线还是补充”。'
   }
 ];
 

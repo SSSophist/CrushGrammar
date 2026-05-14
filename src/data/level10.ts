@@ -63,14 +63,6 @@ export const level10Terms: TermCard[] = [
     function: '见到 but/however 重点看后面，见到 and 重点找前后对称。',
     examUse: '猜词、猜态度、做选词填空和翻译逻辑连接。',
     skipForNow: '只需记住几个最高频的路标。'
-  },
-  {
-    id: 'word-class',
-    term: '词性坑 (Word Class)',
-    plain: '什么位置填什么词。',
-    function: '填空题和写作的终极护城河，只要位置不对，意思再通顺也是错的。',
-    examUse: '做选词填空的第一步。',
-    skipForNow: '根据前后文判定缺什么词。'
   }
 ];
 

@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { level1Examples, level1Traps, practiceQuestions as level1PracticeQuestions } from './level1';
-import { level2Examples, level2PracticeQuestions, level2Remediations, level2Traps } from './level2';
-import { level3Examples, level3PracticeQuestions, level3Remediations, level3Traps } from './level3';
-import { level4Examples, level4PracticeQuestions, level4Remediations, level4Traps } from './level4';
-import { level5Examples, level5PracticeQuestions, level5Remediations, level5Traps } from './level5';
-import { level6Examples, level6PracticeQuestions, level6Remediations, level6Traps } from './level6';
-import { level7Examples, level7PracticeQuestions, level7Remediations, level7Traps } from './level7';
-import { level8Examples, level8PracticeQuestions, level8Remediations } from './level8';
+import { level1Examples, level1Terms, level1Traps, practiceQuestions as level1PracticeQuestions } from './level1';
+import { level2Examples, level2PracticeQuestions, level2Remediations, level2Terms, level2Traps } from './level2';
+import { level3Examples, level3PracticeQuestions, level3Remediations, level3Terms, level3Traps } from './level3';
+import { level4Examples, level4PracticeQuestions, level4Remediations, level4Terms, level4Traps } from './level4';
+import { level5Examples, level5PracticeQuestions, level5Remediations, level5Terms, level5Traps } from './level5';
+import { level6Examples, level6PracticeQuestions, level6Remediations, level6Terms, level6Traps } from './level6';
+import { level7Examples, level7PracticeQuestions, level7Remediations, level7Terms, level7Traps } from './level7';
+import { level8Examples, level8PracticeQuestions, level8Remediations, level8Terms } from './level8';
 import { level8Traps } from './level8';
-import { level9Examples, level9PracticeQuestions, level9Traps } from './level9';
-import { level10Examples, level10Traps, practiceQuestions as level10PracticeQuestions } from './level10';
+import { level9Examples, level9PracticeQuestions, level9Terms, level9Traps } from './level9';
+import { level10Examples, level10Terms, level10Traps, practiceQuestions as level10PracticeQuestions } from './level10';
 import { levels } from './levels';
 
 describe('levels', () => {
@@ -249,5 +249,26 @@ describe('levels', () => {
     });
 
     expect(duplicates).toEqual([]);
+  });
+
+  it('keeps end-of-level term rescue concise', () => {
+    const termSets = [
+      { level: 1, terms: level1Terms },
+      { level: 2, terms: level2Terms },
+      { level: 3, terms: level3Terms },
+      { level: 4, terms: level4Terms },
+      { level: 5, terms: level5Terms },
+      { level: 6, terms: level6Terms },
+      { level: 7, terms: level7Terms },
+      { level: 8, terms: level8Terms },
+      { level: 9, terms: level9Terms },
+      { level: 10, terms: level10Terms }
+    ];
+
+    const overfilledLevels = termSets
+      .filter(({ terms }) => terms.length > 3)
+      .map(({ level, terms }) => `Level ${level} has ${terms.length} terms`);
+
+    expect(overfilledLevels).toEqual([]);
   });
 });

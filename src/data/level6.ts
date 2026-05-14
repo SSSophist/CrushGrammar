@@ -54,14 +54,6 @@ export const level6Terms: TermCard[] = [
     skipForNow: '不用背完整连接词表，先判断方向。'
   },
   {
-    id: 'same-direction',
-    term: '同向补充',
-    plain: '后半句继续支持前半句，不拐弯。',
-    function: '常见信号有 and、also、moreover、as well。',
-    examUse: '遇到这类词，重点是把信息合并，而不是找冲突。',
-    skipForNow: '不用纠结并列连词和副词的语法分类。'
-  },
-  {
     id: 'turning',
     term: '反向转折',
     plain: '前面说一边，后面突然拐到另一边。',
@@ -76,14 +68,6 @@ export const level6Terms: TermCard[] = [
     function: 'because 常带原因，so / therefore 常带结果。',
     examUse: '细节题和推断题常考“为什么”和“所以怎样”。',
     skipForNow: '不用区分所有原因状语结构，先别读反。'
-  },
-  {
-    id: 'concession',
-    term: '让步',
-    plain: '先承认一个情况，再说真正想强调的结论。',
-    function: '常见信号是 although、though、even though。',
-    examUse: '看到“虽然”，别急着拿前半句当作者重点。',
-    skipForNow: '不用和普通转折做复杂区分，先抓“主句更重要”。'
   }
 ];
 

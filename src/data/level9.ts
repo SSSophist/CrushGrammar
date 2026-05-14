@@ -60,14 +60,6 @@ export const level9Terms: TermCard[] = [
     function: '常见于 only、not only、rarely、never 等开头的句子。',
     examUse: '阅读时别以为句子没有主线；写译时能识别 can/do/does 提前。',
     skipForNow: '先会读懂，不急着自己大量输出复杂倒装。'
-  },
-  {
-    id: 'formal-it',
-    term: '形式 it',
-    plain: 'it 只是占位置，真正内容在后面的 to do 或 that 从句里。',
-    function: '让句子开头更轻，真正重点后置。',
-    examUse: '读长句时别把 it 当成真实对象；翻译时常见“做某事很重要”。',
-    skipForNow: '先认 It is important to... 和 find it difficult to...。'
   }
 ];
 

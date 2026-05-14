@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import TermRescueSidebar from './TermRescueSidebar';
 
 describe('TermRescueSidebar', () => {
-  it('renders four-part term rescue cards', () => {
+  it('renders compact two-part term rescue cards', () => {
     render(
       <TermRescueSidebar
         terms={[
@@ -21,6 +21,8 @@ describe('TermRescueSidebar', () => {
 
     expect(screen.getByText('主语')).toBeTruthy();
     expect(screen.getByText('一句人话')).toBeTruthy();
-    expect(screen.getByText('四六级怎么用')).toBeTruthy();
+    expect(screen.getByText('做题时怎么用')).toBeTruthy();
+    expect(screen.queryByText('它在句子里干嘛')).toBeNull();
+    expect(screen.queryByText('别学太深')).toBeNull();
   });
 });

@@ -60,22 +60,6 @@ export const level3Terms: TermCard[] = [
     function: '决定整句话的中心意思。',
     examUse: 'although / when / because 开头时，逗号后面经常才是主线。',
     skipForNow: '不用分析所有从句类型，先分清背景和主线。'
-  },
-  {
-    id: 'clause-verb',
-    term: '从句动作',
-    plain: '小句子里的动作，通常给主句补背景或修饰。',
-    function: '它有动作感，但不一定是整句主发动机。',
-    examUse: 'who read widely 里的 read 不要抢走 develop 的主线位置。',
-    skipForNow: '先知道它常常被 who / when / because / although 带出来。'
-  },
-  {
-    id: 'predicate',
-    term: '谓语',
-    plain: '本项目里先把它当成“主发动机”的正式叫法。',
-    function: '说明主语做什么、是什么、怎么样。',
-    examUse: '找到了谓语，长句就先压回骨架。',
-    skipForNow: '不用背术语，记“主发动机”就够。'
   }
 ];
 

@@ -54,38 +54,6 @@ export const level8Terms: TermCard[] = [
     function: '单数主语常让一般现在动词加 s，复数主语不加。',
     examUse: '作文里 he have / the number have 这类错很显眼。',
     skipForNow: '不用背复杂例外，先找真正主语核心。'
-  },
-  {
-    id: 'simple-present',
-    term: '一般现在',
-    plain: '说习惯、事实、长期情况。',
-    function: '让句子表达“通常如此”。',
-    examUse: 'every day, often, usually 或普遍现象常用。',
-    skipForNow: '不要把所有中文“了”都翻成过去。'
-  },
-  {
-    id: 'simple-past',
-    term: '一般过去',
-    plain: '明确过去发生的事。',
-    function: '让读者知道动作已经发生在过去。',
-    examUse: 'yesterday, last year, in 2010 这类时间词很明显。',
-    skipForNow: '不用纠结过去完成，先别把过去时间写成现在式。'
-  },
-  {
-    id: 'passive',
-    term: '被动语态',
-    plain: '主语被动作影响：be + done。',
-    function: '把“承受动作的人/物”放到主语位置。',
-    examUse: '翻译“桥被建成、技术被使用、节日被庆祝”很常见。',
-    skipForNow: '先不用深究 by 谁做，很多时候 by 可以省。'
-  },
-  {
-    id: 'subject-core',
-    term: '主语核心',
-    plain: '去掉修饰后真正决定动词的人或物。',
-    function: '决定动词用单数还是复数。',
-    examUse: 'The number of students has... 看的是 number，不是 students。',
-    skipForNow: '先把 of/with/who 后面的尾巴降级。'
   }
 ];
 

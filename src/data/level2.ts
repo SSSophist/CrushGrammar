@@ -60,22 +60,6 @@ export const level2Terms: TermCard[] = [
     function: '告诉你主语做什么、发生什么、变成什么。',
     examUse: '看到 can / should / will 后面的空，先怀疑动词原形。',
     skipForNow: '第二关先不深挖非谓语，下一关专门处理多个动词。'
-  },
-  {
-    id: 'adjective',
-    term: '形容词',
-    plain: '给名词贴标签：什么样的。',
-    function: '常常放在名词前，或跟在 be / become / seem 后。',
-    examUse: '看到空格后面紧跟名词，先怀疑形容词。',
-    skipForNow: '不用背比较级最高级，先看它是不是在修饰名词。'
-  },
-  {
-    id: 'adverb',
-    term: '副词',
-    plain: '给动作、形容词或整句话加说明。',
-    function: '说明怎么做、程度如何、整体语气。',
-    examUse: '看到空格贴着动作或形容词，先怀疑副词，再看句意。',
-    skipForNow: '不要看到 -ly 就无脑选，位置和意思还要对。'
   }
 ];
 

@@ -17,12 +17,8 @@ export default function TermRescueSidebar({ terms }: TermRescueSidebarProps) {
             <dl>
               <dt>一句人话</dt>
               <dd>{term.plain}</dd>
-              <dt>它在句子里干嘛</dt>
-              <dd>{term.function}</dd>
-              <dt>四六级怎么用</dt>
+              <dt>做题时怎么用</dt>
               <dd>{term.examUse}</dd>
-              <dt>别学太深</dt>
-              <dd>{term.skipForNow}</dd>
             </dl>
           </article>
         ))}
