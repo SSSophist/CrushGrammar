@@ -426,3 +426,23 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：26 个测试文件，87 个测试。
+
+## 2026-05-15 更新：本关进度导航常驻与当前位置反馈
+
+用户继续澄清：
+- 左侧本关进度导航要常挂在视窗左边，点击正文跳转后不能找不到目录。
+- 点击对应章节后要有视觉反馈，告诉读者当前处于哪个位置。
+
+本次实现：
+- `LevelNav` 增加当前章节状态，点击章节后设置 `aria-current="location"`。
+- `LevelNav` 使用 `IntersectionObserver` 监听正文区块，滚动阅读时自动更新左侧当前项。
+- 桌面端 `.level-nav` 改为 `position: fixed`，固定在页面左侧视窗内，并允许自身纵向滚动。
+- 手机端仍保留顶部 sticky 横向滚动导航。
+- 目标章节增加 `:target` 动画和 `scroll-margin-top`，点击跳转时正文位置有短暂高亮反馈。
+- `LevelNav.test.tsx` 增加点击后当前项高亮的回归测试。
+
+验收结果：
+- `npm test -- LevelNav App` 通过：2 个测试文件，15 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件，88 个测试。
