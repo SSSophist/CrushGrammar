@@ -59,25 +59,31 @@ C:\Users\23292\Desktop\Crush Grammar
 
 ## 当前最高优先级
 
-下一步从 `V2-001` 开始：
+`V2-001` 已完成，当前测试基线恢复：
 
-1. 运行并修复当前测试套件。
-2. 记录测试数量。
-3. 更新 backlog 状态。
-4. commit。
+- `npm test` 通过。
+- 当前测试数量：21 个测试文件、71 个测试。
+- 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
+
+下一步从 `V2-003` 开始：
+
+1. 补齐 `typecheck` 脚本。
+2. 运行 `npm run typecheck`。
+3. 运行 `npm run build`。
+4. 更新 backlog 状态。
+5. commit。
 
 之后按顺序处理：
 
-1. `V2-003` 类型检查护栏
-2. `V2-002` Level 10 测试
-3. `V2-011` 首页主按钮进度同步
-4. `V2-009` 通关完成区底部返回/继续
-5. `V2-005` 阅读对比度
-6. `V2-006` 手机端响应式
-7. `V2-007` 单题翻页刷题体验
-8. `V2-004` 题目重复排查
-9. `V2-008` 术语解释精简
-10. `V2-010` 首页诊断测评
+1. `V2-002` Level 10 测试
+2. `V2-011` 首页主按钮进度同步
+3. `V2-009` 通关完成区底部返回/继续
+4. `V2-005` 阅读对比度
+5. `V2-006` 手机端响应式
+6. `V2-007` 单题翻页刷题体验
+7. `V2-004` 题目重复排查
+8. `V2-008` 术语解释精简
+9. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -107,7 +113,7 @@ test: prevent repeated teaching and practice prompts
 content: trim term explanations
 ```
 
-## 2026-05-14 更新：V2 文档恢复中
+## 2026-05-14 更新：V2 文档恢复
 
 本次任务：
 
@@ -116,9 +122,29 @@ content: trim term explanations
 - 恢复第二版任务 backlog。
 - 重写当前交接文档，明确每项重新实现后必须 commit。
 
+已提交：
+
+```bash
+git commit -m "docs: restore v2 backlog and handoff"
+```
+
+## 2026-05-14 更新：V2-001 测试基线恢复
+
+本次任务：
+
+- 先跑全量测试确认失败基线：9 个测试文件失败，19 个测试失败。
+- 修复 App 测试需要的解锁状态。
+- 修复 Level 2-9 页面测试缺少 `onLevelComplete` 回调的问题。
+- 对齐第 10 关元数据标题与页面标题。
+
+验收结果：
+
+- 定向测试：28 个测试通过。
+- 全量测试：21 个测试文件、71 个测试通过。
+
 完成后应提交：
 
 ```bash
-git add docs
-git commit -m "docs: restore v2 backlog and handoff"
+git add src/App.test.tsx src/data/levels.ts src/pages/LevelTwoPage.test.tsx src/pages/LevelThreePage.test.tsx src/pages/LevelFourPage.test.tsx src/pages/LevelFivePage.test.tsx src/pages/LevelSixPage.test.tsx src/pages/LevelSevenPage.test.tsx src/pages/LevelEightPage.test.tsx src/pages/LevelNinePage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "test: restore current suite baseline"
 ```

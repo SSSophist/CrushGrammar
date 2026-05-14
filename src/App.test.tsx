@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 import { levels } from './data/levels';
+import { ALL_LEVEL_IDS } from './lib/useProgress';
 
 const openLevel = async (levelNumber: number) => {
   const button = screen
@@ -20,10 +21,12 @@ const openLevel = async (levelNumber: number) => {
 
 describe('App', () => {
   beforeEach(() => {
+    localStorage.setItem('crush_grammar_unlocked_levels', JSON.stringify(ALL_LEVEL_IDS));
     vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
   });
 
   afterEach(() => {
+    localStorage.clear();
     vi.restoreAllMocks();
   });
 

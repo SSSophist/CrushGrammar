@@ -8,8 +8,9 @@ describe('LevelNinePage', () => {
   it('renders the special-structure lesson and keeps practice titles neutral', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelNinePage onBack={onBack} />);
+    render(<LevelNinePage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '高频特殊结构速通' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 9 关学习路线' })).toBeTruthy();
@@ -41,8 +42,9 @@ describe('LevelNinePage', () => {
   it('shows the level-nine clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelNinePage onBack={onBack} />);
+    render(<LevelNinePage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const [index, question] of level9PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);

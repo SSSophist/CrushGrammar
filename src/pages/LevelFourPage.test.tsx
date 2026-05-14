@@ -8,8 +8,9 @@ describe('LevelFourPage', () => {
   it('renders the clause-function lesson and gives instant feedback', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelFourPage onBack={onBack} />);
+    render(<LevelFourPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '从句只分三大类就够了' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 4 关学习路线' })).toBeTruthy();
@@ -32,8 +33,9 @@ describe('LevelFourPage', () => {
   it('shows the level-four clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelFourPage onBack={onBack} />);
+    render(<LevelFourPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const [index, question] of level4PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);

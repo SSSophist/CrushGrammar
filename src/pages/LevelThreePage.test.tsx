@@ -8,8 +8,9 @@ describe('LevelThreePage', () => {
   it('renders the main-engine lesson and gives instant feedback', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelThreePage onBack={onBack} />);
+    render(<LevelThreePage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '一个句子一个主发动机' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 3 关学习路线' })).toBeTruthy();
@@ -31,8 +32,9 @@ describe('LevelThreePage', () => {
   it('shows the level-three clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelThreePage onBack={onBack} />);
+    render(<LevelThreePage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const [index, question] of level3PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);

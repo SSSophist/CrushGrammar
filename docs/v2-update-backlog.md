@@ -45,12 +45,12 @@
 
 - 来源：2026-05-14 重启修复流程
 - 优先级：P0
-- 状态：待做
+- 状态：已完成（2026-05-14）
 - 问题：
   - 需要确认当前仓库测试是否能稳定运行。
   - 如果测试不通过，必须先修复测试和代码基线。
 - 验收标准：
-  - `npm test` 通过。
+  - `npm test` 通过。已验收：21 个测试文件、71 个测试全部通过。
   - 当前测试数量记录到交接文档。
   - 完成后 commit。
 
@@ -177,7 +177,7 @@
 
 ### 2026-05-14：恢复 V2 文档和执行纪律
 
-- 状态：进行中
+- 状态：已完成
 - 内容：
   - 恢复 `docs/README.md`。
   - 恢复 `docs/user-feedback-log.md`。
@@ -186,3 +186,15 @@
 - 验收：
   - 文档存在且能说明当前状态、反馈、排期和 commit 纪律。
   - 完成后单独 commit。
+
+### 2026-05-14：完成 V2-001 测试基线恢复
+
+- 状态：已完成
+- 内容：
+  - 修复 App 测试的关卡解锁前置条件，测试中显式写入 1-10 关已解锁状态。
+  - 补齐 Level 2-9 页面测试的 `onLevelComplete` 回调，匹配当前页面组件接口。
+  - 将第 10 关关卡元数据标题对齐页面 H1：`总复盘：考场秒杀流程`。
+- 验收：
+  - 定向测试：`npm test -- App LevelTwoPage LevelThreePage LevelFourPage LevelFivePage LevelSixPage LevelSevenPage LevelEightPage LevelNinePage`，28 个测试通过。
+  - 全量测试：`npm test`，21 个测试文件、71 个测试通过。
+  - 本记录完成后单独 commit。

@@ -8,8 +8,9 @@ describe('LevelSixPage', () => {
   it('renders the logic-connector lesson and gives instant feedback', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelSixPage onBack={onBack} />);
+    render(<LevelSixPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '并列、转折、因果和让步' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 6 关学习路线' })).toBeTruthy();
@@ -41,8 +42,9 @@ describe('LevelSixPage', () => {
   it('shows the level-six clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelSixPage onBack={onBack} />);
+    render(<LevelSixPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const [index, question] of level6PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);

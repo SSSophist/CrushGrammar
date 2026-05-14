@@ -8,8 +8,9 @@ describe('LevelFivePage', () => {
   it('renders the non-finite lesson and gives instant feedback', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelFivePage onBack={onBack} />);
+    render(<LevelFivePage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '非谓语三件套' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 5 关学习路线' })).toBeTruthy();
@@ -32,8 +33,9 @@ describe('LevelFivePage', () => {
   it('shows the level-five clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelFivePage onBack={onBack} />);
+    render(<LevelFivePage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const [index, question] of level5PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);

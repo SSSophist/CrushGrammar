@@ -8,8 +8,9 @@ describe('LevelSevenPage', () => {
   it('renders the long-sentence compression lesson and gives instant feedback', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelSevenPage onBack={onBack} />);
+    render(<LevelSevenPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '修饰语和长难句压缩术' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 7 关学习路线' })).toBeTruthy();
@@ -41,8 +42,9 @@ describe('LevelSevenPage', () => {
   it('shows the level-seven clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelSevenPage onBack={onBack} />);
+    render(<LevelSevenPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const [index, question] of level7PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);

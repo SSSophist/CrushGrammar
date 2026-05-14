@@ -8,8 +8,9 @@ describe('LevelEightPage', () => {
   it('renders the writing-translation basics lesson and gives instant feedback', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelEightPage onBack={onBack} />);
+    render(<LevelEightPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '时态、语态、主谓一致够用规则' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 8 关学习路线' })).toBeTruthy();
@@ -40,8 +41,9 @@ describe('LevelEightPage', () => {
   it('shows the level-eight clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelEightPage onBack={onBack} />);
+    render(<LevelEightPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const [index, question] of level8PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);

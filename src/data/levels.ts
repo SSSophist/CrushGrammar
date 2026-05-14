@@ -47,7 +47,7 @@ export const levels: LevelMeta[] = [
     status: 'open' 
   },
   { 
-    id: 'level-10', number: 10, title: '总复盘：语法秒杀流程', promise: '考场固定检查顺序', 
+    id: 'level-10', number: 10, title: '总复盘：考场秒杀流程', promise: '考场固定检查顺序', 
     group: { 'three-day': 'Day 3: 写译与考场冲刺', 'five-day': 'Day 5: 特殊结构与总复盘' }, 
     status: 'open' 
   }

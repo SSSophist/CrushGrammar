@@ -8,8 +8,9 @@ describe('LevelTwoPage', () => {
   it('renders the level two lesson with the three-step word selection method', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelTwoPage onBack={onBack} />);
+    render(<LevelTwoPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     expect(screen.getByRole('heading', { name: '词性和位置判断' })).toBeTruthy();
     expect(screen.getByRole('navigation', { name: '第 2 关学习路线' })).toBeTruthy();
@@ -34,8 +35,9 @@ describe('LevelTwoPage', () => {
   it('uses a level-two clear message after all practice answers are correct', async () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
+    const onLevelComplete = vi.fn();
 
-    render(<LevelTwoPage onBack={onBack} />);
+    render(<LevelTwoPage onBack={onBack} onLevelComplete={onLevelComplete} />);
 
     for (const question of level2PracticeQuestions) {
       const correctOption = question.options.find((option) => option.id === question.correctOptionId);
