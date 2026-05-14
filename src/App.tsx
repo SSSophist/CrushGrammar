@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import CourseSidebar from './components/CourseSidebar';
 import LevelIntroModal from './components/LevelIntroModal';
 import { levelIntros } from './data/levelIntros';
 import HomePage from './pages/HomePage';
@@ -70,14 +69,7 @@ export default function App() {
 
   const renderWithIntro = (page: JSX.Element) => (
     <>
-      {screen === 'home' ? (
-        page
-      ) : (
-        <div className="course-layout">
-          <CourseSidebar currentLevelId={screen} onBackHome={backHome} onOpenLevel={openLevel} />
-          <main className="course-content">{page}</main>
-        </div>
-      )}
+      {page}
       {showIntro && activeIntro ? (
         <LevelIntroModal intro={activeIntro} onConfirm={() => setDismissedIntroFor(screen)} />
       ) : null}

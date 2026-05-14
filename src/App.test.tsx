@@ -67,40 +67,16 @@ describe('App', () => {
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' });
   });
 
-  it('shows a course sidebar on lesson pages and highlights the current level', async () => {
+  it('shows the current lesson progress navigation on lesson pages', async () => {
     render(<App />);
 
     await openLevel(3);
 
-    const sidebar = screen.getByRole('navigation', { name: '课程目录' });
+    const progressNav = screen.getByRole('navigation', { name: '第 3 关学习路线' });
 
-    expect(sidebar).toBeTruthy();
-    expect(screen.getByRole('button', { name: '返回首页' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /0-3 一个句子一个主发动机/ }).getAttribute('aria-current')).toBe(
-      'page'
-    );
-  });
-
-  it('jumps between levels from the course sidebar', async () => {
-    const user = userEvent.setup();
-
-    render(<App />);
-
-    await openLevel(3);
-    await user.click(screen.getByRole('button', { name: /0-5 非谓语三件套/ }));
-
-    expect(screen.getByRole('heading', { level: 1, name: '非谓语三件套' })).toBeTruthy();
-    expect(screen.getByRole('dialog', { name: '第 5 关必读' })).toBeTruthy();
-  });
-
-  it('returns home from the course sidebar', async () => {
-    const user = userEvent.setup();
-
-    render(<App />);
-
-    await openLevel(3);
-    await user.click(screen.getByRole('button', { name: '返回首页' }));
-
-    expect(screen.getByRole('heading', { level: 1, name: '四六级语法闯关地图' })).toBeTruthy();
+    expect(progressNav.classList.contains('level-nav')).toBe(true);
+    expect(screen.getByText('本关导航')).toBeTruthy();
+    expect(screen.getByRole('link', { name: '本关定位' }).getAttribute('href')).toBe('#position');
+    expect(screen.getByRole('link', { name: '过关练习' }).getAttribute('href')).toBe('#practice');
   });
 });

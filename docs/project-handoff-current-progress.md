@@ -406,3 +406,23 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：26 个测试文件，89 个测试。
+
+## 2026-05-15 修正：左侧导航应为本关进度
+
+用户澄清：
+- 左侧导航不是全课程目录。
+- 左侧应显示当前这一关的学习进度，也就是原顶部 `本关导航 / 本关定位 / 考场判断法 / 四六级场景 / 术语急救 / 例句拆解 / 常见坑 / 过关练习 / 本关总结`。
+
+本次修正：
+- 移除误做的 `CourseSidebar` 全课程目录。
+- `App.tsx` 恢复为直接渲染关卡页面，不再包一层全课程目录布局。
+- 复用现有 `LevelNav` 作为本关进度导航。
+- 桌面端将 `.level-nav` 放到关卡页面左侧，纵向 sticky 展示。
+- 手机端继续保留顶部横向滚动导航，避免正文被挤压。
+- `App.test.tsx` 改为验证本关进度导航，而不是全课程目录跳关。
+
+验收结果：
+- `npm test -- App LevelNav` 通过：2 个测试文件，14 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件，87 个测试。
