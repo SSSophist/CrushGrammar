@@ -65,7 +65,7 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-`V2-003`、`V2-002`、`V2-011` 已完成，当前工程护栏、第 10 关测试和首页主按钮进度同步已恢复：
+`V2-003`、`V2-002`、`V2-011`、`V2-009` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步和每关完成区底部操作已恢复：
 
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
@@ -73,26 +73,26 @@ C:\Users\23292\Desktop\Crush Grammar
 - `package.json` 已新增 `typecheck: tsc --noEmit`。
 - `src/pages/LevelTenPage.test.tsx` 已新增，覆盖第 10 关 H1、SOP、首题反馈和全对通关。
 - `src/pages/HomePage.test.tsx` 已新增，覆盖首页主按钮开始/继续/查看总复盘。
+- `src/components/LevelCompletionActions.tsx` 已新增，统一 Level 1-10 完成区底部操作。
+- Level 1-9 完成区底部已有 `返回闯关地图` 和 `继续第 X 关`；Level 10 只有返回地图。
 - `vite.config.ts` 的 `testTimeout` 已调为 15000ms，适配当前长流程页面测试。
 
-下一步从 `V2-009` 开始：
+下一步从 `V2-005` 开始：
 
-1. 每关通关完成区底部增加 `返回闯关地图` 和 `继续第 X 关`。
-2. Level 10 底部只显示返回地图。
-3. 按钮需要在手机端不拥挤。
-4. 增加自动化测试。
-5. 运行 `npm run typecheck`、`npm run build`、`npm test`。
-6. 更新 backlog 状态。
-7. commit。
+1. 提升例句卡、常见坑卡、反馈区正文的文字可读性和视觉对比度。
+2. 长段解析在手机端要有足够行高和分块。
+3. 重点标签更清楚。
+4. 运行 `npm run typecheck`、`npm run build`、`npm test`。
+5. 更新 backlog 状态。
+6. commit。
 
 之后按顺序处理：
 
-1. `V2-005` 阅读对比度
-2. `V2-006` 手机端响应式
-3. `V2-007` 单题翻页刷题体验
-4. `V2-004` 题目重复排查
-5. `V2-008` 术语解释精简
-6. `V2-010` 首页诊断测评
+1. `V2-006` 手机端响应式
+2. `V2-007` 单题翻页刷题体验
+3. `V2-004` 题目重复排查
+4. `V2-008` 术语解释精简
+5. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -223,4 +223,29 @@ git commit -m "test: cover level ten page"
 ```bash
 git add src/pages/HomePage.tsx src/pages/HomePage.test.tsx vite.config.ts docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "fix: sync home start button with progress"
+```
+
+## 2026-05-14 更新：V2-009 每关完成区底部操作
+
+本次任务：
+
+- 新增 `LevelCompletionActions` 复用组件，避免每关重复写底部按钮结构。
+- Level 1-9 完成区底部显示 `返回闯关地图` 和 `继续第 X 关`。
+- Level 10 完成区底部只显示 `返回闯关地图`。
+- `App.tsx` 为 Level 1-9 传入下一关跳转回调。
+- 完成区按钮支持换行和窄屏满宽堆叠。
+- 更新 `LevelTwoPage.test.tsx` 和 `LevelTenPage.test.tsx` 覆盖底部操作。
+
+验收结果：
+
+- `npm test -- LevelTwoPage LevelTenPage` 通过，2 个测试文件、4 个测试通过。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过，23 个测试文件、76 个测试通过。
+
+完成后应提交：
+
+```bash
+git add src/App.tsx src/components/LevelCompletionActions.tsx src/styles.css src/pages/LevelOnePage.tsx src/pages/LevelTwoPage.tsx src/pages/LevelThreePage.tsx src/pages/LevelFourPage.tsx src/pages/LevelFivePage.tsx src/pages/LevelSixPage.tsx src/pages/LevelSevenPage.tsx src/pages/LevelEightPage.tsx src/pages/LevelNinePage.tsx src/pages/LevelTenPage.tsx src/pages/LevelTwoPage.test.tsx src/pages/LevelTenPage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "feat: add completion actions to level endings"
 ```

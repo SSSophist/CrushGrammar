@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonExampleCard from '../components/LessonExampleCard';
 import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -26,9 +27,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelSevenPageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelSevenPage({ onBack, onLevelComplete }: LevelSevenPageProps) {
+export default function LevelSevenPage({ onBack, onLevelComplete, onNextLevel }: LevelSevenPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -201,6 +203,7 @@ export default function LevelSevenPage({ onBack, onLevelComplete }: LevelSevenPa
                   <h3>你已经完成第 7 关：修饰语和长难句压缩术。</h3>
                   <p>现在你能先把长句压回主干，再补回细节。</p>
                   <p>下一关：时态、语态、主谓一致够用规则，进入写译避坑区。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={8} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonExampleCard from '../components/LessonExampleCard';
 import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -26,9 +27,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelThreePageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelThreePage({ onBack, onLevelComplete }: LevelThreePageProps) {
+export default function LevelThreePage({ onBack, onLevelComplete, onNextLevel }: LevelThreePageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -201,6 +203,7 @@ export default function LevelThreePage({ onBack, onLevelComplete }: LevelThreePa
                   <h3>你已经完成第 3 关：一个句子一个主发动机。</h3>
                   <p>现在你能在多个动词里先抓主线，再处理修饰动作和从句动作。</p>
                   <p>下一关会继续处理：一大坨从句到底在句子里干什么。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={4} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

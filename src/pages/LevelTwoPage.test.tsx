@@ -36,8 +36,9 @@ describe('LevelTwoPage', () => {
     const user = userEvent.setup();
     const onBack = vi.fn();
     const onLevelComplete = vi.fn();
+    const onNextLevel = vi.fn();
 
-    render(<LevelTwoPage onBack={onBack} onLevelComplete={onLevelComplete} />);
+    render(<LevelTwoPage onBack={onBack} onLevelComplete={onLevelComplete} onNextLevel={onNextLevel} />);
 
     for (const question of level2PracticeQuestions) {
       const correctOption = question.options.find((option) => option.id === question.correctOptionId);
@@ -58,5 +59,14 @@ describe('LevelTwoPage', () => {
 
     expect(screen.getByText('本关练习全对')).toBeTruthy();
     expect(screen.getByText('你可以直接通关。三步筛词法这一步已经很稳。')).toBeTruthy();
+
+    const completeSection = screen.getByText('你已经完成第 2 关：词性和位置判断。').closest('.level-complete');
+
+    expect(completeSection).toBeTruthy();
+    await user.click(within(completeSection as HTMLElement).getByRole('button', { name: '返回闯关地图' }));
+    await user.click(within(completeSection as HTMLElement).getByRole('button', { name: '继续第 3 关' }));
+
+    expect(onBack).toHaveBeenCalledTimes(1);
+    expect(onNextLevel).toHaveBeenCalledTimes(1);
   });
 });

@@ -134,6 +134,7 @@ button:disabled {
 }
 
 .primary-action,
+.secondary-action,
 .text-action,
 .level-action {
   display: inline-flex;
@@ -149,6 +150,13 @@ button:disabled {
 .primary-action {
   width: 100%;
   min-height: 52px;
+  font-weight: 800;
+}
+
+.secondary-action {
+  min-height: 52px;
+  color: var(--green-dark);
+  background: #e2eddf;
   font-weight: 800;
 }
 
@@ -1018,6 +1026,18 @@ blockquote {
   background: #edf6ed;
 }
 
+.level-completion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.level-completion-actions .primary-action,
+.level-completion-actions .secondary-action {
+  flex: 1 1 180px;
+}
+
 @media (max-width: 860px) {
   .page-shell,
   .app-shell {
@@ -1037,6 +1057,7 @@ blockquote {
   }
 
   .primary-action,
+  .secondary-action,
   .text-action,
   .level-action {
     width: 100%;

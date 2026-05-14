@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonExampleCard from '../components/LessonExampleCard';
 import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -26,9 +27,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelEightPageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelEightPage({ onBack, onLevelComplete }: LevelEightPageProps) {
+export default function LevelEightPage({ onBack, onLevelComplete, onNextLevel }: LevelEightPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -202,6 +204,7 @@ export default function LevelEightPage({ onBack, onLevelComplete }: LevelEightPa
                   <h3>你已经完成第 8 关：时态、语态、主谓一致够用规则。</h3>
                   <p>现在你能用一套简单检查法，减少写作和翻译里的基础扣分。</p>
                   <p>下一关：高频特殊结构速通，处理比较、强调、倒装等常见考场结构。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={9} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

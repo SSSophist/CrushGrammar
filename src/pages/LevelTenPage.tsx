@@ -3,6 +3,7 @@ import ExamCallout from '../components/ExamCallout';
 import ErrorSummary from '../components/ErrorSummary';
 import LastMinuteReview from '../components/LastMinuteReview';
 import LessonSection from '../components/LessonSection';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -224,6 +225,7 @@ export default function LevelTenPage({ onBack, onLevelComplete }: LevelTenPagePr
                   <h3>🎉 通关祝贺！你已完成四六级语法速通所有内容！</h3>
                   <p>带着这套“骨架 {'->'} 修饰 {'->'} 逻辑 {'->'} 词性”的解题流水线，自信地去考场拿分吧！</p>
                   <p>在四六级的考场上，“能看懂、填对空、写得对”就是唯一的真理。祝你过级顺利！</p>
+                  <LevelCompletionActions onBack={onBack} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

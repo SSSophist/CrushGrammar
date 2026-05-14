@@ -57,7 +57,13 @@ describe('LevelTenPage', () => {
       await user.click(correctButton as HTMLElement);
     }
 
-    expect(screen.getByText('🎉 通关祝贺！你已完成四六级语法速通所有内容！')).toBeTruthy();
+    const completeSection = screen
+      .getByText('🎉 通关祝贺！你已完成四六级语法速通所有内容！')
+      .closest('.level-complete');
+
+    expect(completeSection).toBeTruthy();
+    expect(within(completeSection as HTMLElement).getByRole('button', { name: '返回闯关地图' })).toBeTruthy();
+    expect(within(completeSection as HTMLElement).queryByRole('button', { name: /继续第/ })).toBeNull();
     await waitFor(() => expect(onLevelComplete).toHaveBeenCalledTimes(1));
   });
 });

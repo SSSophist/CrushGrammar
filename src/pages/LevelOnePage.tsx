@@ -3,6 +3,7 @@ import ExamCallout from '../components/ExamCallout';
 import ErrorSummary from '../components/ErrorSummary';
 import LastMinuteReview from '../components/LastMinuteReview';
 import LessonSection from '../components/LessonSection';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -26,9 +27,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelOnePageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePageProps) {
+export default function LevelOnePage({ onBack, onLevelComplete, onNextLevel }: LevelOnePageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -234,6 +236,7 @@ export default function LevelOnePage({ onBack, onLevelComplete }: LevelOnePagePr
                   <h3>你已经完成第 1 关：先会看句子骨架。</h3>
                   <p>现在你至少知道，英文长句不能一上来逐词翻译，要先找“谁 + 做/是 + 什么/怎么样”。</p>
                   <p>下一关我们会继续解决：看到选词填空或长句空位时，怎么用位置判断词性。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={2} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

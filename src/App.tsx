@@ -53,39 +53,93 @@ export default function App() {
   );
 
   if (screen === 'level-1') {
-    return renderWithIntro(<LevelOnePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-1')} />);
+    return renderWithIntro(
+      <LevelOnePage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-1')}
+        onNextLevel={() => setScreen('level-2')}
+      />
+    );
   }
 
   if (screen === 'level-2') {
-    return renderWithIntro(<LevelTwoPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-2')} />);
+    return renderWithIntro(
+      <LevelTwoPage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-2')}
+        onNextLevel={() => setScreen('level-3')}
+      />
+    );
   }
 
   if (screen === 'level-3') {
-    return renderWithIntro(<LevelThreePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-3')} />);
+    return renderWithIntro(
+      <LevelThreePage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-3')}
+        onNextLevel={() => setScreen('level-4')}
+      />
+    );
   }
 
   if (screen === 'level-4') {
-    return renderWithIntro(<LevelFourPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-4')} />);
+    return renderWithIntro(
+      <LevelFourPage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-4')}
+        onNextLevel={() => setScreen('level-5')}
+      />
+    );
   }
 
   if (screen === 'level-5') {
-    return renderWithIntro(<LevelFivePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-5')} />);
+    return renderWithIntro(
+      <LevelFivePage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-5')}
+        onNextLevel={() => setScreen('level-6')}
+      />
+    );
   }
 
   if (screen === 'level-6') {
-    return renderWithIntro(<LevelSixPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-6')} />);
+    return renderWithIntro(
+      <LevelSixPage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-6')}
+        onNextLevel={() => setScreen('level-7')}
+      />
+    );
   }
 
   if (screen === 'level-7') {
-    return renderWithIntro(<LevelSevenPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-7')} />);
+    return renderWithIntro(
+      <LevelSevenPage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-7')}
+        onNextLevel={() => setScreen('level-8')}
+      />
+    );
   }
 
   if (screen === 'level-8') {
-    return renderWithIntro(<LevelEightPage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-8')} />);
+    return renderWithIntro(
+      <LevelEightPage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-8')}
+        onNextLevel={() => setScreen('level-9')}
+      />
+    );
   }
 
   if (screen === 'level-9') {
-    return renderWithIntro(<LevelNinePage onBack={() => setScreen('home')} onLevelComplete={() => unlockNext('level-9')} />);
+    return renderWithIntro(
+      <LevelNinePage
+        onBack={() => setScreen('home')}
+        onLevelComplete={() => unlockNext('level-9')}
+        onNextLevel={() => setScreen('level-10')}
+      />
+    );
   }
 
   if (screen === 'level-10') {

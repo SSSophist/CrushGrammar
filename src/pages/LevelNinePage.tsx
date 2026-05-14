@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonExampleCard from '../components/LessonExampleCard';
 import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -26,9 +27,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelNinePageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelNinePage({ onBack, onLevelComplete }: LevelNinePageProps) {
+export default function LevelNinePage({ onBack, onLevelComplete, onNextLevel }: LevelNinePageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -202,6 +204,7 @@ export default function LevelNinePage({ onBack, onLevelComplete }: LevelNinePage
                   <h3>你已经完成第 9 关：高频特殊结构速通。</h3>
                   <p>现在你能把比较、强调、倒装和形式 it 先拆成普通人话，再继续读句子主线。</p>
                   <p>下一关：总复盘，把前面所有关卡压成一套考场固定流程。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={10} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

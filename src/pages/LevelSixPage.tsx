@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonExampleCard from '../components/LessonExampleCard';
 import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -26,9 +27,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelSixPageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelSixPage({ onBack, onLevelComplete }: LevelSixPageProps) {
+export default function LevelSixPage({ onBack, onLevelComplete, onNextLevel }: LevelSixPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -201,6 +203,7 @@ export default function LevelSixPage({ onBack, onLevelComplete }: LevelSixPagePr
                   <h3>你已经完成第 6 关：并列、转折、因果和让步。</h3>
                   <p>现在你能先抓作者逻辑方向，再判断句子和段落重点。</p>
                   <p>下一关：修饰语和长难句压缩术，把更长的句子继续压回主干。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={7} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonExampleCard from '../components/LessonExampleCard';
 import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -27,9 +28,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelTwoPageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelTwoPage({ onBack, onLevelComplete }: LevelTwoPageProps) {
+export default function LevelTwoPage({ onBack, onLevelComplete, onNextLevel }: LevelTwoPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -201,6 +203,7 @@ export default function LevelTwoPage({ onBack, onLevelComplete }: LevelTwoPagePr
                   <h3>你已经完成第 2 关：词性和位置判断。</h3>
                   <p>现在你知道，位置只负责缩小范围，最终答案还要接受意思和形式的检查。</p>
                   <p>下一关我们会解决：一个句子里动词很多时，怎么找到真正的主发动机。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={3} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (

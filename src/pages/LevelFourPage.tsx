@@ -5,6 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonExampleCard from '../components/LessonExampleCard';
 import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
+import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
 import PracticeQuestion from '../components/PracticeQuestion';
 import RemediationPanel from '../components/RemediationPanel';
@@ -26,9 +27,10 @@ import type { AnswerRecord, ErrorTag } from '../types';
 interface LevelFourPageProps {
   onBack: () => void;
   onLevelComplete: () => void;
+  onNextLevel?: () => void;
 }
 
-export default function LevelFourPage({ onBack, onLevelComplete }: LevelFourPageProps) {
+export default function LevelFourPage({ onBack, onLevelComplete, onNextLevel }: LevelFourPageProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [activeRemediationTag, setActiveRemediationTag] = useState<ErrorTag | null>(null);
   const [completedRemediations, setCompletedRemediations] = useState<ErrorTag[]>([]);
@@ -201,6 +203,7 @@ export default function LevelFourPage({ onBack, onLevelComplete }: LevelFourPage
                   <h3>你已经完成第 4 关：从句只分三大类就够了。</h3>
                   <p>现在你能先判断从句功能，再回到主线读懂句子。</p>
                   <p>下一关：非谓语三件套，继续处理 doing / done / to do。</p>
+                  <LevelCompletionActions onBack={onBack} onNextLevel={onNextLevel} nextLevelNumber={5} />
                 </section>
               ) : null}
               {!allPracticeAnswered && answeredIds.size > 0 ? (
