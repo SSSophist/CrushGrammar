@@ -18,7 +18,8 @@ describe('LevelSevenPage', () => {
     expect(screen.getAllByText(/先删修饰/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/压回主干/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/补回细节/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('heading', { name: '题 15' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '题 1' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: '题 15' })).toBeNull();
     expect(screen.queryByRole('heading', { name: /who|although|with/i })).toBeNull();
 
     const firstQuestion = level7PracticeQuestions[0];
@@ -48,7 +49,7 @@ describe('LevelSevenPage', () => {
 
     for (const [index, question] of level7PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: `题 ${index + 1}` }).closest('.practice-question');
+      const questionCard = (await screen.findByRole('heading', { name: `题 ${index + 1}` })).closest('.practice-question');
 
       expect(questionCard).toBeTruthy();
       const correctButton = within(questionCard as HTMLElement)

@@ -18,7 +18,8 @@ describe('LevelEightPage', () => {
     expect(screen.getAllByText(/先定时间/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/再看主动被动/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/最后查主谓一致/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('heading', { name: '题 15' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '题 1' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: '题 15' })).toBeNull();
     expect(screen.queryByRole('heading', { name: /was built|although|every student/i })).toBeNull();
     expect(screen.getAllByLabelText('clear study plan：清晰的学习计划').length).toBeGreaterThan(0);
 
@@ -47,7 +48,7 @@ describe('LevelEightPage', () => {
 
     for (const [index, question] of level8PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: `题 ${index + 1}` }).closest('.practice-question');
+      const questionCard = (await screen.findByRole('heading', { name: `题 ${index + 1}` })).closest('.practice-question');
 
       expect(questionCard).toBeTruthy();
       const correctButton = within(questionCard as HTMLElement)

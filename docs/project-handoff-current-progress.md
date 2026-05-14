@@ -65,11 +65,11 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005`、`V2-006` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作、解析区阅读对比度和手机端响应式基线已恢复：
+`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005`、`V2-006`、`V2-007` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作、解析区阅读对比度、手机端响应式基线和单题翻页刷题体验已恢复：
 
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
-- `npm test` 通过，当前测试数量：25 个测试文件、80 个测试。
+- `npm test` 通过，当前测试数量：26 个测试文件、82 个测试。
 - `package.json` 已新增 `typecheck: tsc --noEmit`。
 - `src/pages/LevelTenPage.test.tsx` 已新增，覆盖第 10 关 H1、SOP、首题反馈和全对通关。
 - `src/pages/HomePage.test.tsx` 已新增，覆盖首页主按钮开始/继续/查看总复盘。
@@ -79,23 +79,23 @@ C:\Users\23292\Desktop\Crush Grammar
 - 例句卡、常见坑卡、即时反馈区正文已改为深色高对比文本，重点标签更清楚，手机端行高更舒适。
 - `src/styles.responsive.test.ts` 已新增，锁住 640px 小屏断点、导航横滑、弹窗/路线/练习区手机规则和横向溢出保护。
 - `src/styles.css` 已增加 640px/430px 响应式规则：首页、关卡导航、练习题、术语卡、弹窗在手机端更稳。
+- `src/components/PracticeQuestionDeck.tsx` 已新增，Level 1-10 过关练习区统一改为单题翻页。
+- 答对后生产环境默认 0.9 秒自动进入下一题，下一题顶部保留约 2.6 秒 `答对 +1` 正反馈；答错后停留解析，点击继续后才进入下一题。
 - `vite.config.ts` 的 `testTimeout` 已调为 15000ms，适配当前长流程页面测试。
 
-下一步从 `V2-007` 开始：
+下一步从 `V2-004` 开始：
 
-1. 将每关练习改为单题翻页式刷题体验。
-2. 答对后短暂正确反馈并自动进入下一题。
-3. 下一题顶部保留约 2.6 秒正反馈条。
-4. 答错不自动跳题，完整展示解析，由学生确认后继续。
+1. 排查并替换 Level 1-10 教学例句/常见坑句子和通关题重复内容。
+2. 新增数据层测试，防止后续再次重复。
+3. 替换重复句子时同步更新选项、骨架、解析和标色片段。
 4. 运行 `npm run typecheck`、`npm run build`、`npm test`。
 5. 更新 backlog 状态。
 6. commit。
 
 之后按顺序处理：
 
-1. `V2-004` 题目重复排查
-2. `V2-008` 术语解释精简
-3. `V2-010` 首页诊断测评
+1. `V2-008` 术语解释精简
+2. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -302,4 +302,30 @@ git commit -m "style: improve lesson reading contrast"
 ```bash
 git add src/styles.css src/styles.responsive.test.ts docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "style: add mobile responsive baseline"
+```
+
+## 2026-05-14 更新：V2-007 单题翻页刷题体验
+
+本次任务：
+
+- 新增 `PracticeQuestionDeck`，封装单题翻页、答对自动前进、答错手动继续和正反馈条。
+- Level 1-10 的过关练习区从多题列表改为 `PracticeQuestionDeck`。
+- 保留补救练习的多题列表，避免扩大本次需求范围。
+- Level 3-9 继续使用 `题 1` / `题 2` 这类中性标题，避免泄露练习考点。
+- 更新 Level 2-10 页面测试，使其等待单题翻页后的当前题。
+
+验收结果：
+
+- TDD 红灯：`npm test -- PracticeQuestionDeck` 初次失败。
+- 定向测试：`npm test -- PracticeQuestionDeck` 通过，1 个测试文件、2 个测试通过。
+- 页面定向测试：`npm test -- LevelTwoPage LevelThreePage LevelFourPage LevelFivePage LevelSixPage LevelSevenPage LevelEightPage LevelNinePage LevelTenPage` 通过，9 个测试文件、18 个测试通过。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过，26 个测试文件、82 个测试通过。
+
+完成后应提交：
+
+```bash
+git add src/components/PracticeQuestionDeck.tsx src/components/PracticeQuestionDeck.test.tsx src/styles.css src/pages/LevelOnePage.tsx src/pages/LevelTwoPage.tsx src/pages/LevelThreePage.tsx src/pages/LevelFourPage.tsx src/pages/LevelFivePage.tsx src/pages/LevelSixPage.tsx src/pages/LevelSevenPage.tsx src/pages/LevelEightPage.tsx src/pages/LevelNinePage.tsx src/pages/LevelTenPage.tsx src/pages/LevelTwoPage.test.tsx src/pages/LevelThreePage.test.tsx src/pages/LevelFourPage.test.tsx src/pages/LevelFivePage.test.tsx src/pages/LevelSixPage.test.tsx src/pages/LevelSevenPage.test.tsx src/pages/LevelEightPage.test.tsx src/pages/LevelNinePage.test.tsx src/pages/LevelTenPage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "feat: add single-question practice flow"
 ```

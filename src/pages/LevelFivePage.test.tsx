@@ -18,7 +18,8 @@ describe('LevelFivePage', () => {
     expect(screen.getAllByText(/主动感/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/被动感/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/目的感/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('heading', { name: '题 15' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '题 1' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: '题 15' })).toBeNull();
     expect(screen.queryByRole('heading', { name: /using|introduced|to improve/i })).toBeNull();
 
     const firstQuestion = level5PracticeQuestions[0];
@@ -39,7 +40,7 @@ describe('LevelFivePage', () => {
 
     for (const [index, question] of level5PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: `题 ${index + 1}` }).closest('.practice-question');
+      const questionCard = (await screen.findByRole('heading', { name: `题 ${index + 1}` })).closest('.practice-question');
 
       expect(questionCard).toBeTruthy();
       await user.click(within(questionCard as HTMLElement).getByRole('button', { name: new RegExp(correct?.text ?? '') }));

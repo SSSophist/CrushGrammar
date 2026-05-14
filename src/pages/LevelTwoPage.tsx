@@ -7,7 +7,7 @@ import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
 import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
-import PracticeQuestion from '../components/PracticeQuestion';
+import PracticeQuestionDeck from '../components/PracticeQuestionDeck';
 import RemediationPanel from '../components/RemediationPanel';
 import TermRescueSidebar from '../components/TermRescueSidebar';
 import {
@@ -169,17 +169,12 @@ export default function LevelTwoPage({ onBack, onLevelComplete, onNextLevel }: L
               <div className="practice-progress">
                 已完成 {answers.length} / {level2PracticeQuestions.length}
               </div>
-              <div className="question-list">
-                {level2PracticeQuestions.map((question) => (
-                  <PracticeQuestion
-                    key={question.id}
-                    question={question}
-                    errorInfo={level2ErrorInfo}
-                    onAnswered={handleAnswered}
-                    vocabEntries={level2Vocab}
-                  />
-                ))}
-              </div>
+              <PracticeQuestionDeck
+                questions={level2PracticeQuestions}
+                errorInfo={level2ErrorInfo}
+                onAnswered={handleAnswered}
+                vocabEntries={level2Vocab}
+              />
               {allPracticeAnswered ? (
                 <ErrorSummary
                   records={answers}

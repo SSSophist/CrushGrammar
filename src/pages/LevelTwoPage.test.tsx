@@ -42,7 +42,7 @@ describe('LevelTwoPage', () => {
 
     for (const question of level2PracticeQuestions) {
       const correctOption = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: question.title }).closest('.practice-question');
+      const questionCard = (await screen.findByRole('heading', { name: question.title })).closest('.practice-question');
 
       expect(questionCard).toBeTruthy();
       const correctButton = within(questionCard as HTMLElement)

@@ -17,7 +17,8 @@ describe('LevelThreePage', () => {
     expect(screen.getByText('15 题即时批改')).toBeTruthy();
     expect(screen.getAllByText(/主发动机/).length).toBeGreaterThan(0);
     expect(screen.getByText(/doing \/ done \/ to do 先别急着当主发动机/)).toBeTruthy();
-    expect(screen.getByRole('heading', { name: '题 15' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '题 1' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: '题 15' })).toBeNull();
     expect(screen.queryByRole('heading', { name: /although \+ using 双干扰/ })).toBeNull();
 
     const firstQuestion = level3PracticeQuestions[0];
@@ -38,7 +39,7 @@ describe('LevelThreePage', () => {
 
     for (const [index, question] of level3PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: `题 ${index + 1}` }).closest(
+      const questionCard = (await screen.findByRole('heading', { name: `题 ${index + 1}` })).closest(
         '.practice-question'
       );
 

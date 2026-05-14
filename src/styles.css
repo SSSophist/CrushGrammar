@@ -778,6 +778,33 @@ blockquote {
   gap: 16px;
 }
 
+.practice-deck {
+  display: grid;
+  gap: 12px;
+}
+
+.practice-deck-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(47, 107, 79, 0.18);
+  background: #edf6ed;
+  color: var(--green-dark);
+  font-weight: 900;
+}
+
+.practice-deck-status strong {
+  color: #1f4d38;
+}
+
+.practice-next-action {
+  width: 100%;
+}
+
 .practice-question {
   display: grid;
   gap: 12px;

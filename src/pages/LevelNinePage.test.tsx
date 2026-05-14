@@ -19,9 +19,10 @@ describe('LevelNinePage', () => {
     expect(screen.getAllByText(/比较对象/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/强调信息/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/倒装/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('heading', { name: '题 15' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '题 1' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: '题 15' })).toBeNull();
     const practiceHeadings = screen.getAllByRole('heading', { name: /^题 \d+$/ });
-    expect(practiceHeadings).toHaveLength(15);
+    expect(practiceHeadings).toHaveLength(1);
     expect(screen.getAllByLabelText('effective：有效的').length).toBeGreaterThan(0);
 
     const firstQuestion = level9PracticeQuestions[0];
@@ -48,7 +49,7 @@ describe('LevelNinePage', () => {
 
     for (const [index, question] of level9PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: `题 ${index + 1}` }).closest('.practice-question');
+      const questionCard = (await screen.findByRole('heading', { name: `题 ${index + 1}` })).closest('.practice-question');
 
       expect(questionCard).toBeTruthy();
       const correctButton = within(questionCard as HTMLElement)

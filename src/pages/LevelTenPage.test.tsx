@@ -46,7 +46,7 @@ describe('LevelTenPage', () => {
 
     for (const question of practiceQuestions) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: question.title }).closest('.practice-question');
+      const questionCard = (await screen.findByRole('heading', { name: question.title })).closest('.practice-question');
 
       expect(questionCard).toBeTruthy();
       const correctButton = within(questionCard as HTMLElement)

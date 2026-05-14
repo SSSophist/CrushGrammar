@@ -7,7 +7,7 @@ import LessonSection from '../components/LessonSection';
 import LessonTrapCard from '../components/LessonTrapCard';
 import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
-import PracticeQuestion from '../components/PracticeQuestion';
+import PracticeQuestionDeck from '../components/PracticeQuestionDeck';
 import RemediationPanel from '../components/RemediationPanel';
 import TermRescueSidebar from '../components/TermRescueSidebar';
 import {
@@ -169,18 +169,13 @@ export default function LevelNinePage({ onBack, onLevelComplete, onNextLevel }: 
               <div className="practice-progress">
                 已完成 {answers.length} / {level9PracticeQuestions.length}
               </div>
-              <div className="question-list">
-                {level9PracticeQuestions.map((question, index) => (
-                  <PracticeQuestion
-                    key={question.id}
-                    question={question}
-                    errorInfo={level9ErrorInfo}
-                    onAnswered={handleAnswered}
-                    title={`题 ${index + 1}`}
-                    vocabEntries={level9Vocab}
-                  />
-                ))}
-              </div>
+              <PracticeQuestionDeck
+                questions={level9PracticeQuestions}
+                errorInfo={level9ErrorInfo}
+                onAnswered={handleAnswered}
+                getQuestionTitle={(_, index) => `题 ${index + 1}`}
+                vocabEntries={level9Vocab}
+              />
               {allPracticeAnswered ? (
                 <ErrorSummary
                   records={answers}

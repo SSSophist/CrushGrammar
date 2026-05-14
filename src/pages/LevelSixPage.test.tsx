@@ -18,7 +18,8 @@ describe('LevelSixPage', () => {
     expect(screen.getAllByText(/同向补充/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/反向转折/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/因果方向/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('heading', { name: '题 15' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '题 1' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: '题 15' })).toBeNull();
     expect(screen.queryByRole('heading', { name: /because|although|however/i })).toBeNull();
 
     const firstQuestion = level6PracticeQuestions[0];
@@ -48,7 +49,7 @@ describe('LevelSixPage', () => {
 
     for (const [index, question] of level6PracticeQuestions.entries()) {
       const correct = question.options.find((option) => option.id === question.correctOptionId);
-      const questionCard = screen.getByRole('heading', { name: `题 ${index + 1}` }).closest('.practice-question');
+      const questionCard = (await screen.findByRole('heading', { name: `题 ${index + 1}` })).closest('.practice-question');
 
       expect(questionCard).toBeTruthy();
       const correctButton = within(questionCard as HTMLElement)

@@ -5,7 +5,7 @@ import LastMinuteReview from '../components/LastMinuteReview';
 import LessonSection from '../components/LessonSection';
 import LevelCompletionActions from '../components/LevelCompletionActions';
 import LevelNav from '../components/LevelNav';
-import PracticeQuestion from '../components/PracticeQuestion';
+import PracticeQuestionDeck from '../components/PracticeQuestionDeck';
 import RemediationPanel from '../components/RemediationPanel';
 import TermRescueSidebar from '../components/TermRescueSidebar';
 import VocabText from '../components/VocabText';
@@ -203,17 +203,12 @@ export default function LevelOnePage({ onBack, onLevelComplete, onNextLevel }: L
               <div className="practice-progress">
                 已完成 {answers.length} / {practiceQuestions.length}
               </div>
-              <div className="question-list">
-                {practiceQuestions.map((question) => (
-                  <PracticeQuestion
-                    key={question.id}
-                    question={question}
-                    errorInfo={errorTagInfo}
-                    onAnswered={handleAnswered}
-                    vocabEntries={level1Vocab}
-                  />
-                ))}
-              </div>
+              <PracticeQuestionDeck
+                questions={practiceQuestions}
+                errorInfo={errorTagInfo}
+                onAnswered={handleAnswered}
+                vocabEntries={level1Vocab}
+              />
               {allPracticeAnswered ? (
                 <ErrorSummary
                   records={answers}
