@@ -20,9 +20,14 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   background: #eef2ed;
+  overflow-x: hidden;
 }
 
 button,
@@ -32,6 +37,8 @@ input {
 
 .page-shell,
 .app-shell {
+  width: 100%;
+  min-width: 0;
   min-height: 100vh;
   padding: 32px;
   max-width: 1180px;
@@ -151,6 +158,17 @@ button:disabled {
   width: 100%;
   min-height: 52px;
   font-weight: 800;
+}
+
+.home-intro > *,
+.intro-actions,
+.lesson-main,
+.lesson-section,
+.last-review,
+.term-sidebar,
+.practice-shell,
+.practice-question {
+  min-width: 0;
 }
 
 .secondary-action {
@@ -306,6 +324,8 @@ button:disabled {
 
 .intro-modal {
   width: min(680px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow: auto;
   padding: 24px;
   border: 1px solid rgba(47, 107, 79, 0.42);
   background: var(--paper);
@@ -394,11 +414,15 @@ button:disabled {
   gap: 8px;
   align-items: center;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
   margin: 10px 0 24px;
   padding: 10px;
   border: 1px solid var(--line);
   background: rgba(255, 253, 246, 0.94);
   backdrop-filter: blur(8px);
+  -webkit-overflow-scrolling: touch;
 }
 
 .level-nav-title {
@@ -416,11 +440,13 @@ button:disabled {
 
 .level-nav a {
   flex: 0 0 auto;
+  scroll-snap-align: start;
   padding: 8px 12px;
   color: var(--green-dark);
   text-decoration: none;
   background: #edf3e8;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .lesson-layout {
@@ -538,12 +564,14 @@ button:disabled {
 }
 
 blockquote {
+  max-width: 100%;
   margin: 0 0 14px;
   padding: 13px 16px;
   border-left: 5px solid var(--info);
   background: #e8f1f2;
   color: #172730;
   line-height: 1.75;
+  overflow-wrap: anywhere;
   box-shadow: inset 0 0 0 1px rgba(49, 90, 116, 0.08);
 }
 
@@ -773,10 +801,13 @@ blockquote {
   gap: 12px;
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .question-head h3 {
+  min-width: 0;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .answer-state {
@@ -806,11 +837,13 @@ blockquote {
   gap: 10px;
   align-items: flex-start;
   width: 100%;
+  min-width: 0;
   padding: 12px;
   border: 1px solid var(--line);
   color: var(--ink);
   text-align: left;
   background: #f8faf6;
+  overflow-wrap: anywhere;
 }
 
 .answer-option span {
@@ -836,6 +869,7 @@ blockquote {
 }
 
 .answer-option .option-text {
+  min-width: 0;
   flex: 1;
 }
 
@@ -1153,5 +1187,212 @@ blockquote {
 
   .part-note {
     grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell,
+  .app-shell {
+    padding: 14px;
+  }
+
+  .home-intro {
+    gap: 18px;
+    padding: 22px 0 18px;
+  }
+
+  .home-intro h1 {
+    font-size: 2.2rem;
+    line-height: 1.08;
+  }
+
+  .home-lede,
+  .lesson-hero p {
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
+  .route-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .route-option {
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .route-note {
+    display: grid;
+    gap: 6px;
+    padding: 12px;
+  }
+
+  .level-group-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .level-card {
+    min-height: auto;
+  }
+
+  .lesson-hero {
+    padding: 18px 0 14px;
+  }
+
+  .lesson-hero h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .lesson-facts {
+    gap: 8px;
+  }
+
+  .lesson-facts span,
+  .error-chip {
+    min-height: 28px;
+    font-size: 0.82rem;
+  }
+
+  .level-nav {
+    gap: 6px;
+    margin: 8px 0 18px;
+    padding: 8px;
+  }
+
+  .level-nav-title {
+    min-height: 34px;
+    padding-right: 10px;
+    font-size: 0.8rem;
+  }
+
+  .level-nav a {
+    min-height: 34px;
+    padding: 7px 10px;
+    font-size: 0.9rem;
+  }
+
+  .lesson-section,
+  .last-review,
+  .term-sidebar,
+  .step-card,
+  .example-card,
+  .trap-card,
+  .practice-shell,
+  .practice-question {
+    padding: 14px;
+  }
+
+  .lesson-section h2,
+  .last-review h2,
+  .term-sidebar h2 {
+    line-height: 1.25;
+  }
+
+  .example-options,
+  .analysis-list,
+  .example-card > ul,
+  .trap-card > ul,
+  .instant-feedback,
+  .error-summary,
+  .remediation-pending,
+  .practice-hint,
+  .remediation-panel,
+  .level-complete {
+    padding: 12px;
+  }
+
+  blockquote {
+    padding: 12px;
+    line-height: 1.82;
+  }
+
+  .question-head {
+    align-items: flex-start;
+  }
+
+  .answer-state {
+    flex: 0 0 auto;
+  }
+
+  .answer-option {
+    padding: 11px;
+  }
+
+  .summary-item div {
+    display: grid;
+    gap: 4px;
+  }
+
+  .intro-modal-backdrop {
+    align-items: start;
+    padding: 12px;
+  }
+
+  .intro-modal {
+    max-height: calc(100dvh - 24px);
+    padding: 18px;
+  }
+
+  .intro-modal h2 {
+    font-size: 1.55rem;
+    line-height: 1.18;
+  }
+
+  .intro-modal h3 {
+    line-height: 1.3;
+  }
+
+  .intro-modal-body {
+    padding: 12px;
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+}
+
+@media (max-width: 430px) {
+  .page-shell,
+  .app-shell {
+    padding: 10px;
+  }
+
+  .home-intro h1,
+  .lesson-hero h1 {
+    font-size: 1.85rem;
+  }
+
+  .level-nav {
+    margin-right: -10px;
+    margin-left: -10px;
+    border-right: 0;
+    border-left: 0;
+  }
+
+  .level-nav-title {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: rgba(255, 253, 246, 0.96);
+  }
+
+  .question-head {
+    display: grid;
+    gap: 8px;
+  }
+
+  .answer-state {
+    width: fit-content;
+  }
+
+  .answer-option span:first-child {
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  .level-completion-actions .primary-action,
+  .level-completion-actions .secondary-action {
+    flex-basis: 100%;
   }
 }

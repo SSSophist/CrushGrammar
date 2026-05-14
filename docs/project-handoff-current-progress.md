@@ -65,11 +65,11 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作和解析区阅读对比度已恢复：
+`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005`、`V2-006` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作、解析区阅读对比度和手机端响应式基线已恢复：
 
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
-- `npm test` 通过，当前测试数量：24 个测试文件、78 个测试。
+- `npm test` 通过，当前测试数量：25 个测试文件、80 个测试。
 - `package.json` 已新增 `typecheck: tsc --noEmit`。
 - `src/pages/LevelTenPage.test.tsx` 已新增，覆盖第 10 关 H1、SOP、首题反馈和全对通关。
 - `src/pages/HomePage.test.tsx` 已新增，覆盖首页主按钮开始/继续/查看总复盘。
@@ -77,23 +77,25 @@ C:\Users\23292\Desktop\Crush Grammar
 - Level 1-9 完成区底部已有 `返回闯关地图` 和 `继续第 X 关`；Level 10 只有返回地图。
 - `src/components/LessonAnalysisReadability.test.tsx` 已新增，锁住例句/常见坑拆解的高对比阅读样式钩子。
 - 例句卡、常见坑卡、即时反馈区正文已改为深色高对比文本，重点标签更清楚，手机端行高更舒适。
+- `src/styles.responsive.test.ts` 已新增，锁住 640px 小屏断点、导航横滑、弹窗/路线/练习区手机规则和横向溢出保护。
+- `src/styles.css` 已增加 640px/430px 响应式规则：首页、关卡导航、练习题、术语卡、弹窗在手机端更稳。
 - `vite.config.ts` 的 `testTimeout` 已调为 15000ms，适配当前长流程页面测试。
 
-下一步从 `V2-006` 开始：
+下一步从 `V2-007` 开始：
 
-1. 建立手机端响应式 UI 基线。
-2. 覆盖 375px、390px、430px、768px 和桌面宽度的主要页面布局。
-3. 首页、关卡导航、练习区、术语卡、弹窗在手机端可用。
+1. 将每关练习改为单题翻页式刷题体验。
+2. 答对后短暂正确反馈并自动进入下一题。
+3. 下一题顶部保留约 2.6 秒正反馈条。
+4. 答错不自动跳题，完整展示解析，由学生确认后继续。
 4. 运行 `npm run typecheck`、`npm run build`、`npm test`。
 5. 更新 backlog 状态。
 6. commit。
 
 之后按顺序处理：
 
-1. `V2-007` 单题翻页刷题体验
-2. `V2-004` 题目重复排查
-3. `V2-008` 术语解释精简
-4. `V2-010` 首页诊断测评
+1. `V2-004` 题目重复排查
+2. `V2-008` 术语解释精简
+3. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -274,4 +276,30 @@ git commit -m "feat: add completion actions to level endings"
 ```bash
 git add src/components/LessonExampleCard.tsx src/components/LessonTrapCard.tsx src/components/LessonAnalysisReadability.test.tsx src/styles.css docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "style: improve lesson reading contrast"
+```
+
+## 2026-05-14 更新：V2-006 手机端响应式基线
+
+本次任务：
+
+- 新增 `src/styles.responsive.test.ts`，覆盖 640px 小屏断点、导航横滑、弹窗/路线/练习区手机规则和横向溢出保护。
+- `src/styles.css` 增加全局横向溢出保护。
+- 关卡导航支持横向滑动、滚动吸附，并在 430px 下保留粘性“本关导航”标题。
+- 首页路线选择、关卡卡片、路线提示在窄屏下收为单列和紧凑间距。
+- 练习题标题、选项、反馈、句子拆解在 640px/430px 下堆叠和换行。
+- 弹窗限制最大高度并允许内部滚动，避免手机端按钮被挤出屏幕。
+
+验收结果：
+
+- TDD 红灯：`npm test -- styles.responsive` 初次失败。
+- 定向测试：`npm test -- styles.responsive` 通过，1 个测试文件、2 个测试通过。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过，25 个测试文件、80 个测试通过。
+
+完成后应提交：
+
+```bash
+git add src/styles.css src/styles.responsive.test.ts docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "style: add mobile responsive baseline"
 ```
