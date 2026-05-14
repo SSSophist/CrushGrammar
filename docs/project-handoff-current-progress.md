@@ -65,11 +65,11 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005`、`V2-006`、`V2-007`、`V2-004`、`V2-008` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作、解析区阅读对比度、手机端响应式基线、单题翻页刷题体验、例题/通关题去重护栏和术语解释精简已恢复：
+`V2-003`、`V2-002`、`V2-011`、`V2-009`、`V2-005`、`V2-006`、`V2-007`、`V2-004`、`V2-008`、`V2-010` 已完成，当前工程护栏、第 10 关测试、首页主按钮进度同步、每关完成区底部操作、解析区阅读对比度、手机端响应式基线、单题翻页刷题体验、例题/通关题去重护栏、术语解释精简和首页诊断测评已恢复：
 
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
-- `npm test` 通过，当前测试数量：26 个测试文件、84 个测试。
+- `npm test` 通过，当前测试数量：26 个测试文件、86 个测试。
 - `package.json` 已新增 `typecheck: tsc --noEmit`。
 - `src/pages/LevelTenPage.test.tsx` 已新增，覆盖第 10 关 H1、SOP、首题反馈和全对通关。
 - `src/pages/HomePage.test.tsx` 已新增，覆盖首页主按钮开始/继续/查看总复盘。
@@ -85,16 +85,12 @@ C:\Users\23292\Desktop\Crush Grammar
 - 已替换 Level 2 q1/q2/q3/q8、Level 3 q1、Level 4 q1、Level 9 q10 的重复通关题，并同步选项、骨架、解析和标色片段。
 - `src/components/TermRescueSidebar.tsx` 已将术语卡精简为 2 段：`一句人话` 和 `做题时怎么用`。
 - Level 1-10 术语列表已压缩到每关最多 3 个核心术语，`levels.test.ts` 已加回归测试防止术语区重新膨胀。
+- 首页已新增 6 题轻量诊断测评，结果会推荐关卡、展示薄弱标签、更新主按钮并解锁到推荐关卡。
+- 首页已新增 `我是语法小白，从第 1 关开始` 路径，适合不想测评的新用户直接从头学习。
+- `useProgress` 已新增 `unlockThrough(levelId)`，用于诊断结果解锁推荐关卡及其前置关卡。
 - `vite.config.ts` 的 `testTimeout` 已调为 15000ms，适配当前长流程页面测试。
 
-下一步从 `V2-010` 开始：
-
-1. 设计首页诊断测评入口。
-2. 提供 `我是语法小白，想从 0 开始` 的路径。
-3. 测评结果推荐薄弱关卡，并影响主按钮/解锁状态。
-4. 运行 `npm run typecheck`、`npm run build`、`npm test`。
-5. 更新 backlog 状态。
-6. commit。
+当前原排期内需求已经全部重新实现、验收并 commit。下一步继续根据新反馈补排期。
 
 之后继续根据新反馈补排期。
 
@@ -368,4 +364,25 @@ git commit -m "test: prevent repeated teaching and practice prompts"
 ```bash
 git add src/components/TermRescueSidebar.tsx src/components/TermRescueSidebar.test.tsx src/data/level1.ts src/data/level2.ts src/data/level3.ts src/data/level4.ts src/data/level5.ts src/data/level6.ts src/data/level7.ts src/data/level8.ts src/data/level9.ts src/data/level10.ts src/data/levels.test.ts docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "content: trim term explanations"
+```
+
+## 2026-05-14 更新：V2-010 首页诊断测评
+
+本次任务：
+- 首页新增 `做 3 分钟诊断` 和 `我是语法小白，从第 1 关开始`。
+- 诊断包含 6 道定位题，覆盖主线、词性、从句、非谓语、逻辑关系、时态语态。
+- 诊断完成后展示推荐关卡和薄弱标签，主按钮改为 `开始第 X 关`。
+- 新增 `unlockThrough(levelId)`，让诊断结果解锁推荐关卡及之前关卡。
+
+验收结果：
+- TDD 红灯：`npm test -- HomePage` 初次失败，确认首页缺少诊断入口和小白入口。
+- `npm test -- HomePage App` 通过：2 个测试文件、17 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件、86 个测试。
+
+完成后应提交：
+```bash
+git add src/App.tsx src/lib/useProgress.ts src/pages/HomePage.tsx src/pages/HomePage.test.tsx src/styles.css docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "feat: add diagnostic entry flow"
 ```

@@ -30,7 +30,7 @@ type Screen =
 export default function App() {
   const [screen, setScreen] = useState<Screen>('home');
   const [dismissedIntroFor, setDismissedIntroFor] = useState<Screen | null>(null);
-  const { unlockedLevels, unlockNext, unlockAll } = useProgress();
+  const { unlockedLevels, unlockNext, unlockAll, unlockThrough } = useProgress();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -150,6 +150,7 @@ export default function App() {
     <HomePage
       unlockedLevels={unlockedLevels}
       onUnlockAll={unlockAll}
+      onUnlockThrough={unlockThrough}
       onOpenLevel={(levelId) => {
         if (
           levelId === 'level-1' ||

@@ -50,5 +50,19 @@ export function useProgress() {
     setUnlockedLevels(ALL_LEVEL_IDS);
   }, []);
 
-  return { unlockedLevels, unlockNext, unlockAll };
+  const unlockThrough = useCallback((levelId: string) => {
+    const targetIndex = ALL_LEVEL_IDS.indexOf(levelId);
+
+    if (targetIndex < 0) {
+      return;
+    }
+
+    setUnlockedLevels((current) => {
+      const next = ALL_LEVEL_IDS.slice(0, targetIndex + 1);
+      const merged = Array.from(new Set([...current, ...next]));
+      return merged.sort((a, b) => ALL_LEVEL_IDS.indexOf(a) - ALL_LEVEL_IDS.indexOf(b));
+    });
+  }, []);
+
+  return { unlockedLevels, unlockNext, unlockAll, unlockThrough };
 }
