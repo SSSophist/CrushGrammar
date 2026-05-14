@@ -37,6 +37,14 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onOpenLevel }: H
     group: level.group[routeMode],
     status: unlockedLevels.includes(level.id) ? 'open' : 'locked'
   }));
+  const unlockedLevelItems = levels.filter((level) => unlockedLevels.includes(level.id));
+  const primaryLevel = unlockedLevelItems[unlockedLevelItems.length - 1] ?? levels[0];
+  const allLevelsUnlocked = levels.every((level) => unlockedLevels.includes(level.id));
+  const primaryActionLabel = allLevelsUnlocked
+    ? '查看总复盘'
+    : primaryLevel.number === 1
+      ? '开始第 1 关'
+      : `继续第 ${primaryLevel.number} 关`;
 
   return (
     <main className="page-shell" style={{ position: 'relative' }}>
@@ -65,8 +73,8 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onOpenLevel }: H
         </div>
         <div className="intro-actions">
           <RouteSelector value={routeMode} onChange={setRouteMode} />
-          <button type="button" className="primary-action" onClick={() => onOpenLevel('level-1')}>
-            开始第 1 关
+          <button type="button" className="primary-action" onClick={() => onOpenLevel(primaryLevel.id)}>
+            {primaryActionLabel}
           </button>
         </div>
       </section>

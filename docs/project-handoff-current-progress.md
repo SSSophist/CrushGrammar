@@ -65,34 +65,34 @@ C:\Users\23292\Desktop\Crush Grammar
 - 当前测试数量：21 个测试文件、71 个测试。
 - 已修复 App 测试解锁前置条件、Level 2-9 页面测试完成回调，以及第 10 关标题元数据不一致。
 
-`V2-003` 与 `V2-002` 已完成，当前工程护栏和第 10 关测试恢复：
+`V2-003`、`V2-002`、`V2-011` 已完成，当前工程护栏、第 10 关测试和首页主按钮进度同步已恢复：
 
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
-- `npm test` 通过，当前测试数量：22 个测试文件、73 个测试。
+- `npm test` 通过，当前测试数量：23 个测试文件、76 个测试。
 - `package.json` 已新增 `typecheck: tsc --noEmit`。
 - `src/pages/LevelTenPage.test.tsx` 已新增，覆盖第 10 关 H1、SOP、首题反馈和全对通关。
+- `src/pages/HomePage.test.tsx` 已新增，覆盖首页主按钮开始/继续/查看总复盘。
+- `vite.config.ts` 的 `testTimeout` 已调为 15000ms，适配当前长流程页面测试。
 
-下一步从 `V2-011` 开始：
+下一步从 `V2-009` 开始：
 
-1. 修复首页主按钮“开始第几关”不随已解锁进度更新。
-2. 新用户显示 `开始第 1 关`。
-3. 已解锁到第 X 关时显示继续第 X 关。
-4. 全部解锁时显示查看总复盘或等价文案。
-5. 增加自动化测试。
-6. 运行 `npm run typecheck`、`npm run build`、`npm test`。
-7. 更新 backlog 状态。
-8. commit。
+1. 每关通关完成区底部增加 `返回闯关地图` 和 `继续第 X 关`。
+2. Level 10 底部只显示返回地图。
+3. 按钮需要在手机端不拥挤。
+4. 增加自动化测试。
+5. 运行 `npm run typecheck`、`npm run build`、`npm test`。
+6. 更新 backlog 状态。
+7. commit。
 
 之后按顺序处理：
 
-1. `V2-009` 通关完成区底部返回/继续
-2. `V2-005` 阅读对比度
-3. `V2-006` 手机端响应式
-4. `V2-007` 单题翻页刷题体验
-5. `V2-004` 题目重复排查
-6. `V2-008` 术语解释精简
-7. `V2-010` 首页诊断测评
+1. `V2-005` 阅读对比度
+2. `V2-006` 手机端响应式
+3. `V2-007` 单题翻页刷题体验
+4. `V2-004` 题目重复排查
+5. `V2-008` 术语解释精简
+6. `V2-010` 首页诊断测评
 
 ## 常用命令
 
@@ -198,4 +198,29 @@ git commit -m "chore: add typecheck script"
 ```bash
 git add src/pages/LevelTenPage.test.tsx docs/v2-update-backlog.md docs/project-handoff-current-progress.md
 git commit -m "test: cover level ten page"
+```
+
+## 2026-05-14 更新：V2-011 首页主按钮进度同步
+
+本次任务：
+
+- 首页主按钮从写死 `开始第 1 关` 改为根据已解锁进度计算。
+- 新用户显示 `开始第 1 关`。
+- 已解锁到第 X 关显示 `继续第 X 关`。
+- 全部解锁显示 `查看总复盘`，点击进入第 10 关。
+- 新增 `HomePage.test.tsx` 覆盖开始、继续、路线切换、总复盘入口。
+- 将 Vitest 默认超时调到 15000ms，防止长流程页面测试在全量运行时假超时。
+
+验收结果：
+
+- `npm test -- HomePage` 通过，1 个测试文件、3 个测试通过。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过，23 个测试文件、76 个测试通过。
+
+完成后应提交：
+
+```bash
+git add src/pages/HomePage.tsx src/pages/HomePage.test.tsx vite.config.ts docs/v2-update-backlog.md docs/project-handoff-current-progress.md
+git commit -m "fix: sync home start button with progress"
 ```
