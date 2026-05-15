@@ -362,3 +362,22 @@
   - `npm run build` 通过。
   - `npm test` 通过，26 个测试文件、86 个测试通过。
   - 本记录完成后单独 commit。
+
+### 2026-05-15：完成 V2-012 刷题正反馈增强
+
+- 状态：已完成
+- 来源：FB-009
+- 内容：
+  - `PracticeQuestionDeck` 新增练习进度条，使用 `role="progressbar"` 暴露当前题号进度。
+  - 答对后立即显示 `答对 +1`，生产环境自动跳转延迟从 0.9 秒调整到 1.2 秒。
+  - 连续答对时显示 `连对 X 题`，跳到下一题后保留轻量持续提示。
+  - 答错流程保持不自动跳题，仍由学生看完解析后手动继续。
+  - `styles.css` 增加题卡答对脉冲动画和进度条样式。
+  - `PracticeQuestionDeck.test.tsx` 增加进度条与连对反馈回归测试。
+- 验收：
+  - `npm test -- PracticeQuestionDeck` 通过：1 个测试文件，3 个测试。
+  - `npm test -- LevelTwoPage LevelThreePage LevelFourPage LevelFivePage LevelSixPage LevelSevenPage LevelEightPage LevelNinePage LevelTenPage` 通过：9 个测试文件，18 个测试。
+  - `npm run typecheck` 通过。
+  - `npm run build` 通过。
+  - `npm test` 通过：26 个测试文件，90 个测试。
+  - 本记录完成后单独 commit。

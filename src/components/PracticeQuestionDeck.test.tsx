@@ -32,6 +32,32 @@ describe('PracticeQuestionDeck', () => {
     expect(onAnswered).toHaveBeenCalledTimes(1);
   });
 
+  it('shows a progress bar and streak feedback after correct answers', async () => {
+    const user = userEvent.setup();
+    const onAnswered = vi.fn();
+
+    render(
+      <PracticeQuestionDeck
+        questions={practiceQuestions.slice(0, 3)}
+        errorInfo={errorTagInfo}
+        onAnswered={onAnswered}
+        autoAdvanceDelayMs={80}
+        successBannerMs={1000}
+      />
+    );
+
+    expect(screen.getByRole('progressbar', { name: '练习进度' }).getAttribute('aria-valuenow')).toBe('1');
+
+    await user.click(screen.getByRole('button', { name: /Public libraries provide access/ }));
+    expect(screen.getByText('答对 +1')).toBeTruthy();
+
+    await waitFor(() => expect(screen.getByRole('heading', { name: /先找主发动机/ })).toBeTruthy());
+    expect(screen.getByRole('progressbar', { name: '练习进度' }).getAttribute('aria-valuenow')).toBe('2');
+
+    await user.click(screen.getByRole('button', { name: /can improve/ }));
+    expect(screen.getByText('连对 2 题')).toBeTruthy();
+  });
+
   it('keeps a wrong answer on screen until the learner continues manually', async () => {
     const user = userEvent.setup();
     const onAnswered = vi.fn();

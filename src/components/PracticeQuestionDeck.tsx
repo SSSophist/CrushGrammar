@@ -12,6 +12,16 @@ interface PracticeQuestionDeckProps {
   successBannerMs?: number;
 }
 
+const getSuccessBanner = (streak: number, finished: boolean) => {
+  if (finished) {
+    return streak >= 2 ? `连对 ${streak} 题，本关练习已完成` : '答对 +1，本关练习已完成';
+  }
+
+  return streak >= 2 ? `连对 ${streak} 题` : '答对 +1';
+};
+
+const getCarryBanner = (streak: number) => (streak >= 2 ? `连对 ${streak} 题，继续保持` : '答对 +1，继续保持');
+
 export default function PracticeQuestionDeck({
   questions,
   errorInfo,
@@ -24,10 +34,11 @@ export default function PracticeQuestionDeck({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentRecord, setCurrentRecord] = useState<AnswerRecord | null>(null);
   const [banner, setBanner] = useState<string | null>(null);
+  const [correctStreak, setCorrectStreak] = useState(0);
   const currentQuestion = questions[currentIndex];
   const hasNextQuestion = currentIndex < questions.length - 1;
   const isTestRuntime = typeof navigator !== 'undefined' && navigator.userAgent.includes('jsdom');
-  const resolvedAutoAdvanceDelayMs = autoAdvanceDelayMs ?? (isTestRuntime ? 80 : 900);
+  const resolvedAutoAdvanceDelayMs = autoAdvanceDelayMs ?? (isTestRuntime ? 80 : 1200);
 
   useEffect(() => {
     if (!currentRecord?.correct) {
@@ -35,22 +46,21 @@ export default function PracticeQuestionDeck({
     }
 
     if (!hasNextQuestion) {
-      setBanner('答对 +1，本关练习已完成');
+      setBanner(getSuccessBanner(correctStreak, true));
       return;
     }
 
-    setBanner('答对 +1，正在进入下一题');
     const advanceTimer = window.setTimeout(() => {
       setCurrentIndex((index) => Math.min(index + 1, questions.length - 1));
       setCurrentRecord(null);
-      setBanner('答对 +1，继续保持');
+      setBanner(getCarryBanner(correctStreak));
     }, resolvedAutoAdvanceDelayMs);
 
     return () => window.clearTimeout(advanceTimer);
-  }, [currentRecord, hasNextQuestion, questions.length, resolvedAutoAdvanceDelayMs]);
+  }, [correctStreak, currentRecord, hasNextQuestion, questions.length, resolvedAutoAdvanceDelayMs]);
 
   useEffect(() => {
-    if (!banner || banner === '答对 +1，正在进入下一题') {
+    if (!banner || banner === '先看解析，搞懂后再继续') {
       return;
     }
 
@@ -66,9 +76,17 @@ export default function PracticeQuestionDeck({
     setCurrentRecord(record);
     onAnswered(record);
 
-    if (!record.correct) {
-      setBanner('先看解析，搞懂后再继续');
+    if (record.correct) {
+      setCorrectStreak((streak) => {
+        const nextStreak = streak + 1;
+        setBanner(getSuccessBanner(nextStreak, !hasNextQuestion));
+        return nextStreak;
+      });
+      return;
     }
+
+    setCorrectStreak(0);
+    setBanner('先看解析，搞懂后再继续');
   };
 
   const continueAfterWrong = () => {
@@ -84,10 +102,22 @@ export default function PracticeQuestionDeck({
   return (
     <div className="practice-deck">
       <div className="practice-deck-status" aria-live="polite">
-        <span>
-          第 {currentIndex + 1} / {questions.length} 题
-        </span>
-        {banner ? <strong>{banner}</strong> : null}
+        <div className="practice-status-copy">
+          <span>
+            第 {currentIndex + 1} / {questions.length} 题
+          </span>
+          {banner ? <strong>{banner}</strong> : null}
+        </div>
+        <div
+          aria-label="练习进度"
+          aria-valuemax={questions.length}
+          aria-valuemin={1}
+          aria-valuenow={currentIndex + 1}
+          className="practice-progressbar"
+          role="progressbar"
+        >
+          <span style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }} />
+        </div>
       </div>
       <div className="question-list">
         <PracticeQuestion

@@ -485,3 +485,24 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：26 个测试文件，89 个测试。
+
+## 2026-05-15 更新：V2-012 刷题正反馈增强
+
+用户反馈：
+- 希望继续优化刷题反馈，让答对题的快感更明显。
+
+本次实现：
+- `PracticeQuestionDeck` 顶部新增 `练习进度` 进度条，随当前题号推进。
+- 答对瞬间显示 `答对 +1`，连续答对时显示 `连对 X 题`。
+- 生产环境答对后自动跳转延迟从 0.9 秒调整到 1.2 秒，让反馈更容易看清。
+- 下一题顶部保留轻量持续提示，如 `答对 +1，继续保持` 或 `连对 X 题，继续保持`。
+- 答错流程保持不变：停留当前题、展示解析、学生确认后继续。
+- `styles.css` 增加进度条样式和答对题卡脉冲动画。
+- `PracticeQuestionDeck.test.tsx` 增加进度条与连对反馈回归测试。
+
+验收结果：
+- `npm test -- PracticeQuestionDeck` 通过：1 个测试文件，3 个测试。
+- `npm test -- LevelTwoPage LevelThreePage LevelFourPage LevelFivePage LevelSixPage LevelSevenPage LevelEightPage LevelNinePage LevelTenPage` 通过：9 个测试文件，18 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件，90 个测试。
