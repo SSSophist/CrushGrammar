@@ -232,22 +232,22 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q3',
     title: '目的背景',
-    sentence: 'To reduce stress, many students exercise after class.',
-    prompt: 'To reduce stress 在句子里干嘛？',
+    sentence: 'To save commuting time, many workers choose online meetings.',
+    prompt: 'To save commuting time 在句子里干嘛？',
     options: [
-      { id: 'a', text: '主动修饰 students' },
-      { id: 'b', text: '被动修饰 stress' },
-      { id: 'c', text: '目的背景：为了减压' },
+      { id: 'a', text: '主动修饰 workers' },
+      { id: 'b', text: '被动修饰 time' },
+      { id: 'c', text: '目的背景：为了节省通勤时间' },
       { id: 'd', text: '整句主语' }
     ],
     correctOptionId: 'c',
-    skeleton: 'Many students exercise.',
-    explanation: 'To reduce stress 在句首表示目的，主线是 many students exercise。',
+    skeleton: 'Many workers choose online meetings.',
+    explanation: 'To save commuting time 在句首表示目的，主线是 many workers choose online meetings。',
     analysisParts: [
-      { id: 'l5-q3-background', kind: 'logic', label: '目的感背景', text: 'To reduce stress' },
-      { id: 'l5-q3-subject', kind: 'subject', label: '主语', text: 'many students' },
-      { id: 'l5-q3-predicate', kind: 'predicate', label: '主发动机', text: 'exercise' },
-      { id: 'l5-q3-detail', kind: 'detail', label: '时间', text: 'after class' }
+      { id: 'l5-q3-background', kind: 'logic', label: '目的感背景', text: 'To save commuting time' },
+      { id: 'l5-q3-subject', kind: 'subject', label: '主语', text: 'many workers' },
+      { id: 'l5-q3-predicate', kind: 'predicate', label: '主发动机', text: 'choose' },
+      { id: 'l5-q3-detail', kind: 'detail', label: '对象', text: 'online meetings' }
     ],
     errorByOption: { a: ['modifier-target'], b: ['modifier-target'], d: ['mainline-missing'] }
   },

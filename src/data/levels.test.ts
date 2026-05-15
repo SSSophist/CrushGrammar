@@ -12,6 +12,41 @@ import { level9Examples, level9PracticeQuestions, level9Terms, level9Traps } fro
 import { level10Examples, level10Terms, level10Traps, practiceQuestions as level10PracticeQuestions } from './level10';
 import { levels } from './levels';
 
+const levelContent = [
+  { level: 1, examples: level1Examples, traps: level1Traps, practice: level1PracticeQuestions },
+  { level: 2, examples: level2Examples, traps: level2Traps, practice: level2PracticeQuestions },
+  { level: 3, examples: level3Examples, traps: level3Traps, practice: level3PracticeQuestions },
+  { level: 4, examples: level4Examples, traps: level4Traps, practice: level4PracticeQuestions },
+  { level: 5, examples: level5Examples, traps: level5Traps, practice: level5PracticeQuestions },
+  { level: 6, examples: level6Examples, traps: level6Traps, practice: level6PracticeQuestions },
+  { level: 7, examples: level7Examples, traps: level7Traps, practice: level7PracticeQuestions },
+  { level: 8, examples: level8Examples, traps: level8Traps, practice: level8PracticeQuestions },
+  { level: 9, examples: level9Examples, traps: level9Traps, practice: level9PracticeQuestions },
+  { level: 10, examples: level10Examples, traps: level10Traps, practice: level10PracticeQuestions }
+];
+
+const normalizeSentence = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/___/g, ' blank ')
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const sentenceTokens = (value: string) =>
+  normalizeSentence(value)
+    .split(' ')
+    .filter((token) => token.length > 2);
+
+const sentenceSimilarity = (left: string, right: string) => {
+  const leftTokens = new Set(sentenceTokens(left));
+  const rightTokens = new Set(sentenceTokens(right));
+  const union = new Set([...leftTokens, ...rightTokens]);
+  const intersection = [...leftTokens].filter((token) => rightTokens.has(token));
+
+  return union.size === 0 ? 0 : intersection.length / union.size;
+};
+
 describe('levels', () => {
   it('opens the second level for the playable slice', () => {
     const levelTwo = levels.find((level) => level.id === 'level-2');
@@ -223,19 +258,6 @@ describe('levels', () => {
   });
 
   it('does not reuse teaching example or trap sentences as practice prompts in the same level', () => {
-    const levelContent = [
-      { level: 1, examples: level1Examples, traps: level1Traps, practice: level1PracticeQuestions },
-      { level: 2, examples: level2Examples, traps: level2Traps, practice: level2PracticeQuestions },
-      { level: 3, examples: level3Examples, traps: level3Traps, practice: level3PracticeQuestions },
-      { level: 4, examples: level4Examples, traps: level4Traps, practice: level4PracticeQuestions },
-      { level: 5, examples: level5Examples, traps: level5Traps, practice: level5PracticeQuestions },
-      { level: 6, examples: level6Examples, traps: level6Traps, practice: level6PracticeQuestions },
-      { level: 7, examples: level7Examples, traps: level7Traps, practice: level7PracticeQuestions },
-      { level: 8, examples: level8Examples, traps: level8Traps, practice: level8PracticeQuestions },
-      { level: 9, examples: level9Examples, traps: level9Traps, practice: level9PracticeQuestions },
-      { level: 10, examples: level10Examples, traps: level10Traps, practice: level10PracticeQuestions }
-    ];
-
     const duplicates = levelContent.flatMap(({ level, examples, traps, practice }) => {
       const practiceSentences = new Set(practice.map((question) => question.sentence?.trim()).filter(Boolean));
       const teachingSentences = [
@@ -249,6 +271,79 @@ describe('levels', () => {
     });
 
     expect(duplicates).toEqual([]);
+  });
+
+  it('does not repeat exact English prompt sentences anywhere in the course', () => {
+    const sentenceSources = levelContent.flatMap(({ level, examples, traps, practice }) => [
+      ...examples.map((example) => ({ source: `Level ${level} example ${example.id}`, sentence: example.sentence })),
+      ...traps.map((trap) => ({ source: `Level ${level} trap ${trap.id}`, sentence: trap.sentence })),
+      ...practice.map((question) => ({ source: `Level ${level} practice ${question.id}`, sentence: question.sentence }))
+    ]).filter((entry): entry is { source: string; sentence: string } => Boolean(entry.sentence));
+    const seen = new Map<string, string>();
+    const duplicates: string[] = [];
+
+    for (const { source, sentence } of sentenceSources) {
+      const normalized = normalizeSentence(sentence);
+      const firstSource = seen.get(normalized);
+
+      if (firstSource) {
+        duplicates.push(`${source} repeats ${firstSource}: "${sentence}"`);
+      } else {
+        seen.set(normalized, source);
+      }
+    }
+
+    expect(duplicates).toEqual([]);
+  });
+
+  it('keeps teaching prompts and practice prompts meaningfully distinct in each level', () => {
+    const fuzzyMatches = levelContent.flatMap(({ level, examples, traps, practice }) => {
+      const teachingSentences = [
+        ...examples.map((example) => ({ source: example.id, sentence: example.sentence })),
+        ...traps.map((trap) => ({ source: trap.id, sentence: trap.sentence }))
+      ];
+
+      return teachingSentences.flatMap((teaching) =>
+        practice
+          .filter((question): question is typeof question & { sentence: string } => Boolean(question.sentence))
+          .map((question) => ({
+            level,
+            teaching,
+            question,
+            similarity: sentenceSimilarity(teaching.sentence, question.sentence)
+          }))
+          .filter(({ similarity }) => similarity >= 0.78)
+          .map(
+            ({ level, teaching, question, similarity }) =>
+              `Level ${level}: ${teaching.source} is ${similarity.toFixed(2)} similar to ${question.id}`
+          )
+      );
+    });
+
+    expect(fuzzyMatches).toEqual([]);
+  });
+
+  it('does not duplicate option text inside any practice question', () => {
+    const duplicateOptions = levelContent.flatMap(({ level, practice }) =>
+      practice.flatMap((question) => {
+        const seen = new Set<string>();
+        const repeated = new Set<string>();
+
+        for (const option of question.options) {
+          const optionText = option.text.trim().toLowerCase();
+
+          if (seen.has(optionText)) {
+            repeated.add(option.text);
+          }
+
+          seen.add(optionText);
+        }
+
+        return [...repeated].map((optionText) => `Level ${level} ${question.id} repeats option "${optionText}"`);
+      })
+    );
+
+    expect(duplicateOptions).toEqual([]);
   });
 
   it('keeps end-of-level term rescue concise', () => {

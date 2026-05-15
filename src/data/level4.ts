@@ -88,23 +88,23 @@ export const level4Examples: LessonExample[] = [
   {
     id: 'modifier-who',
     title: '例句 2：贴着名词就是先当修饰',
-    sentence: 'Students who read widely understand complex articles faster.',
+    sentence: 'Readers who compare examples notice grammar patterns sooner.',
     options: [
-      { id: 'a', text: 'who read widely 修饰 Students' },
-      { id: 'b', text: 'read 是整句主发动机' },
-      { id: 'c', text: 'articles 修饰 Students' },
-      { id: 'd', text: 'faster 交代原因' }
+      { id: 'a', text: 'who compare examples 修饰 Readers' },
+      { id: 'b', text: 'compare 是整句主发动机' },
+      { id: 'c', text: 'patterns 修饰 Readers' },
+      { id: 'd', text: 'sooner 交代原因' }
     ],
     correctOptionId: 'a',
-    engine: 'Students understand articles.',
-    skeleton: 'who read widely 贴着 Students，说明是哪类学生。',
+    engine: 'Readers notice patterns.',
+    skeleton: 'who compare examples 贴着 Readers，说明是哪类读者。',
     details: [
-      'Students 是主角。',
-      'who read widely 是“什么样的 students”。',
-      '整句主线是 Students understand articles。'
+      'Readers 是主角。',
+      'who compare examples 是“什么样的 readers”。',
+      '整句主线是 Readers notice patterns。'
     ],
-    translation: '阅读广泛的学生能更快理解复杂文章。',
-    warning: 'who 里面的 read 很像动作，但先别让它抢主线。'
+    translation: '会比较例句的读者能更早看出语法规律。',
+    warning: 'who 里面的 compare 很像动作，但先别让它抢主线。'
   },
   {
     id: 'logic-although',

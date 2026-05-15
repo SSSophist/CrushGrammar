@@ -506,3 +506,26 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：26 个测试文件，90 个测试。
+
+## 2026-05-15 更新：V2-013 全站题目质量巡检
+
+用户反馈：
+- 需要全面检查例句和题目质量，避免例句、常见坑和通关题重复，并适当提升题目质量。
+
+本次实现：
+- 用脚本扫描 Level 1-10 的教学例句、常见坑和通关练习，共 204 条英文句子。
+- 修复全站精确重复句子：
+  - Level 3 q10 替换 `Although the article looks difficult...`，避免复用 Level 1 常见坑句。
+  - Level 4 `modifier-who` 和 Level 7 q1 调整 who 修饰相关句子，避免复用 Level 3 常见坑句。
+  - Level 5 q3 替换目的状语句，避免复用 Level 3 q3。
+  - Level 7 q6 替换非谓语修饰句，避免复用 Level 3 q4。
+- 修复 Level 9 两组教学例句与通关题高相似问题：`more...than` 比较句、`Only...` 倒装句。
+- 替换内容时同步更新选项、主干骨架、解析和分析片段。
+- `src/data/levels.test.ts` 新增全站内容护栏：精确重复检测、同关教学/练习高相似检测、单题选项重复检测。
+
+验收结果：
+- 内容巡检脚本：204 条内容，精确重复 0 组，同关高相似 0 组。
+- `npm test -- levels` 通过：1 个测试文件，28 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件，93 个测试。

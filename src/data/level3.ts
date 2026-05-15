@@ -450,20 +450,20 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q10',
     title: '题 10：although 前半句不是重点',
-    sentence: 'Although the article looks difficult, its main idea is quite simple.',
+    sentence: 'Although the instructions look confusing, the final task is quite simple.',
     prompt: '哪一个是这句话的主线？',
     options: [
-      { id: 'a', text: 'The article looks difficult.' },
-      { id: 'b', text: 'Its main idea is simple.' },
-      { id: 'c', text: 'The article is quite difficult.' },
-      { id: 'd', text: 'Difficulty is the main idea.' }
+      { id: 'a', text: 'The instructions look confusing.' },
+      { id: 'b', text: 'The final task is simple.' },
+      { id: 'c', text: 'The instructions are the final task.' },
+      { id: 'd', text: 'Confusion is quite simple.' }
     ],
     correctOptionId: 'b',
-    skeleton: 'Its main idea is simple.',
-    explanation: 'Although 前半句是让步背景，逗号后 its main idea is quite simple 才是主线。',
+    skeleton: 'The final task is simple.',
+    explanation: 'Although 前半句是让步背景，逗号后 the final task is quite simple 才是主线。',
     analysisParts: [
-      { id: 'l3-q10-background', kind: 'logic', label: '让步背景', text: 'Although the article looks difficult' },
-      { id: 'l3-q10-subject', kind: 'subject', label: '主语', text: 'its main idea' },
+      { id: 'l3-q10-background', kind: 'logic', label: '让步背景', text: 'Although the instructions look confusing' },
+      { id: 'l3-q10-subject', kind: 'subject', label: '主语', text: 'the final task' },
       { id: 'l3-q10-predicate', kind: 'predicate', label: '主发动机', text: 'is' },
       { id: 'l3-q10-complement', kind: 'complement', label: '状态结果', text: 'quite simple' }
     ],

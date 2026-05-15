@@ -190,22 +190,22 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q1',
     title: 'neutral',
-    sentence: 'This method is more useful than the old one for beginners.',
+    sentence: 'Online practice is more flexible than printed worksheets for busy learners.',
     prompt: '这句话最稳的读法是：',
     options: [
-      { id: 'a', text: '旧方法对初学者更有用。' },
-      { id: 'b', text: '这个方法比旧方法更有用。' },
-      { id: 'c', text: '两个方法没有区别。' },
-      { id: 'd', text: '初学者让旧方法更有用。' }
+      { id: 'a', text: '纸质练习对忙碌学习者更灵活。' },
+      { id: 'b', text: '线上练习比纸质练习更灵活。' },
+      { id: 'c', text: '两种练习完全一样。' },
+      { id: 'd', text: '忙碌学习者让纸质练习更灵活。' }
     ],
     correctOptionId: 'b',
-    skeleton: 'This method is more useful than the old one.',
-    explanation: 'more useful 在 this method 这一边，than 后面是被比较对象 old one，所以更有用的是 this method。',
+    skeleton: 'Online practice is more flexible than printed worksheets.',
+    explanation: 'more flexible 在 online practice 这一边，than 后面是被比较对象 printed worksheets，所以更灵活的是 online practice。',
     analysisParts: [
-      { id: 'l9-q1-subject', kind: 'subject', label: '比较主体', text: 'This method' },
-      { id: 'l9-q1-form', kind: 'form', label: '比较信号', text: 'more useful than' },
-      { id: 'l9-q1-object', kind: 'object', label: '比较对象', text: 'the old one' },
-      { id: 'l9-q1-detail', kind: 'detail', label: '适用对象', text: 'for beginners' }
+      { id: 'l9-q1-subject', kind: 'subject', label: '比较主体', text: 'Online practice' },
+      { id: 'l9-q1-form', kind: 'form', label: '比较信号', text: 'more flexible than' },
+      { id: 'l9-q1-object', kind: 'object', label: '比较对象', text: 'printed worksheets' },
+      { id: 'l9-q1-detail', kind: 'detail', label: '适用对象', text: 'for busy learners' }
     ],
     errorByOption: { a: ['logic-reversal'], c: ['special-structure'], d: ['mainline-missing'] }
   },
@@ -340,21 +340,21 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q8',
     title: 'neutral',
-    sentence: 'Only when learners review mistakes can they make real progress.',
+    sentence: 'Only after learners compare several explanations can they spot the real difference.',
     prompt: '还原成人话，意思最接近：',
     options: [
-      { id: 'a', text: '学习者只有复盘错误，才会真正进步。' },
-      { id: 'b', text: '学习者复盘错误就不能进步。' },
-      { id: 'c', text: '错误会主动复盘学习者。' },
+      { id: 'a', text: '学习者只有比较几种解释之后，才能看出真正差别。' },
+      { id: 'b', text: '学习者比较解释后就不能发现差别。' },
+      { id: 'c', text: '解释会主动比较学习者。' },
       { id: 'd', text: '这句话主要说没有任何条件。' }
     ],
     correctOptionId: 'a',
-    skeleton: 'Learners can make real progress only when they review mistakes.',
-    explanation: 'Only when 放在句首，can 提前；意思仍然是“只有……才……”。',
+    skeleton: 'Learners can spot the real difference only after they compare several explanations.',
+    explanation: 'Only after 放在句首，can 提前；意思仍然是“只有在……之后才……”。',
     analysisParts: [
-      { id: 'l9-q8-condition', kind: 'background', label: '条件', text: 'Only when learners review mistakes' },
+      { id: 'l9-q8-condition', kind: 'background', label: '条件', text: 'Only after learners compare several explanations' },
       { id: 'l9-q8-form', kind: 'form', label: '倒装信号', text: 'can they' },
-      { id: 'l9-q8-predicate', kind: 'predicate', label: '主线动作', text: 'make real progress' }
+      { id: 'l9-q8-predicate', kind: 'predicate', label: '主线动作', text: 'spot the real difference' }
     ],
     errorByOption: { b: ['logic-reversal'], c: ['mainline-missing'], d: ['special-structure'] }
   },

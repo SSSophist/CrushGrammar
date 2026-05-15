@@ -188,22 +188,22 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q1',
     title: '修饰从句',
-    sentence: 'Students who read widely understand complex articles faster.',
+    sentence: 'Students who organize notes clearly solve grammar questions faster.',
     prompt: '这句话压缩后的主干是：',
     options: [
-      { id: 'a', text: 'Students understand articles.' },
-      { id: 'b', text: 'Students read widely.' },
-      { id: 'c', text: 'Articles read students.' },
-      { id: 'd', text: 'Widely understands faster.' }
+      { id: 'a', text: 'Students solve questions.' },
+      { id: 'b', text: 'Students organize notes.' },
+      { id: 'c', text: 'Questions organize students.' },
+      { id: 'd', text: 'Clearly solves faster.' }
     ],
     correctOptionId: 'a',
-    skeleton: 'Students understand articles.',
-    explanation: 'who read widely 修饰 Students，主干是 Students understand articles。',
+    skeleton: 'Students solve questions.',
+    explanation: 'who organize notes clearly 修饰 Students，主干是 Students solve grammar questions。',
     analysisParts: [
       { id: 'l7-q1-subject', kind: 'subject', label: '主语核心', text: 'Students' },
-      { id: 'l7-q1-modifier', kind: 'modifier', label: '修饰尾巴', text: 'who read widely' },
-      { id: 'l7-q1-predicate', kind: 'predicate', label: '主发动机', text: 'understand' },
-      { id: 'l7-q1-object', kind: 'object', label: '对象', text: 'complex articles' }
+      { id: 'l7-q1-modifier', kind: 'modifier', label: '修饰尾巴', text: 'who organize notes clearly' },
+      { id: 'l7-q1-predicate', kind: 'predicate', label: '主发动机', text: 'solve' },
+      { id: 'l7-q1-object', kind: 'object', label: '对象', text: 'grammar questions' }
     ],
     errorByOption: { b: ['clause-function'], c: ['mainline-missing'], d: ['modifier-as-mainline'] }
   },
@@ -297,22 +297,22 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q6',
     title: '非谓语修饰',
-    sentence: 'Researchers studying sleep patterns found a surprising result.',
+    sentence: 'Teachers using real examples explained the rule more clearly.',
     prompt: '主干是：',
     options: [
-      { id: 'a', text: 'Researchers found a result.' },
-      { id: 'b', text: 'Sleep patterns found researchers.' },
-      { id: 'c', text: 'Researchers studying patterns.' },
-      { id: 'd', text: 'A result studied sleep.' }
+      { id: 'a', text: 'Teachers explained the rule.' },
+      { id: 'b', text: 'Real examples explained teachers.' },
+      { id: 'c', text: 'Teachers using examples.' },
+      { id: 'd', text: 'The rule used teachers.' }
     ],
     correctOptionId: 'a',
-    skeleton: 'Researchers found a result.',
-    explanation: 'studying sleep patterns 修饰 Researchers，found 才是主发动机。',
+    skeleton: 'Teachers explained the rule.',
+    explanation: 'using real examples 修饰 Teachers，explained 才是主发动机。',
     analysisParts: [
-      { id: 'l7-q6-subject', kind: 'subject', label: '主语', text: 'Researchers' },
-      { id: 'l7-q6-modifier', kind: 'modifier', label: '修饰块', text: 'studying sleep patterns' },
-      { id: 'l7-q6-predicate', kind: 'predicate', label: '主发动机', text: 'found' },
-      { id: 'l7-q6-object', kind: 'object', label: '对象', text: 'a surprising result' }
+      { id: 'l7-q6-subject', kind: 'subject', label: '主语', text: 'Teachers' },
+      { id: 'l7-q6-modifier', kind: 'modifier', label: '修饰块', text: 'using real examples' },
+      { id: 'l7-q6-predicate', kind: 'predicate', label: '主发动机', text: 'explained' },
+      { id: 'l7-q6-object', kind: 'object', label: '对象', text: 'the rule' }
     ],
     errorByOption: { b: ['modifier-target'], c: ['modifier-as-mainline'], d: ['mainline-missing'] }
   },
