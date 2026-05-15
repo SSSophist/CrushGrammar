@@ -142,6 +142,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
   const [diagnosticAnswers, setDiagnosticAnswers] = useState<DiagnosticOption[]>([]);
   const [diagnosticResult, setDiagnosticResult] = useState<ReturnType<typeof getDiagnosticResult> | null>(null);
   const [beginnerMode, setBeginnerMode] = useState(false);
+  const [diagnosticInModal, setDiagnosticInModal] = useState(false);
   const [showDiagnosticPrompt, setShowDiagnosticPrompt] = useState(() => {
     try {
       return localStorage.getItem(DIAGNOSTIC_PROMPT_KEY) !== 'true';
@@ -166,18 +167,18 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
     }
   }, [clicks]);
 
-  const markDiagnosticPromptSeen = () => {
+  const rememberDiagnosticPromptSeen = () => {
     try {
       localStorage.setItem(DIAGNOSTIC_PROMPT_KEY, 'true');
     } catch {
       // Local storage can be unavailable in private contexts; the session state still closes the prompt.
     }
-
-    setShowDiagnosticPrompt(false);
   };
 
-  const startDiagnostic = () => {
-    markDiagnosticPromptSeen();
+  const startDiagnostic = (mode: 'inline' | 'modal' = 'inline') => {
+    rememberDiagnosticPromptSeen();
+    setShowDiagnosticPrompt(mode === 'modal');
+    setDiagnosticInModal(mode === 'modal');
     setDiagnosticStarted(true);
     setDiagnosticAnswers([]);
     setDiagnosticResult(null);
@@ -185,7 +186,9 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
   };
 
   const handleBeginnerStart = () => {
-    markDiagnosticPromptSeen();
+    rememberDiagnosticPromptSeen();
+    setShowDiagnosticPrompt(false);
+    setDiagnosticInModal(false);
     setBeginnerMode(true);
     setDiagnosticStarted(false);
     setDiagnosticAnswers([]);
@@ -228,6 +231,9 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
   const diagnosticResultLevelNumbers = diagnosticResult?.recommendedLevelIds
     .map((levelId) => `第 ${levelNumberById.get(levelId)} 关`)
     .join('、');
+  const modalRecommendedLevel = diagnosticResult
+    ? levels.find((level) => level.id === diagnosticResult.recommendedLevelId) ?? levels[0]
+    : null;
 
   return (
     <main className="page-shell" style={{ position: 'relative' }}>
@@ -259,20 +265,63 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
           >
             <p className="eyebrow">Start Smart</p>
             <h2 id="diagnostic-welcome-title">欢迎来到小德英语lab的四六级语法网站</h2>
-            <div className="intro-modal-body">
-              <p>
-                先做 8 道语法能力检测题，大概 3 分钟。系统会根据你的错误推荐薄弱关卡，并自动解锁到对应训练位置。
-              </p>
-              <p>如果你想从零开始，也可以直接选择小白路线，从第 1 关按顺序刷。</p>
-            </div>
-            <div className="diagnostic-actions">
-              <button type="button" className="primary-action" onClick={startDiagnostic}>
-                开始 8 题语法检测
-              </button>
-              <button type="button" className="secondary-action" onClick={handleBeginnerStart}>
-                我是语法小白，从第 1 关开始
-              </button>
-            </div>
+            {diagnosticInModal && diagnosticStarted && currentDiagnosticQuestion ? (
+              <div className="diagnostic-question">
+                <div className="practice-progress">
+                  诊断 {diagnosticAnswers.length + 1} / {diagnosticQuestions.length}
+                </div>
+                <h3>{currentDiagnosticQuestion.prompt}</h3>
+                <div className="diagnostic-options">
+                  {currentDiagnosticQuestion.options.map((option) => (
+                    <button key={option.id} type="button" className="answer-option" onClick={() => handleDiagnosticAnswer(option)}>
+                      <strong>{option.id.toUpperCase()}</strong>
+                      <span>{option.text}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            {diagnosticInModal && diagnosticResult && modalRecommendedLevel ? (
+              <div className="diagnostic-result">
+                <p className="eyebrow">Diagnostic Result</p>
+                <h3>建议先练第 {modalRecommendedLevel.number} 关</h3>
+                <p className="diagnostic-result-line">推荐关卡：{diagnosticResultLevelNumbers}</p>
+                <div className="diagnostic-tags">
+                  {diagnosticResult.weakLabels.map((label) => (
+                    <span key={label}>{label}</span>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  className="primary-action"
+                  onClick={() => {
+                    setShowDiagnosticPrompt(false);
+                    setDiagnosticInModal(false);
+                    onOpenLevel(modalRecommendedLevel.id);
+                  }}
+                >
+                  开始第 {modalRecommendedLevel.number} 关
+                </button>
+              </div>
+            ) : null}
+            {!diagnosticInModal ? (
+              <>
+                <div className="intro-modal-body">
+                  <p>
+                    先做 8 道语法能力检测题，大概 3 分钟。系统会根据你的错误推荐薄弱关卡，并自动解锁到对应训练位置。
+                  </p>
+                  <p>如果你想从零开始，也可以直接选择小白路线，从第 1 关按顺序刷。</p>
+                </div>
+                <div className="diagnostic-actions">
+                  <button type="button" className="primary-action" onClick={() => startDiagnostic('modal')}>
+                    开始 8 题语法检测
+                  </button>
+                  <button type="button" className="secondary-action" onClick={handleBeginnerStart}>
+                    我是语法小白，从第 1 关开始
+                  </button>
+                </div>
+              </>
+            ) : null}
           </section>
         </div>
       ) : null}
@@ -305,7 +354,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
         </div>
         {!diagnosticStarted && !diagnosticResult ? (
           <div className="diagnostic-actions">
-            <button type="button" className="secondary-action" onClick={startDiagnostic}>
+            <button type="button" className="secondary-action" onClick={() => startDiagnostic('inline')}>
               做 3 分钟诊断
             </button>
             <button type="button" className="text-action" onClick={handleBeginnerStart}>
@@ -313,7 +362,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
             </button>
           </div>
         ) : null}
-        {diagnosticStarted && currentDiagnosticQuestion ? (
+        {diagnosticStarted && !diagnosticInModal && currentDiagnosticQuestion ? (
           <div className="diagnostic-question">
             <div className="practice-progress">
               诊断 {diagnosticAnswers.length + 1} / {diagnosticQuestions.length}
@@ -329,7 +378,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
             </div>
           </div>
         ) : null}
-        {diagnosticResult ? (
+        {diagnosticResult && !diagnosticInModal ? (
           <div className="diagnostic-result">
             <p className="eyebrow">Diagnostic Result</p>
             <h3>建议先练第 {levelNumberById.get(diagnosticResult.recommendedLevelId)} 关</h3>

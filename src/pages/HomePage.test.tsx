@@ -39,6 +39,20 @@ describe('HomePage', () => {
     expect(onOpenLevel).toHaveBeenCalledWith('level-1');
   });
 
+  it('keeps the first-visit diagnostic quiz inside the modal', async () => {
+    const user = userEvent.setup();
+
+    render(<HomePage unlockedLevels={['level-1']} onUnlockAll={vi.fn()} onOpenLevel={vi.fn()} />);
+
+    const dialog = screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' });
+    await user.click(within(dialog).getByRole('button', { name: '开始 8 题语法检测' }));
+
+    expect(screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' })).toBeTruthy();
+    expect(within(dialog).getByText('诊断 1 / 8')).toBeTruthy();
+    expect(within(dialog).getByRole('button', { name: /Students feel less pressure/ })).toBeTruthy();
+    expect(screen.getAllByText('诊断 1 / 8')).toHaveLength(1);
+  });
+
   it('starts new learners at level 1', async () => {
     const user = userEvent.setup();
     const onOpenLevel = vi.fn();
