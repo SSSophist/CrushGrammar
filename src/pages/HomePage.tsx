@@ -142,7 +142,6 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
   const [diagnosticAnswers, setDiagnosticAnswers] = useState<DiagnosticOption[]>([]);
   const [diagnosticResult, setDiagnosticResult] = useState<ReturnType<typeof getDiagnosticResult> | null>(null);
   const [beginnerMode, setBeginnerMode] = useState(false);
-  const [diagnosticInModal, setDiagnosticInModal] = useState(false);
   const [showDiagnosticPrompt, setShowDiagnosticPrompt] = useState(() => {
     try {
       return localStorage.getItem(DIAGNOSTIC_PROMPT_KEY) !== 'true';
@@ -175,10 +174,9 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
     }
   };
 
-  const startDiagnostic = (mode: 'inline' | 'modal' = 'inline') => {
+  const startDiagnostic = () => {
     rememberDiagnosticPromptSeen();
-    setShowDiagnosticPrompt(mode === 'modal');
-    setDiagnosticInModal(mode === 'modal');
+    setShowDiagnosticPrompt(true);
     setDiagnosticStarted(true);
     setDiagnosticAnswers([]);
     setDiagnosticResult(null);
@@ -188,7 +186,6 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
   const handleBeginnerStart = () => {
     rememberDiagnosticPromptSeen();
     setShowDiagnosticPrompt(false);
-    setDiagnosticInModal(false);
     setBeginnerMode(true);
     setDiagnosticStarted(false);
     setDiagnosticAnswers([]);
@@ -265,7 +262,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
           >
             <p className="eyebrow">Start Smart</p>
             <h2 id="diagnostic-welcome-title">欢迎来到小德英语lab的四六级语法网站</h2>
-            {diagnosticInModal && diagnosticStarted && currentDiagnosticQuestion ? (
+            {diagnosticStarted && currentDiagnosticQuestion ? (
               <div className="diagnostic-question">
                 <div className="practice-progress">
                   诊断 {diagnosticAnswers.length + 1} / {diagnosticQuestions.length}
@@ -281,7 +278,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
                 </div>
               </div>
             ) : null}
-            {diagnosticInModal && diagnosticResult && modalRecommendedLevel ? (
+            {diagnosticResult && modalRecommendedLevel ? (
               <div className="diagnostic-result">
                 <p className="eyebrow">Diagnostic Result</p>
                 <h3>建议先练第 {modalRecommendedLevel.number} 关</h3>
@@ -296,7 +293,6 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
                   className="primary-action"
                   onClick={() => {
                     setShowDiagnosticPrompt(false);
-                    setDiagnosticInModal(false);
                     onOpenLevel(modalRecommendedLevel.id);
                   }}
                 >
@@ -304,7 +300,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
                 </button>
               </div>
             ) : null}
-            {!diagnosticInModal ? (
+            {!diagnosticStarted && !diagnosticResult ? (
               <>
                 <div className="intro-modal-body">
                   <p>
@@ -313,7 +309,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
                   <p>如果你想从零开始，也可以直接选择小白路线，从第 1 关按顺序刷。</p>
                 </div>
                 <div className="diagnostic-actions">
-                  <button type="button" className="primary-action" onClick={() => startDiagnostic('modal')}>
+                  <button type="button" className="primary-action" onClick={startDiagnostic}>
                     开始 8 题语法检测
                   </button>
                   <button type="button" className="secondary-action" onClick={handleBeginnerStart}>
@@ -344,53 +340,6 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
         当前路线：
         <strong>{routeMode === 'three-day' ? '3 天极限版' : '5 天稳妥版'}</strong>
         <span>核心内容相同，区别在每日任务量和补救练习密度。</span>
-      </section>
-
-      <section className="diagnostic-panel" aria-live="polite">
-        <div>
-          <p className="eyebrow">Start Smart</p>
-          <h2>先定位薄弱点</h2>
-          <p>不确定从哪关开始时，先做 8 道诊断题；如果想完整打基础，也可以直接从第 1 关走。</p>
-        </div>
-        {!diagnosticStarted && !diagnosticResult ? (
-          <div className="diagnostic-actions">
-            <button type="button" className="secondary-action" onClick={() => startDiagnostic('inline')}>
-              做 3 分钟诊断
-            </button>
-            <button type="button" className="text-action" onClick={handleBeginnerStart}>
-              我是语法小白，从第 1 关开始
-            </button>
-          </div>
-        ) : null}
-        {diagnosticStarted && !diagnosticInModal && currentDiagnosticQuestion ? (
-          <div className="diagnostic-question">
-            <div className="practice-progress">
-              诊断 {diagnosticAnswers.length + 1} / {diagnosticQuestions.length}
-            </div>
-            <h3>{currentDiagnosticQuestion.prompt}</h3>
-            <div className="diagnostic-options">
-              {currentDiagnosticQuestion.options.map((option) => (
-                <button key={option.id} type="button" className="answer-option" onClick={() => handleDiagnosticAnswer(option)}>
-                  <strong>{option.id.toUpperCase()}</strong>
-                  <span>{option.text}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : null}
-        {diagnosticResult && !diagnosticInModal ? (
-          <div className="diagnostic-result">
-            <p className="eyebrow">Diagnostic Result</p>
-            <h3>建议先练第 {levelNumberById.get(diagnosticResult.recommendedLevelId)} 关</h3>
-            <p className="diagnostic-result-line">推荐关卡：{diagnosticResultLevelNumbers}</p>
-            <div className="diagnostic-tags">
-              {diagnosticResult.weakLabels.map((label) => (
-                <span key={label}>{label}</span>
-              ))}
-            </div>
-          </div>
-        ) : null}
-        {beginnerMode ? <p className="diagnostic-result-line">已选择从第 1 关开始，按顺序打基础。</p> : null}
       </section>
 
       <LevelMap levels={dynamicLevels} onOpenLevel={onOpenLevel} />

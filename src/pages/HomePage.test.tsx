@@ -26,8 +26,16 @@ describe('HomePage', () => {
   it('lets first-visit beginners skip the diagnostic and start from level one', async () => {
     const user = userEvent.setup();
     const onOpenLevel = vi.fn();
+    const onUnlockThrough = vi.fn();
 
-    render(<HomePage unlockedLevels={['level-1', 'level-2', 'level-3']} onUnlockAll={vi.fn()} onOpenLevel={onOpenLevel} />);
+    render(
+      <HomePage
+        unlockedLevels={['level-1', 'level-2', 'level-3']}
+        onUnlockAll={vi.fn()}
+        onUnlockThrough={onUnlockThrough}
+        onOpenLevel={onOpenLevel}
+      />
+    );
 
     const dialog = screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' });
     await user.click(within(dialog).getByRole('button', { name: '我是语法小白，从第 1 关开始' }));
@@ -37,6 +45,7 @@ describe('HomePage', () => {
     await user.click(screen.getByRole('button', { name: '开始第 1 关' }));
 
     expect(onOpenLevel).toHaveBeenCalledWith('level-1');
+    expect(onUnlockThrough).not.toHaveBeenCalled();
   });
 
   it('keeps the first-visit diagnostic quiz inside the modal', async () => {
@@ -106,8 +115,6 @@ describe('HomePage', () => {
     const onOpenLevel = vi.fn();
     const onUnlockThrough = vi.fn();
 
-    localStorage.setItem(DIAGNOSTIC_PROMPT_KEY, 'true');
-
     render(
       <HomePage
         unlockedLevels={['level-1']}
@@ -117,47 +124,41 @@ describe('HomePage', () => {
       />
     );
 
-    await user.click(screen.getByRole('button', { name: '做 3 分钟诊断' }));
-    await user.click(screen.getByRole('button', { name: /Students feel less pressure/ }));
-    await user.click(screen.getByRole('button', { name: /^A reliable$/ }));
-    await user.click(screen.getByRole('button', { name: /that 从句是 believe 的内容/ }));
-    await user.click(screen.getByRole('button', { name: /Students solve problems/ }));
-    await user.click(screen.getByRole('button', { name: /方法简单才是重点/ }));
-    await user.click(screen.getByRole('button', { name: /has changed/ }));
-    await user.click(screen.getByRole('button', { name: /People remember methods/ }));
-    await user.click(screen.getByRole('button', { name: /只有不断复盘错误/ }));
+    let dialog = screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' });
+    await user.click(within(dialog).getByRole('button', { name: '开始 8 题语法检测' }));
+    await user.click(within(dialog).getByRole('button', { name: /Students feel less pressure/ }));
+    await user.click(within(dialog).getByRole('button', { name: /^A reliable$/ }));
+    await user.click(within(dialog).getByRole('button', { name: /that 从句是 believe 的内容/ }));
+    await user.click(within(dialog).getByRole('button', { name: /Students solve problems/ }));
+    await user.click(within(dialog).getByRole('button', { name: /方法简单才是重点/ }));
+    await user.click(within(dialog).getByRole('button', { name: /has changed/ }));
+    await user.click(within(dialog).getByRole('button', { name: /People remember methods/ }));
+    await user.click(within(dialog).getByRole('button', { name: /只有不断复盘错误/ }));
 
-    expect(screen.getByText('建议先练第 6 关')).toBeTruthy();
-    expect(screen.getByText('推荐关卡：第 6 关')).toBeTruthy();
-    expect(screen.getByText('逻辑关系方向不稳')).toBeTruthy();
-    expect(screen.getByRole('button', { name: '开始第 6 关' })).toBeTruthy();
+    dialog = screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' });
+    expect(within(dialog).getByText('建议先练第 6 关')).toBeTruthy();
+    expect(within(dialog).getByText('推荐关卡：第 6 关')).toBeTruthy();
+    expect(within(dialog).getByText('逻辑关系方向不稳')).toBeTruthy();
+    expect(within(dialog).getByRole('button', { name: '开始第 6 关' })).toBeTruthy();
     expect(onUnlockThrough).toHaveBeenCalledWith('level-6');
 
-    await user.click(screen.getByRole('button', { name: '开始第 6 关' }));
+    await user.click(within(dialog).getByRole('button', { name: '开始第 6 关' }));
 
     expect(onOpenLevel).toHaveBeenCalledWith('level-6');
   });
 
-  it('keeps new learners on level one when they choose the beginner path', async () => {
-    const user = userEvent.setup();
-    const onOpenLevel = vi.fn();
-    const onUnlockThrough = vi.fn();
-
+  it('does not render the diagnostic as an embedded homepage panel', () => {
     localStorage.setItem(DIAGNOSTIC_PROMPT_KEY, 'true');
 
     render(
       <HomePage
         unlockedLevels={['level-1', 'level-2', 'level-3']}
         onUnlockAll={vi.fn()}
-        onUnlockThrough={onUnlockThrough}
-        onOpenLevel={onOpenLevel}
+        onOpenLevel={vi.fn()}
       />
     );
 
-    await user.click(screen.getByRole('button', { name: '我是语法小白，从第 1 关开始' }));
-    await user.click(screen.getByRole('button', { name: '开始第 1 关' }));
-
-    expect(onUnlockThrough).not.toHaveBeenCalled();
-    expect(onOpenLevel).toHaveBeenCalledWith('level-1');
+    expect(screen.queryByRole('heading', { name: '先定位薄弱点' })).toBeNull();
+    expect(screen.queryByRole('button', { name: '做 3 分钟诊断' })).toBeNull();
   });
 });
