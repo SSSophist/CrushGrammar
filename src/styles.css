@@ -394,6 +394,10 @@ button:disabled {
   animation: introBackdropIn 180ms ease-out both;
 }
 
+.diagnostic-welcome-backdrop {
+  place-items: center;
+}
+
 .intro-modal {
   width: min(680px, 100%);
   max-height: calc(100dvh - 48px);
@@ -1567,6 +1571,10 @@ blockquote {
   .intro-modal-backdrop {
     align-items: start;
     padding: 12px;
+  }
+
+  .diagnostic-welcome-backdrop {
+    align-items: center;
   }
 
   .intro-modal {

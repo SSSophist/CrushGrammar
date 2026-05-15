@@ -250,7 +250,7 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
       />
 
       {showDiagnosticPrompt ? (
-        <div className="intro-backdrop">
+        <div className="intro-modal-backdrop diagnostic-welcome-backdrop">
           <section
             className="intro-modal diagnostic-welcome-modal"
             role="dialog"

@@ -16,6 +16,8 @@ describe('HomePage', () => {
 
     const dialog = screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' });
 
+    expect(dialog.parentElement?.className).toContain('intro-modal-backdrop');
+    expect(dialog.parentElement?.className).toContain('diagnostic-welcome-backdrop');
     expect(within(dialog).getByText(/8 道语法能力检测题/)).toBeTruthy();
     expect(within(dialog).getByRole('button', { name: '开始 8 题语法检测' })).toBeTruthy();
     expect(within(dialog).getByRole('button', { name: '我是语法小白，从第 1 关开始' })).toBeTruthy();
