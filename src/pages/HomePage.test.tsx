@@ -58,7 +58,7 @@ describe('HomePage', () => {
 
     expect(screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' })).toBeTruthy();
     expect(within(dialog).getByText('诊断 1 / 8')).toBeTruthy();
-    expect(within(dialog).getByRole('button', { name: /Students feel less pressure/ })).toBeTruthy();
+    expect(within(dialog).getByRole('button', { name: /Students miss the assumptions/ })).toBeTruthy();
     expect(screen.getAllByText('诊断 1 / 8')).toHaveLength(1);
   });
 
@@ -126,14 +126,14 @@ describe('HomePage', () => {
 
     let dialog = screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' });
     await user.click(within(dialog).getByRole('button', { name: '开始 8 题语法检测' }));
-    await user.click(within(dialog).getByRole('button', { name: /Students feel less pressure/ }));
-    await user.click(within(dialog).getByRole('button', { name: /^A reliable$/ }));
-    await user.click(within(dialog).getByRole('button', { name: /that 从句是 believe 的内容/ }));
-    await user.click(within(dialog).getByRole('button', { name: /Students solve problems/ }));
-    await user.click(within(dialog).getByRole('button', { name: /方法简单才是重点/ }));
-    await user.click(within(dialog).getByRole('button', { name: /has changed/ }));
-    await user.click(within(dialog).getByRole('button', { name: /People remember methods/ }));
-    await user.click(within(dialog).getByRole('button', { name: /只有不断复盘错误/ }));
+    await user.click(within(dialog).getByRole('button', { name: /Students miss the assumptions/ }));
+    await user.click(within(dialog).getByRole('button', { name: /^A practical$/ }));
+    await user.click(within(dialog).getByRole('button', { name: /解释 the fact 的具体内容/ }));
+    await user.click(within(dialog).getByRole('button', { name: /checklist helps students notice/ }));
+    await user.click(within(dialog).getByRole('button', { name: /app saves time 才是重点/ }));
+    await user.click(within(dialog).getByRole('button', { name: /had collected/ }));
+    await user.click(within(dialog).getByRole('button', { name: /ability determines whether/ }));
+    await user.click(within(dialog).getByRole('button', { name: /只有比较两个相似句子后/ }));
 
     dialog = screen.getByRole('dialog', { name: '欢迎来到小德英语lab的四六级语法网站' });
     expect(within(dialog).getByText('建议先练第 6 关')).toBeTruthy();

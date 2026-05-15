@@ -31,82 +31,82 @@ const DIAGNOSTIC_PROMPT_KEY = 'crush_grammar_diagnostic_prompt_seen';
 const diagnosticQuestions: DiagnosticQuestion[] = [
   {
     id: 'mainline',
-    prompt: 'Students who plan early feel less pressure before exams. 主线是哪一个？',
+    prompt: 'Students who depend on quick summaries when reading academic articles often miss the assumptions behind an argument. 主线是哪一个？',
     levelId: 'level-3',
     weakLabel: '句子主干不稳',
     options: [
-      { id: 'a', text: '主语是 who plan early，主发动机是 plan', correct: false },
-      { id: 'b', text: 'Students feel less pressure 是主线', correct: true }
+      { id: 'a', text: 'quick summaries miss the assumptions 是主线', correct: false },
+      { id: 'b', text: 'Students miss the assumptions 是主线', correct: true }
     ]
   },
   {
     id: 'word-class',
-    prompt: 'Students need ____ sources when checking information. 空格最稳填哪类词？',
+    prompt: 'The committee considered the proposal ____ enough to be tested in several cities. 空格最稳填哪类词？',
     levelId: 'level-2',
     weakLabel: '词性和位置判断不稳',
     options: [
-      { id: 'a', text: 'reliable', correct: true },
-      { id: 'b', text: 'reliably', correct: false }
+      { id: 'a', text: 'practical', correct: true },
+      { id: 'b', text: 'practically', correct: false }
     ]
   },
   {
     id: 'clause',
-    prompt: 'Teachers believe that practice builds confidence. that 从句在干嘛？',
+    prompt: 'The fact that many applicants revise their essays repeatedly shows how seriously they treat the exam. that 从句在干嘛？',
     levelId: 'level-4',
     weakLabel: '从句功能判断不稳',
     options: [
-      { id: 'a', text: 'that 从句是 believe 的内容', correct: true },
-      { id: 'b', text: 'that 从句修饰 Teachers', correct: false }
+      { id: 'a', text: 'that 从句解释 the fact 的具体内容', correct: true },
+      { id: 'b', text: 'that 从句充当 shows 的宾语', correct: false }
     ]
   },
   {
     id: 'non-finite',
-    prompt: 'Students using study groups solve problems faster. 主线是哪一个？',
+    prompt: 'Designed to reduce careless mistakes, the checklist helps students notice missing verbs before submitting essays. 主线是哪一个？',
     levelId: 'level-5',
     weakLabel: '非谓语容易抢主线',
     options: [
-      { id: 'a', text: 'Students solve problems', correct: true },
-      { id: 'b', text: 'using study groups solve', correct: false }
+      { id: 'a', text: 'the checklist helps students notice missing verbs', correct: true },
+      { id: 'b', text: 'Designed to reduce careless mistakes 是主线动作', correct: false }
     ]
   },
   {
     id: 'logic',
-    prompt: 'Although the method is simple, many students ignore it. 重点更靠哪边？',
+    prompt: 'While the app saves time in collecting vocabulary, it rarely teaches learners how those words behave in sentences. 作者真正转向强调的是？',
     levelId: 'level-6',
     weakLabel: '逻辑关系方向不稳',
     options: [
-      { id: 'a', text: '方法简单才是重点', correct: false },
-      { id: 'b', text: 'many students ignore it 才是重点', correct: true }
+      { id: 'a', text: 'app saves time 才是重点', correct: false },
+      { id: 'b', text: 'it rarely teaches word behavior 才是重点', correct: true }
     ]
   },
   {
     id: 'tense',
-    prompt: 'Online learning ____ the way students study over the past decade.',
+    prompt: 'By the time the survey was published, researchers ____ responses from over 3,000 students.',
     levelId: 'level-8',
     weakLabel: '时态语态基础不稳',
     options: [
-      { id: 'a', text: 'has changed', correct: true },
-      { id: 'b', text: 'change', correct: false }
+      { id: 'a', text: 'had collected', correct: true },
+      { id: 'b', text: 'have collected', correct: false }
     ]
   },
   {
     id: 'compression',
-    prompt: 'People who review mistakes after each practice remember methods longer. 压缩后的主干是？',
+    prompt: 'The ability to identify the verb that controls a sentence often determines whether a long paragraph becomes readable. 压缩后的主干是？',
     levelId: 'level-7',
     weakLabel: '长句压缩不稳',
     options: [
-      { id: 'a', text: 'People remember methods', correct: true },
-      { id: 'b', text: 'mistakes review practice', correct: false }
+      { id: 'a', text: 'The ability determines whether the paragraph becomes readable', correct: true },
+      { id: 'b', text: 'the verb controls a sentence determines the paragraph', correct: false }
     ]
   },
   {
     id: 'special-structure',
-    prompt: 'Only by reviewing mistakes can learners improve quickly. 这句话的意思更接近：',
+    prompt: 'Not until students compare two similar sentences do they notice why word order matters. 这句话的意思更接近：',
     levelId: 'level-9',
     weakLabel: '特殊结构识别不稳',
     options: [
-      { id: 'a', text: '只有不断复盘错误，学习者才能快速进步', correct: true },
-      { id: 'b', text: '学习者不能通过复盘错误进步', correct: false }
+      { id: 'a', text: '只有比较两个相似句子后，学生才会注意到语序为何重要', correct: true },
+      { id: 'b', text: '学生不需要比较相似句子也能立刻注意到语序', correct: false }
     ]
   }
 ];

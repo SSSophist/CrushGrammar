@@ -583,7 +583,7 @@ git commit -m "feat: add diagnostic entry flow"
 - 诊断题从 6 题升级到 8 题，覆盖主干、词性、从句、非谓语、逻辑、时态、压缩和特殊结构。
 - 诊断结果会展示薄弱点和推荐关卡，并通过 `onUnlockThrough` 自动解锁到最高推荐关卡。
 - 选择小白路径后，首页主按钮固定为 `开始第 1 关`，方便从零学习。
-- 首页原有诊断区保留，方便用户之后主动重新测一次。
+- 诊断流程只在首访弹窗中完成；首页不再保留内嵌诊断大板块。
 - `src/pages/HomePage.test.tsx` 重写为可读中文测试，覆盖首访弹窗、小白路径、继续进度、总复盘和 8 题诊断解锁。
 
 验收结果：
@@ -592,3 +592,25 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：27 个测试文件，99 个测试。
+
+## 2026-05-16 更新：V2-017 首访诊断题难度升级
+
+用户反馈：
+- 开始的 8 道诊断题难度偏低，希望提高难度。
+
+本次实现：
+- `src/pages/HomePage.tsx` 中的 8 道诊断题全部升级为更接近四六级长难句的筛查题。
+- 主干题改为含定语从句和时间状语的长句，干扰项模拟“被最近短语带跑”。
+- 词性题改为 `consider + object + complement` 结构，避免只测名词前形容词。
+- 从句题改为 `The fact that... shows...`，区分同位语从句和宾语从句。
+- 非谓语题改为句首过去分词状语，考查非谓语不抢主线。
+- 逻辑题改为 `While..., ...` 转向判断，继续对应第 6 关。
+- 时态题改为 `By the time... had collected`，考查过去完成时参照点。
+- 压缩题和特殊结构题升级为多层修饰压缩、`Not until... do...` 倒装理解。
+- `src/pages/HomePage.test.tsx` 更新前测答题路径，保持只错逻辑题时推荐第 6 关。
+
+验收结果：
+- `npm test -- HomePage` 通过：1 个测试文件，8 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：27 个测试文件，100 个测试。
