@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PracticeQuestion from './PracticeQuestion';
 import type { AnswerRecord, ErrorTag, ErrorTagInfo, RemediationItem, VocabEntry } from '../types';
 
@@ -12,10 +12,19 @@ interface RemediationPanelProps {
 export default function RemediationPanel({ remediation, errorInfo, onComplete, vocabEntries = [] }: RemediationPanelProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [attempt, setAttempt] = useState(1);
+  const panelRef = useRef<HTMLElement>(null);
   const allAnswered = answers.length === remediation.questions.length;
   const allCorrect = allAnswered && answers.every((answer) => answer.correct);
   const hasWrong = allAnswered && !allCorrect;
   const remediationInfo = errorInfo[remediation.tag];
+  const panelId = `remediation-${remediation.tag}`;
+  const headingId = `${panelId}-title`;
+
+  useEffect(() => {
+    if (typeof panelRef.current?.scrollIntoView === 'function') {
+      panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [remediation.tag]);
 
   const handleAnswered = (record: AnswerRecord) => {
     setAnswers((current) => {
@@ -38,9 +47,9 @@ export default function RemediationPanel({ remediation, errorInfo, onComplete, v
   };
 
   return (
-    <section className="remediation-panel">
+    <section className="remediation-panel" id={panelId} ref={panelRef} role="region" aria-labelledby={headingId}>
       <p className="eyebrow">Remediation</p>
-      <h3>{remediation.title}</h3>
+      <h3 id={headingId}>{remediation.title}</h3>
       <p>{remediation.explanation}</p>
       {remediationInfo ? <p className="remediation-action">{remediationInfo.action}</p> : null}
       <div className="question-list">

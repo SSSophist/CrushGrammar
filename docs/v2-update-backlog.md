@@ -418,3 +418,20 @@
   - `npm test` 通过：27 个测试文件，96 个测试。
   - 本地服务：`http://127.0.0.1:5200/` 返回 200。
   - 本记录完成后单独 commit。
+
+### 2026-05-16：完成 V2-015 补救按钮自动定位补救题
+
+- 状态：已完成
+- 来源：FB-012
+- 内容：
+  - `RemediationPanel` 增加稳定锚点 `remediation-${tag}`，并以标题作为可访问名称。
+  - 当用户点击错因汇总中的补救按钮、激活对应补救面板时，面板自动 `scrollIntoView` 到下方补救题区域。
+  - 增加 `scroll-margin-top`，避免滚动后补救面板贴住视口顶部。
+  - `RemediationPanel.test.tsx` 增加回归测试，锁住打开补救面板时自动滚动。
+- 验收：
+  - TDD 红灯：`npm test -- RemediationPanel` 初次失败，确认旧面板没有可定位 region 和自动滚动。
+  - `npm test -- RemediationPanel` 通过：1 个测试文件，2 个测试。
+  - `npm run typecheck` 通过。
+  - `npm run build` 通过。
+  - `npm test` 通过：27 个测试文件，97 个测试。
+  - 本记录完成后单独 commit。

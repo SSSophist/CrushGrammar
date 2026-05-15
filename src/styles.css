@@ -1282,6 +1282,7 @@ blockquote {
 .remediation-panel {
   display: grid;
   gap: 14px;
+  scroll-margin-top: 24px;
   border-left-color: var(--amber);
   background: #fff6df;
 }

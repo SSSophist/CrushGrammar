@@ -549,3 +549,22 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run build` 通过。
 - `npm test` 通过：27 个测试文件，96 个测试。
 - 本地服务已启动：`http://127.0.0.1:5200/`，`curl -I` 返回 200。
+
+## 2026-05-16 更新：V2-015 补救按钮自动定位补救题
+
+用户反馈：
+- 点击错因汇总中的补救按钮时，希望页面直接下滑到下方对应补救题。
+
+本次实现：
+- `src/components/RemediationPanel.tsx` 增加 `ref` 和 `useEffect`，当补救面板打开或切换错因标签时自动 `scrollIntoView({ behavior: 'smooth', block: 'start' })`。
+- 补救面板增加稳定 id：`remediation-${remediation.tag}`。
+- 补救面板增加 `role="region"` 和 `aria-labelledby`，让自动定位区域可访问、可测试。
+- `src/styles.css` 给 `.remediation-panel` 增加 `scroll-margin-top: 24px`，滚动后不会贴住顶部。
+- `src/components/RemediationPanel.test.tsx` 增加自动滚动回归测试。
+
+验收结果：
+- TDD 红灯：`npm test -- RemediationPanel` 初次失败，确认旧面板没有自动滚动和可定位 region。
+- `npm test -- RemediationPanel` 通过：1 个测试文件，2 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：27 个测试文件，97 个测试。
