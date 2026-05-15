@@ -462,3 +462,26 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：26 个测试文件，88 个测试。
+
+## 2026-05-15 修复：侧边栏滚动高亮误判
+
+用户反馈：
+- 滚动到 `考场判断法` 时，左侧侧栏错误高亮到了 `四六级场景`。
+- 需要全面解决侧边栏当前章节判定问题。
+
+根因：
+- 之前用 `IntersectionObserver` 回调中的可见区块顺序决定当前项。
+- 当多个大章节同时在视口中可见时，观察器会把更靠后的章节判为当前项，导致正文在 `考场判断法`，侧栏却高亮 `四六级场景`。
+
+本次实现：
+- `LevelNav` 改为监听 `scroll / resize / hashchange`，通过每个章节的 `getBoundingClientRect()` 计算当前阅读焦点线。
+- 当前项规则：取最后一个已经越过阅读焦点线、且仍在视口附近的章节。
+- 保留点击后立即高亮，以及正文 `:target` 跳转反馈。
+- 新增回归测试模拟 `method` 位于阅读焦点线、`scenes` 在下方时，必须高亮 `考场判断法`，不能高亮 `四六级场景`。
+
+验收结果：
+- `npm test -- LevelNav` 通过：1 个测试文件，3 个测试。
+- `npm test -- App LevelNav` 通过：2 个测试文件，16 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：26 个测试文件，89 个测试。

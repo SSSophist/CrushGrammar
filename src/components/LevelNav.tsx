@@ -22,33 +22,54 @@ export default function LevelNav({ ariaLabel = '本关学习路线' }: LevelNavP
       setActiveHref(window.location.hash);
     }
 
-    if (!('IntersectionObserver' in window)) {
-      return undefined;
-    }
-
     const sections = links
       .map((link) => document.getElementById(link.href.slice(1)))
       .filter((section): section is HTMLElement => Boolean(section));
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top)[0];
+    if (sections.length === 0) {
+      return undefined;
+    }
 
-        if (visibleEntry?.target.id) {
-          setActiveHref(`#${visibleEntry.target.id}`);
+    let animationFrame: number | null = null;
+
+    const updateActiveSection = () => {
+      animationFrame = null;
+      const activationLine = Math.min(220, Math.max(120, window.innerHeight * 0.28));
+      const activeSection = sections.reduce((current, section) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= activationLine && rect.bottom > 24) {
+          return section;
         }
-      },
-      {
-        rootMargin: '-22% 0px -62% 0px',
-        threshold: [0, 0.2, 0.6],
+
+        return current;
+      }, sections[0]);
+
+      setActiveHref(`#${activeSection.id}`);
+    };
+
+    const scheduleUpdate = () => {
+      if (animationFrame !== null) {
+        return;
       }
-    );
 
-    sections.forEach((section) => observer.observe(section));
+      animationFrame = window.requestAnimationFrame(updateActiveSection);
+    };
 
-    return () => observer.disconnect();
+    scheduleUpdate();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('hashchange', scheduleUpdate);
+
+    return () => {
+      if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame);
+      }
+
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', scheduleUpdate);
+      window.removeEventListener('hashchange', scheduleUpdate);
+    };
   }, []);
 
   return (
