@@ -529,3 +529,23 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：26 个测试文件，93 个测试。
+
+## 2026-05-16 更新：V2-014 全站阅读 UI 对比度升级
+
+用户反馈：
+- 全面美化 UI，杜绝白底灰字看不清的问题。
+
+本次实现：
+- `src/styles.css` 调整全局色阶：`--muted` 改为更深的青灰，页面背景和纸面色更柔和。
+- 学习页正文、列表、术语解释、侧注等阅读内容统一使用深色正文，不再用浅灰承担主要阅读任务。
+- 步骤卡、例句卡、常见坑卡、练习区增加浅绿底、左侧强调线、加深边框和轻微阴影，避免截图里那种白底细边框的弱层级。
+- 练习题卡、选项、反馈块、引用块、解析列表、弹窗说明和总结卡同步提高对比度。
+- 新增 `src/styles.readability.test.ts`，锁住深色辅助文字、学习区深色正文和强化卡片样式。
+
+验收结果：
+- TDD 红灯：`npm test -- styles.readability` 初次失败，确认旧样式没有满足新可读性要求。
+- `npm test -- styles.readability styles.responsive LessonAnalysisReadability` 通过：3 个测试文件，7 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：27 个测试文件，96 个测试。
+- 本地服务已启动：`http://127.0.0.1:5200/`，`curl -I` 返回 200。

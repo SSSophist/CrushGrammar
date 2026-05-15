@@ -1,15 +1,15 @@
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #17201b;
-  background: #eef2ed;
-  --paper: #fffffb;
-  --paper-strong: #edf4ee;
+  background: #edf3ec;
+  --paper: #fbfdf8;
+  --paper-strong: #e5f0e7;
   --ink: #17201b;
-  --muted: #65736a;
+  --muted: #34483d;
   --green: #2f6b4f;
   --green-dark: #214d3b;
   --amber: #c27a1a;
-  --line: #cbd8ce;
+  --line: #b7c9bd;
   --danger: #b4453d;
   --info: #315a74;
   font-synthesis: none;
@@ -26,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  background: #eef2ed;
+  background: #edf3ec;
   overflow-x: hidden;
 }
 
@@ -400,7 +400,7 @@ button:disabled {
   overflow: auto;
   padding: 24px;
   border: 1px solid rgba(47, 107, 79, 0.42);
-  background: var(--paper);
+  background: #fbfdf8;
   box-shadow: 0 22px 60px rgba(23, 32, 27, 0.28);
   transform-origin: center;
   animation: introModalIn 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -420,8 +420,8 @@ button:disabled {
   margin: 14px 0 20px;
   padding: 14px 16px;
   border-left: 4px solid var(--info);
-  background: #eef3f3;
-  color: var(--muted);
+  background: #e3eef0;
+  color: var(--ink);
   font-size: 1.04rem;
   line-height: 1.8;
 }
@@ -579,8 +579,9 @@ button:disabled {
 .lesson-section,
 .last-review,
 .term-sidebar {
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 251, 0.97);
+  border: 1px solid #adc3b6;
+  background: #fbfdf8;
+  box-shadow: 0 10px 28px rgba(33, 77, 59, 0.06);
 }
 
 .lesson-section,
@@ -599,8 +600,8 @@ button:disabled {
 .last-review li,
 .term-card dd,
 .side-note {
-  color: var(--muted);
-  line-height: 1.72;
+  color: var(--ink);
+  line-height: 1.82;
 }
 
 .step-list,
@@ -615,8 +616,10 @@ button:disabled {
 .trap-card,
 .practice-shell {
   padding: 18px;
-  border: 1px solid var(--line);
-  background: #f8faf6;
+  border: 1px solid #b8ccbf;
+  border-left: 5px solid var(--green);
+  background: #f1f7f2;
+  box-shadow: 0 8px 18px rgba(33, 77, 59, 0.05);
 }
 
 .example-card,
@@ -629,6 +632,7 @@ button:disabled {
 .example-card h3,
 .trap-card h3 {
   color: var(--ink);
+  line-height: 1.35;
 }
 
 .example-options {
@@ -636,8 +640,8 @@ button:disabled {
   gap: 8px;
   margin: 12px 0 14px;
   padding: 12px;
-  border: 1px solid var(--line);
-  background: #f8fbf8;
+  border: 1px solid #b8ccbf;
+  background: #eaf3ec;
 }
 
 .example-options p {
@@ -659,8 +663,8 @@ button:disabled {
   justify-content: space-between;
   gap: 8px;
   padding: 9px 10px;
-  border: 1px solid var(--line);
-  background: #fffffb;
+  border: 1px solid #b8ccbf;
+  background: #fbfdf8;
   color: var(--ink);
   font-weight: 800;
   overflow-wrap: anywhere;
@@ -683,8 +687,8 @@ blockquote {
   margin: 0 0 14px;
   padding: 13px 16px;
   border-left: 5px solid var(--info);
-  background: #e8f1f2;
-  color: #172730;
+  background: #e2eef0;
+  color: #10251f;
   line-height: 1.75;
   overflow-wrap: anywhere;
   box-shadow: inset 0 0 0 1px rgba(49, 90, 116, 0.08);
@@ -695,7 +699,7 @@ blockquote {
 .trap-card > p {
   color: var(--ink);
   font-size: 1rem;
-  line-height: 1.85;
+  line-height: 1.95;
 }
 
 .analysis-copy strong,
@@ -719,14 +723,14 @@ blockquote {
   gap: 8px;
   margin: 12px 0 16px;
   padding: 12px 12px 12px 28px;
-  border: 1px solid rgba(49, 90, 116, 0.16);
-  background: #f1f7f4;
+  border: 1px solid rgba(47, 107, 79, 0.2);
+  background: #e8f2eb;
 }
 
 .analysis-list li,
 .example-card > ul li,
 .trap-card > ul li {
-  color: #243029;
+  color: var(--ink);
   line-height: 1.8;
 }
 
@@ -843,8 +847,8 @@ blockquote {
 
 .term-card {
   padding: 14px;
-  border: 1px solid var(--line);
-  background: #f8faf6;
+  border: 1px solid #b8ccbf;
+  background: #f1f7f2;
 }
 
 .term-card h3 {
@@ -884,7 +888,7 @@ blockquote {
   width: fit-content;
   padding: 7px 12px;
   color: var(--green-dark);
-  background: #e2eddf;
+  background: #dcebe0;
   font-weight: 900;
 }
 
@@ -903,8 +907,8 @@ blockquote {
   gap: 8px 12px;
   min-height: 42px;
   padding: 10px 12px;
-  border: 1px solid rgba(47, 107, 79, 0.18);
-  background: #edf6ed;
+  border: 1px solid rgba(47, 107, 79, 0.26);
+  background: #e4f1e7;
   color: var(--green-dark);
   font-weight: 900;
 }
@@ -926,7 +930,7 @@ blockquote {
   height: 8px;
   overflow: hidden;
   border: 1px solid rgba(47, 107, 79, 0.18);
-  background: rgba(255, 255, 251, 0.82);
+  background: #f7fbf5;
 }
 
 .practice-progressbar span {
@@ -944,8 +948,8 @@ blockquote {
   display: grid;
   gap: 12px;
   padding: 16px;
-  border: 1px solid var(--line);
-  background: var(--paper);
+  border: 1px solid #adc3b6;
+  background: #fbfdf8;
 }
 
 .practice-question.is-correct {
@@ -1023,10 +1027,10 @@ blockquote {
   width: 100%;
   min-width: 0;
   padding: 12px;
-  border: 1px solid var(--line);
+  border: 1px solid #b8ccbf;
   color: var(--ink);
   text-align: left;
-  background: #f8faf6;
+  background: #f4f9f2;
   overflow-wrap: anywhere;
 }
 
@@ -1085,7 +1089,7 @@ blockquote {
 .level-complete {
   padding: 14px;
   border-left: 4px solid var(--info);
-  background: #e8f1f2;
+  background: #e3eef0;
   color: var(--ink);
 }
 
@@ -1115,7 +1119,7 @@ blockquote {
 .colored-sentence-line,
 .explanation-line {
   color: var(--ink);
-  line-height: 1.95;
+  line-height: 2;
 }
 
 .sentence-highlight {
@@ -1152,7 +1156,7 @@ blockquote {
   gap: 4px 12px;
   align-items: start;
   padding: 10px 12px;
-  border: 1px solid rgba(49, 90, 116, 0.18);
+  border: 1px solid rgba(49, 90, 116, 0.24);
   border-left: 4px solid var(--part-accent);
   background: var(--part-bg);
 }
@@ -1170,7 +1174,7 @@ blockquote {
 
 .part-note {
   grid-column: 2;
-  color: #425149;
+  color: var(--muted);
   font-size: 0.88rem;
 }
 
@@ -1255,8 +1259,8 @@ blockquote {
   display: grid;
   gap: 8px;
   padding: 14px;
-  border: 1px solid var(--line);
-  background: #fffffb;
+  border: 1px solid #b8ccbf;
+  background: #f1f7f2;
 }
 
 .summary-item div {

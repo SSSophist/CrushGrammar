@@ -399,3 +399,22 @@
   - `npm run build` 通过。
   - `npm test` 通过：26 个测试文件，93 个测试。
   - 本记录完成后单独 commit。
+
+### 2026-05-16：完成 V2-014 全站阅读 UI 对比度升级
+
+- 状态：已完成
+- 来源：FB-011
+- 内容：
+  - 将全局辅助文字 `--muted` 从浅灰调整为更深的青灰，避免低对比灰字。
+  - 学习页正文、列表、术语解释等主要阅读内容统一使用 `var(--ink)`，提高正文可读性。
+  - 步骤卡、例句卡、常见坑卡、练习区从白底细边框升级为浅绿阅读底、左侧强调线和更明确边框。
+  - 强化例句引用块、解析列表、反馈块、练习选项、弹窗说明和总结卡的底色与文字对比。
+  - 新增 `styles.readability.test.ts`，防止学习区重新退回浅灰正文和弱卡片层级。
+- 验收：
+  - TDD 红灯：`npm test -- styles.readability` 初次失败，确认旧样式存在浅灰正文和弱卡片问题。
+  - `npm test -- styles.readability styles.responsive LessonAnalysisReadability` 通过：3 个测试文件，7 个测试。
+  - `npm run typecheck` 通过。
+  - `npm run build` 通过。
+  - `npm test` 通过：27 个测试文件，96 个测试。
+  - 本地服务：`http://127.0.0.1:5200/` 返回 200。
+  - 本记录完成后单独 commit。
