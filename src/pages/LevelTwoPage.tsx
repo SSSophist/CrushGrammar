@@ -174,12 +174,14 @@ export default function LevelTwoPage({ onBack, onLevelComplete, onNextLevel }: L
                 errorInfo={level2ErrorInfo}
                 onAnswered={handleAnswered}
                 vocabEntries={level2Vocab}
+                levelId="level-2"
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
                   records={answers}
                   errorInfo={level2ErrorInfo}
                   completedTags={completedRemediations}
+                  levelId="level-2"
                   onRemediate={setActiveRemediationTag}
                   clearBody="你可以直接通关。三步筛词法这一步已经很稳。"
                 />
@@ -190,6 +192,7 @@ export default function LevelTwoPage({ onBack, onLevelComplete, onNextLevel }: L
                   errorInfo={level2ErrorInfo}
                   onComplete={handleRemediationComplete}
                   vocabEntries={level2Vocab}
+                  levelId="level-2"
                 />
               ) : null}
               {levelComplete ? (

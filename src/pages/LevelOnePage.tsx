@@ -208,12 +208,14 @@ export default function LevelOnePage({ onBack, onLevelComplete, onNextLevel }: L
                 errorInfo={errorTagInfo}
                 onAnswered={handleAnswered}
                 vocabEntries={level1Vocab}
+                levelId="level-1"
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
                   records={answers}
                   errorInfo={errorTagInfo}
                   completedTags={completedRemediations}
+                  levelId="level-1"
                   onRemediate={setActiveRemediationTag}
                 />
               ) : null}
@@ -223,6 +225,7 @@ export default function LevelOnePage({ onBack, onLevelComplete, onNextLevel }: L
                   errorInfo={errorTagInfo}
                   onComplete={handleRemediationComplete}
                   vocabEntries={level1Vocab}
+                  levelId="level-1"
                 />
               ) : null}
               {levelComplete ? (

@@ -1,3 +1,4 @@
+import { trackEvent } from '../lib/analytics';
 import { getErrorSummary } from '../lib/practice';
 import type { AnswerRecord, ErrorTag, ErrorTagInfo } from '../types';
 
@@ -7,6 +8,7 @@ interface ErrorSummaryProps {
   completedTags: ErrorTag[];
   onRemediate: (tag: ErrorTag) => void;
   clearBody?: string;
+  levelId?: string;
 }
 
 export default function ErrorSummary({
@@ -14,6 +16,7 @@ export default function ErrorSummary({
   errorInfo,
   completedTags,
   onRemediate,
+  levelId,
   clearBody = '你可以直接通关。先抓骨架这一步已经很稳。'
 }: ErrorSummaryProps) {
   const summary = getErrorSummary(records);
@@ -47,7 +50,19 @@ export default function ErrorSummary({
                 <span>{item.count} 题</span>
               </div>
               <p>{info.plain}</p>
-              <button type="button" className="level-action" disabled={done} onClick={() => onRemediate(item.tag)}>
+              <button
+                type="button"
+                className="level-action"
+                disabled={done}
+                onClick={() => {
+                  trackEvent('remediation_started', {
+                    error_tag: item.tag,
+                    level_id: levelId,
+                    wrong_count: item.count
+                  });
+                  onRemediate(item.tag);
+                }}
+              >
                 {done ? `已补救：${info.title}` : `补救：${info.title}`}
               </button>
             </article>

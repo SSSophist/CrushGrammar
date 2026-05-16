@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { trackEvent } from '../lib/analytics';
 
 const links = [
   { href: '#position', label: '本关定位' },
@@ -80,7 +81,13 @@ export default function LevelNav({ ariaLabel = '本关学习路线' }: LevelNavP
           aria-current={activeHref === link.href ? 'location' : undefined}
           key={link.href}
           href={link.href}
-          onClick={() => setActiveHref(link.href)}
+          onClick={() => {
+            setActiveHref(link.href);
+            trackEvent('section_nav_clicked', {
+              section_id: link.href.slice(1),
+              section_label: link.label
+            });
+          }}
         >
           {link.label}
         </a>

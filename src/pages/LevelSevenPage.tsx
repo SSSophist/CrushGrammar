@@ -169,6 +169,7 @@ export default function LevelSevenPage({ onBack, onLevelComplete, onNextLevel }:
                 已完成 {answers.length} / {level7PracticeQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-7"
                 questions={level7PracticeQuestions}
                 errorInfo={level7ErrorInfo}
                 onAnswered={handleAnswered}
@@ -177,6 +178,7 @@ export default function LevelSevenPage({ onBack, onLevelComplete, onNextLevel }:
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-7"
                   records={answers}
                   errorInfo={level7ErrorInfo}
                   completedTags={completedRemediations}
@@ -186,6 +188,7 @@ export default function LevelSevenPage({ onBack, onLevelComplete, onNextLevel }:
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-7"
                   remediation={activeRemediation}
                   errorInfo={level7ErrorInfo}
                   onComplete={handleRemediationComplete}

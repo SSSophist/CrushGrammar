@@ -169,6 +169,7 @@ export default function LevelFourPage({ onBack, onLevelComplete, onNextLevel }: 
                 已完成 {answers.length} / {level4PracticeQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-4"
                 questions={level4PracticeQuestions}
                 errorInfo={level4ErrorInfo}
                 onAnswered={handleAnswered}
@@ -177,6 +178,7 @@ export default function LevelFourPage({ onBack, onLevelComplete, onNextLevel }: 
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-4"
                   records={answers}
                   errorInfo={level4ErrorInfo}
                   completedTags={completedRemediations}
@@ -186,6 +188,7 @@ export default function LevelFourPage({ onBack, onLevelComplete, onNextLevel }: 
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-4"
                   remediation={activeRemediation}
                   errorInfo={level4ErrorInfo}
                   onComplete={handleRemediationComplete}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import PracticeQuestion from './PracticeQuestion';
+import { trackEvent } from '../lib/analytics';
 import type { AnswerRecord, ErrorTag, ErrorTagInfo, RemediationItem, VocabEntry } from '../types';
 
 interface RemediationPanelProps {
@@ -7,9 +8,10 @@ interface RemediationPanelProps {
   errorInfo: Partial<Record<ErrorTag, ErrorTagInfo>>;
   onComplete: (tag: ErrorTag) => void;
   vocabEntries?: VocabEntry[];
+  levelId?: string;
 }
 
-export default function RemediationPanel({ remediation, errorInfo, onComplete, vocabEntries = [] }: RemediationPanelProps) {
+export default function RemediationPanel({ remediation, errorInfo, onComplete, vocabEntries = [], levelId }: RemediationPanelProps) {
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [attempt, setAttempt] = useState(1);
   const panelRef = useRef<HTMLElement>(null);
@@ -34,6 +36,11 @@ export default function RemediationPanel({ remediation, errorInfo, onComplete, v
 
       const next = [...current, record];
       if (next.length === remediation.questions.length && next.every((answer) => answer.correct)) {
+        trackEvent('remediation_completed', {
+          error_tag: remediation.tag,
+          level_id: levelId,
+          question_count: remediation.questions.length
+        });
         onComplete(remediation.tag);
       }
 

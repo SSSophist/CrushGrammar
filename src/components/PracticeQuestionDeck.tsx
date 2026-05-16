@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { AnswerRecord, ErrorTag, ErrorTagInfo, PracticeQuestion as PracticeQuestionType, VocabEntry } from '../types';
+import { trackEvent } from '../lib/analytics';
 import PracticeQuestion from './PracticeQuestion';
 
 interface PracticeQuestionDeckProps {
@@ -7,6 +8,7 @@ interface PracticeQuestionDeckProps {
   errorInfo: Partial<Record<ErrorTag, ErrorTagInfo>>;
   onAnswered: (record: AnswerRecord) => void;
   vocabEntries?: VocabEntry[];
+  levelId?: string;
   getQuestionTitle?: (question: PracticeQuestionType, index: number) => string;
   autoAdvanceDelayMs?: number;
   successBannerMs?: number;
@@ -27,6 +29,7 @@ export default function PracticeQuestionDeck({
   errorInfo,
   onAnswered,
   vocabEntries = [],
+  levelId,
   getQuestionTitle,
   autoAdvanceDelayMs,
   successBannerMs = 2600
@@ -35,10 +38,25 @@ export default function PracticeQuestionDeck({
   const [currentRecord, setCurrentRecord] = useState<AnswerRecord | null>(null);
   const [banner, setBanner] = useState<string | null>(null);
   const [correctStreak, setCorrectStreak] = useState(0);
+  const answeredRecordsRef = useRef<AnswerRecord[]>([]);
+  const startedRef = useRef(false);
+  const completedRef = useRef(false);
   const currentQuestion = questions[currentIndex];
   const hasNextQuestion = currentIndex < questions.length - 1;
   const isTestRuntime = typeof navigator !== 'undefined' && navigator.userAgent.includes('jsdom');
   const resolvedAutoAdvanceDelayMs = autoAdvanceDelayMs ?? (isTestRuntime ? 80 : 1200);
+
+  useEffect(() => {
+    if (startedRef.current || questions.length === 0) {
+      return;
+    }
+
+    startedRef.current = true;
+    trackEvent('practice_started', {
+      level_id: levelId,
+      question_count: questions.length
+    });
+  }, [levelId, questions.length]);
 
   useEffect(() => {
     if (!currentRecord?.correct) {
@@ -75,6 +93,28 @@ export default function PracticeQuestionDeck({
   const handleAnswered = (record: AnswerRecord) => {
     setCurrentRecord(record);
     onAnswered(record);
+
+    if (!answeredRecordsRef.current.some((answer) => answer.questionId === record.questionId)) {
+      answeredRecordsRef.current = [...answeredRecordsRef.current, record];
+    }
+
+    trackEvent('question_answered', {
+      correct: record.correct,
+      error_tags: record.errorTags,
+      level_id: levelId,
+      question_id: record.questionId,
+      question_index: currentIndex + 1,
+      selected_option_id: record.selectedOptionId
+    });
+
+    if (answeredRecordsRef.current.length === questions.length && !completedRef.current) {
+      completedRef.current = true;
+      trackEvent('practice_completed', {
+        correct_count: answeredRecordsRef.current.filter((answer) => answer.correct).length,
+        level_id: levelId,
+        question_count: questions.length
+      });
+    }
 
     if (record.correct) {
       setCorrectStreak((streak) => {

@@ -3,6 +3,7 @@ import LevelMap from '../components/LevelMap';
 import type { MapLevelItem } from '../components/LevelMap';
 import RouteSelector from '../components/RouteSelector';
 import { levels } from '../data/levels';
+import { trackEvent } from '../lib/analytics';
 import type { RouteMode } from '../types';
 
 interface HomePageProps {
@@ -166,6 +167,14 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
     }
   }, [clicks]);
 
+  useEffect(() => {
+    if (showDiagnosticPrompt && !diagnosticStarted && !diagnosticResult) {
+      trackEvent('diagnostic_modal_shown', {
+        unlocked_level_count: unlockedLevels.length
+      });
+    }
+  }, [diagnosticResult, diagnosticStarted, showDiagnosticPrompt, unlockedLevels.length]);
+
   const rememberDiagnosticPromptSeen = () => {
     try {
       localStorage.setItem(DIAGNOSTIC_PROMPT_KEY, 'true');
@@ -176,6 +185,9 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
 
   const startDiagnostic = () => {
     rememberDiagnosticPromptSeen();
+    trackEvent('diagnostic_started', {
+      question_count: diagnosticQuestions.length
+    });
     setShowDiagnosticPrompt(true);
     setDiagnosticStarted(true);
     setDiagnosticAnswers([]);
@@ -185,6 +197,9 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
 
   const handleBeginnerStart = () => {
     rememberDiagnosticPromptSeen();
+    trackEvent('beginner_path_selected', {
+      start_level_id: 'level-1'
+    });
     setShowDiagnosticPrompt(false);
     setBeginnerMode(true);
     setDiagnosticStarted(false);
@@ -194,11 +209,27 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
 
   const handleDiagnosticAnswer = (option: DiagnosticOption) => {
     const nextAnswers = [...diagnosticAnswers, option];
+    const question = diagnosticQuestions[diagnosticAnswers.length];
+
+    trackEvent('diagnostic_answered', {
+      correct: option.correct,
+      question_id: question.id,
+      question_index: diagnosticAnswers.length + 1,
+      target_level_id: question.levelId
+    });
 
     setDiagnosticAnswers(nextAnswers);
 
     if (nextAnswers.length === diagnosticQuestions.length) {
       const result = getDiagnosticResult(nextAnswers);
+      const correctCount = nextAnswers.filter((answer) => answer.correct).length;
+
+      trackEvent('diagnostic_completed', {
+        correct_count: correctCount,
+        question_count: diagnosticQuestions.length,
+        recommended_level_id: result.recommendedLevelId,
+        recommended_level_ids: result.recommendedLevelIds
+      });
       setDiagnosticResult(result);
       setDiagnosticStarted(false);
       setBeginnerMode(false);
@@ -329,7 +360,15 @@ export default function HomePage({ unlockedLevels, onUnlockAll, onUnlockThrough,
           <p className="home-lede">不研究语法规则，只训练读懂句子、写对句子、翻译顺句子。</p>
         </div>
         <div className="intro-actions">
-          <RouteSelector value={routeMode} onChange={setRouteMode} />
+          <RouteSelector
+            value={routeMode}
+            onChange={(nextMode) => {
+              setRouteMode(nextMode);
+              trackEvent('route_mode_selected', {
+                route_mode: nextMode
+              });
+            }}
+          />
           <button type="button" className="primary-action" onClick={() => onOpenLevel(primaryLevel.id)}>
             {primaryActionLabel}
           </button>

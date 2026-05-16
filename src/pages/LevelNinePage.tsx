@@ -170,6 +170,7 @@ export default function LevelNinePage({ onBack, onLevelComplete, onNextLevel }: 
                 已完成 {answers.length} / {level9PracticeQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-9"
                 questions={level9PracticeQuestions}
                 errorInfo={level9ErrorInfo}
                 onAnswered={handleAnswered}
@@ -178,6 +179,7 @@ export default function LevelNinePage({ onBack, onLevelComplete, onNextLevel }: 
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-9"
                   records={answers}
                   errorInfo={level9ErrorInfo}
                   completedTags={completedRemediations}
@@ -187,6 +189,7 @@ export default function LevelNinePage({ onBack, onLevelComplete, onNextLevel }: 
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-9"
                   remediation={activeRemediation}
                   errorInfo={level9ErrorInfo}
                   onComplete={handleRemediationComplete}

@@ -169,6 +169,7 @@ export default function LevelFivePage({ onBack, onLevelComplete, onNextLevel }: 
                 已完成 {answers.length} / {level5PracticeQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-5"
                 questions={level5PracticeQuestions}
                 errorInfo={level5ErrorInfo}
                 onAnswered={handleAnswered}
@@ -177,6 +178,7 @@ export default function LevelFivePage({ onBack, onLevelComplete, onNextLevel }: 
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-5"
                   records={answers}
                   errorInfo={level5ErrorInfo}
                   completedTags={completedRemediations}
@@ -186,6 +188,7 @@ export default function LevelFivePage({ onBack, onLevelComplete, onNextLevel }: 
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-5"
                   remediation={activeRemediation}
                   errorInfo={level5ErrorInfo}
                   onComplete={handleRemediationComplete}

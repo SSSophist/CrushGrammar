@@ -12,6 +12,7 @@ import LevelSixPage from './pages/LevelSixPage';
 import LevelThreePage from './pages/LevelThreePage';
 import LevelTwoPage from './pages/LevelTwoPage';
 import LevelTenPage from './pages/LevelTenPage';
+import { trackEvent } from './lib/analytics';
 import { useProgress } from './lib/useProgress';
 
 type Screen =
@@ -62,10 +63,14 @@ export default function App() {
   const showIntro = Boolean(activeIntro && dismissedIntroFor !== screen);
   const openLevel = (levelId: string) => {
     if (isLevelScreen(levelId)) {
+      trackEvent('level_opened', { level_id: levelId });
       setScreen(levelId);
     }
   };
-  const backHome = () => setScreen('home');
+  const backHome = () => {
+    trackEvent('return_home_clicked', { from_screen: screen });
+    setScreen('home');
+  };
 
   const renderWithIntro = (page: JSX.Element) => (
     <>

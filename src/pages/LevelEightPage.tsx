@@ -170,6 +170,7 @@ export default function LevelEightPage({ onBack, onLevelComplete, onNextLevel }:
                 已完成 {answers.length} / {level8PracticeQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-8"
                 questions={level8PracticeQuestions}
                 errorInfo={level8ErrorInfo}
                 onAnswered={handleAnswered}
@@ -178,6 +179,7 @@ export default function LevelEightPage({ onBack, onLevelComplete, onNextLevel }:
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-8"
                   records={answers}
                   errorInfo={level8ErrorInfo}
                   completedTags={completedRemediations}
@@ -187,6 +189,7 @@ export default function LevelEightPage({ onBack, onLevelComplete, onNextLevel }:
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-8"
                   remediation={activeRemediation}
                   errorInfo={level8ErrorInfo}
                   onComplete={handleRemediationComplete}

@@ -169,6 +169,7 @@ export default function LevelThreePage({ onBack, onLevelComplete, onNextLevel }:
                 已完成 {answers.length} / {level3PracticeQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-3"
                 questions={level3PracticeQuestions}
                 errorInfo={level3ErrorInfo}
                 onAnswered={handleAnswered}
@@ -177,6 +178,7 @@ export default function LevelThreePage({ onBack, onLevelComplete, onNextLevel }:
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-3"
                   records={answers}
                   errorInfo={level3ErrorInfo}
                   completedTags={completedRemediations}
@@ -186,6 +188,7 @@ export default function LevelThreePage({ onBack, onLevelComplete, onNextLevel }:
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-3"
                   remediation={activeRemediation}
                   errorInfo={level3ErrorInfo}
                   onComplete={handleRemediationComplete}

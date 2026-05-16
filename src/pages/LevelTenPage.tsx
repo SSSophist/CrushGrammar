@@ -193,6 +193,7 @@ export default function LevelTenPage({ onBack, onLevelComplete }: LevelTenPagePr
                 已完成 {answers.length} / {practiceQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-10"
                 questions={practiceQuestions}
                 errorInfo={errorTagInfo}
                 onAnswered={handleAnswered}
@@ -200,6 +201,7 @@ export default function LevelTenPage({ onBack, onLevelComplete }: LevelTenPagePr
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-10"
                   records={answers}
                   errorInfo={errorTagInfo}
                   completedTags={completedRemediations}
@@ -208,6 +210,7 @@ export default function LevelTenPage({ onBack, onLevelComplete }: LevelTenPagePr
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-10"
                   remediation={activeRemediation}
                   errorInfo={errorTagInfo}
                   onComplete={handleRemediationComplete}

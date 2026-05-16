@@ -169,6 +169,7 @@ export default function LevelSixPage({ onBack, onLevelComplete, onNextLevel }: L
                 已完成 {answers.length} / {level6PracticeQuestions.length}
               </div>
               <PracticeQuestionDeck
+                levelId="level-6"
                 questions={level6PracticeQuestions}
                 errorInfo={level6ErrorInfo}
                 onAnswered={handleAnswered}
@@ -177,6 +178,7 @@ export default function LevelSixPage({ onBack, onLevelComplete, onNextLevel }: L
               />
               {allPracticeAnswered ? (
                 <ErrorSummary
+                  levelId="level-6"
                   records={answers}
                   errorInfo={level6ErrorInfo}
                   completedTags={completedRemediations}
@@ -186,6 +188,7 @@ export default function LevelSixPage({ onBack, onLevelComplete, onNextLevel }: L
               ) : null}
               {activeRemediation ? (
                 <RemediationPanel
+                  levelId="level-6"
                   remediation={activeRemediation}
                   errorInfo={level6ErrorInfo}
                   onComplete={handleRemediationComplete}
