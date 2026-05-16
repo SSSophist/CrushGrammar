@@ -216,7 +216,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q1',
     title: '题 1：using 先别抢主线',
-    sentence: 'Students using study groups solve difficult problems quickly.',
+    sentence: 'Students using study groups after class solve difficult problems more quickly than those working alone.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'Study groups solve problems.' },
@@ -242,7 +242,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q2',
     title: '题 2：done 是修饰报告',
-    sentence: 'The report published yesterday attracted wide attention.',
+    sentence: 'The report published yesterday by the university research center attracted wide public attention.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'The report attracted attention.' },
@@ -268,7 +268,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q3',
     title: '题 3：to do 开头先当目的',
-    sentence: 'To reduce stress, many students exercise after class.',
+    sentence: 'To reduce stress before important exams, many students exercise after class.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'Stress reduces students.' },
@@ -294,7 +294,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q4',
     title: '题 4：studying 是谁的标签',
-    sentence: 'Researchers studying sleep patterns found a surprising result.',
+    sentence: 'Researchers studying sleep patterns among college students found a surprising result.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'Researchers found a result.' },
@@ -320,7 +320,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q5',
     title: '题 5：learned 不是主发动机',
-    sentence: 'The skills learned in class become useful in real situations.',
+    sentence: 'The skills learned in class become useful in real communication situations.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'The skills become useful.' },
@@ -346,7 +346,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q6',
     title: '题 6：who 里面的动词先降级',
-    sentence: 'People who read widely develop better judgment.',
+    sentence: 'People who read widely across different topics develop better judgment over time.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'People read widely.' },
@@ -372,7 +372,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q7',
     title: '题 7：when 前半句是时间背景',
-    sentence: 'When the lecture ended, students discussed the key ideas.',
+    sentence: 'When the lecture ended, students discussed the key ideas in small groups.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'The lecture ended.' },
@@ -424,7 +424,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q9',
     title: '题 9：The number 才是主语核心',
-    sentence: 'The number of students choosing online courses has increased quickly.',
+    sentence: 'The number of students choosing online courses has increased quickly in recent years.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'Students choose courses.' },
@@ -476,7 +476,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q11',
     title: '题 11：collected 不是主线',
-    sentence: 'Information collected from several surveys shows a clear trend.',
+    sentence: 'Information collected from several surveys of college students shows a clear trend.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'Information shows a trend.' },
@@ -554,7 +554,7 @@ export const level3PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l3-q14',
     title: '题 14：ability 后面一串先压缩',
-    sentence: 'The ability to judge sources helps readers avoid misleading information.',
+    sentence: 'The ability to judge sources carefully helps readers avoid misleading information online.',
     prompt: '哪一个是这句话的主线？',
     options: [
       { id: 'a', text: 'The ability helps readers.' },

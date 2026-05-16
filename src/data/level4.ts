@@ -213,7 +213,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q1',
     title: 'That 整坨当主语',
-    sentence: 'That the new policy saved time pleased many workers.',
+    sentence: 'That the new policy saved time during the busy season pleased many workers.',
     prompt: 'That the new policy saved time 在句子里干嘛？',
     options: [
       { id: 'a', text: '当一个东西：整坨当主语' },
@@ -238,7 +238,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q2',
     title: 'that 内容当宾语',
-    sentence: 'Teachers believe that practice builds confidence.',
+    sentence: 'Teachers believe that regular practice before major exams gradually builds confidence.',
     prompt: 'that practice builds confidence 在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰 Teachers' },
@@ -263,7 +263,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q3',
     title: 'who 修饰人',
-    sentence: 'Students who review notes regularly remember more details.',
+    sentence: 'Students who review notes regularly after class remember more important details.',
     prompt: 'who review notes regularly 在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰一个东西：说明 Students' },
@@ -289,7 +289,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q4',
     title: 'that 修饰物',
-    sentence: 'The book that I borrowed yesterday explains the topic clearly.',
+    sentence: 'The book that I borrowed yesterday from the school library explains the topic clearly.',
     prompt: 'that I borrowed yesterday 在句子里干嘛？',
     options: [
       { id: 'a', text: '当 explains 的宾语' },
@@ -315,7 +315,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q5',
     title: 'when 时间背景',
-    sentence: 'When the exam ended, many students felt relieved.',
+    sentence: 'When the difficult exam ended, many students felt relieved and more confident.',
     prompt: 'When the exam ended 在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰 students' },
@@ -341,7 +341,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q6',
     title: 'if 条件背景',
-    sentence: 'If the instructions are unclear, students may waste time.',
+    sentence: 'If the instructions are unclear during an exam, students may waste valuable time.',
     prompt: 'If the instructions are unclear 在句子里干嘛？',
     options: [
       { id: 'a', text: '交代背景逻辑：条件' },
@@ -367,7 +367,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q7',
     title: 'because 原因背景',
-    sentence: 'Many students lose marks because they ignore the question requirements.',
+    sentence: 'Many students lose marks because they ignore the detailed question requirements.',
     prompt: 'because they ignore the question requirements 在句子里干嘛？',
     options: [
       { id: 'a', text: '当 Many students 的修饰语' },
@@ -393,7 +393,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q8',
     title: 'why 解释 reason',
-    sentence: 'The reason why the plan failed was simple.',
+    sentence: 'The reason why the original study plan failed before the exam was simple.',
     prompt: 'why the plan failed 在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰一个东西：解释 The reason' },
@@ -419,7 +419,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q9',
     title: 'what 整坨当主语',
-    sentence: 'What the speaker said changed my opinion.',
+    sentence: 'What the speaker said in the final paragraph of the lecture changed my opinion.',
     prompt: 'What the speaker said 在句子里干嘛？',
     options: [
       { id: 'a', text: '交代时间背景' },
@@ -444,7 +444,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q10',
     title: 'whether 内容当宾语',
-    sentence: 'I do not know whether the answer is correct.',
+    sentence: 'I do not know whether the answer is correct without checking the context.',
     prompt: 'whether the answer is correct 在句子里干嘛？',
     options: [
       { id: 'a', text: '当一个东西：know 的内容' },
@@ -469,7 +469,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q11',
     title: 'who 修饰 People',
-    sentence: 'People who can manage time well usually feel less stressed.',
+    sentence: 'People who can manage time well before deadlines usually feel less stressed.',
     prompt: 'who can manage time well 在句子里干嘛？',
     options: [
       { id: 'a', text: '当 feel 的宾语' },
@@ -495,7 +495,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q12',
     title: 'although 让步背景',
-    sentence: 'Although the passage looks difficult, the main idea is clear.',
+    sentence: 'Although the passage looks difficult at first, the main idea is clear.',
     prompt: 'Although the passage looks difficult 在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰 the main idea' },
@@ -521,7 +521,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q13',
     title: 'that 解释 suggestion',
-    sentence: 'The suggestion that students should read daily is useful.',
+    sentence: 'The suggestion that students should read daily after class is useful.',
     prompt: 'that students should read daily 在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰一个东西：说明 suggestion 的内容' },
@@ -547,7 +547,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q14',
     title: 'because 句首原因',
-    sentence: 'Because online information changes fast, readers need judgment.',
+    sentence: 'Because online information changes fast, readers need careful judgment when choosing sources.',
     prompt: 'Because online information changes fast 在句子里干嘛？',
     options: [
       { id: 'a', text: '当 readers 的修饰语' },
@@ -573,7 +573,7 @@ export const level4PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l4-q15',
     title: 'although 里套 what',
-    sentence: 'Although what he said sounded simple, it solved a real problem.',
+    sentence: 'Although what he said sounded simple at first, it solved a real problem in practice.',
     prompt: 'Although what he said sounded simple 在句子里干嘛？',
     options: [
       { id: 'a', text: '当 solved 的宾语' },
@@ -629,7 +629,7 @@ export const level4Remediations: RemediationItem[] = [
       remediationQuestion(
         'l4-rem-cf',
         'clause-function',
-        'I understand what the author means.',
+        'I understand what the author means in the final paragraph.',
         'what the author means 在句子里干嘛？',
         [
           { id: 'a', text: '当 understand 的内容' },
@@ -739,7 +739,7 @@ export const level4Remediations: RemediationItem[] = [
       remediationQuestion(
         'l4-rem-term',
         'term-blocked',
-        'What matters most is daily practice.',
+        'What matters most before the exam is daily practice.',
         'What matters most 在句子里干嘛？',
         [
           { id: 'a', text: '当一个东西：整坨当主语' },

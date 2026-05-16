@@ -212,7 +212,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q2',
     title: 'neutral',
-    sentence: "The new guide is as clear as the teacher's explanation.",
+    sentence: "The new guide in the review booklet is as clear as the teacher's explanation.",
     prompt: '这句话的意思最接近：',
     options: [
       { id: 'a', text: '新指南和老师解释一样清楚。' },
@@ -233,7 +233,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q3',
     title: 'neutral',
-    sentence: 'The issue is not so much money as time.',
+    sentence: 'The issue in the final project is not so much money as time management.',
     prompt: '这句话真正更强调哪一边？',
     options: [
       { id: 'a', text: 'money' },
@@ -255,7 +255,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q4',
     title: 'neutral',
-    sentence: 'It is regular practice that improves reading speed.',
+    sentence: 'It is regular practice after class that improves reading speed over time.',
     prompt: '这句话强调的信息是：',
     options: [
       { id: 'a', text: 'regular practice' },
@@ -277,7 +277,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q5',
     title: 'neutral',
-    sentence: 'It was the final paragraph that changed her opinion.',
+    sentence: 'It was the final paragraph of the report that changed her opinion.',
     prompt: '还原成普通句，主线最接近：',
     options: [
       { id: 'a', text: 'The final paragraph changed her opinion.' },
@@ -298,7 +298,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q6',
     title: 'neutral',
-    sentence: 'It is important to check the question first.',
+    sentence: 'It is important to check the question first before choosing an answer under time pressure.',
     prompt: '这句话里真正重要的事情是：',
     options: [
       { id: 'a', text: 'to check the question first' },
@@ -319,7 +319,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q7',
     title: 'neutral',
-    sentence: 'Many students find it difficult to understand long sentences.',
+    sentence: 'Many students find it difficult to understand long sentences with hidden modifiers.',
     prompt: '这句话里 difficult 真正指向的是：',
     options: [
       { id: 'a', text: 'to understand long sentences' },
@@ -383,7 +383,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q10',
     title: 'neutral',
-    sentence: 'Rarely do readers question this hidden assumption at first.',
+    sentence: 'Rarely do readers question this hidden assumption at first during timed practice.',
     prompt: '这句话最稳的理解是：',
     options: [
       { id: 'a', text: '读者一开始很少质疑这个隐藏假设。' },
@@ -405,7 +405,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q11',
     title: 'neutral',
-    sentence: 'Reading the question carefully is more useful than guessing quickly.',
+    sentence: 'Reading the question carefully under time pressure is more useful than guessing quickly.',
     prompt: '比较结果是：',
     options: [
       { id: 'a', text: '认真读题比快速猜测更有用。' },
@@ -426,7 +426,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q12',
     title: 'neutral',
-    sentence: 'The course is less difficult than many beginners expect.',
+    sentence: 'The course is less difficult than many beginners expect after the first lesson.',
     prompt: '这句话意思最接近：',
     options: [
       { id: 'a', text: '这门课没有许多初学者预想的那么难。' },
@@ -447,7 +447,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q13',
     title: 'neutral',
-    sentence: 'It is the context that decides the meaning of the word.',
+    sentence: 'It is the context in the sentence that decides the meaning of the word.',
     prompt: '这句话强调的是：',
     options: [
       { id: 'a', text: 'the context' },
@@ -468,7 +468,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q14',
     title: 'neutral',
-    sentence: 'Teachers consider it necessary to explain examples clearly.',
+    sentence: 'Teachers consider it necessary to explain examples clearly before students practice alone.',
     prompt: 'necessary 真正指向的内容是：',
     options: [
       { id: 'a', text: 'to explain examples clearly' },
@@ -489,7 +489,7 @@ export const level9PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l9-q15',
     title: 'neutral',
-    sentence: 'Only by comparing examples can students find the common pattern.',
+    sentence: 'Only by comparing examples from different passages can students find the common pattern.',
     prompt: '还原成人话，意思最接近：',
     options: [
       { id: 'a', text: '学生只有通过比较例子，才能找到共同规律。' },

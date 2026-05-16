@@ -188,7 +188,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q1',
     title: '主动修饰',
-    sentence: 'Students using online dictionaries can understand new words faster.',
+    sentence: 'Students using online dictionaries during reading practice can understand new words faster.',
     prompt: 'using online dictionaries 在句子里干嘛？',
     options: [
       { id: 'a', text: '主动修饰：说明 Students' },
@@ -210,7 +210,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q2',
     title: '被动修饰',
-    sentence: 'The method designed for beginners works well.',
+    sentence: 'The method designed for beginners who fear long sentences works well.',
     prompt: 'designed for beginners 在句子里干嘛？',
     options: [
       { id: 'a', text: '目的背景' },
@@ -232,7 +232,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q3',
     title: '目的背景',
-    sentence: 'To save commuting time, many workers choose online meetings.',
+    sentence: 'To save commuting time during busy weeks, many workers choose online meetings.',
     prompt: 'To save commuting time 在句子里干嘛？',
     options: [
       { id: 'a', text: '主动修饰 workers' },
@@ -254,7 +254,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q4',
     title: '名词后长尾',
-    sentence: 'The ability to judge sources helps readers avoid false information.',
+    sentence: 'The ability to judge sources before sharing articles helps readers avoid false information.',
     prompt: 'to judge sources 在句子里干嘛？',
     options: [
       { id: 'a', text: '说明 ability 的内容' },
@@ -276,7 +276,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q5',
     title: '主动方式',
-    sentence: 'By comparing several examples, students can find the common pattern.',
+    sentence: 'By comparing several examples from real exam questions, students can find the common pattern.',
     prompt: 'comparing several examples 在句子里干嘛？',
     options: [
       { id: 'a', text: '方式背景：通过比较例子' },
@@ -298,7 +298,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q6',
     title: '被动来源',
-    sentence: 'Information collected online may not be reliable.',
+    sentence: 'Information collected online without checking its source may not be reliable.',
     prompt: 'collected online 在句子里干嘛？',
     options: [
       { id: 'a', text: '整句主发动机' },
@@ -342,7 +342,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q8',
     title: '目的长尾',
-    sentence: 'Researchers need more data to explain the result clearly.',
+    sentence: 'Researchers need more data from different schools to explain the result clearly.',
     prompt: 'to explain the result clearly 在句子里干嘛？',
     options: [
       { id: 'a', text: '目的补充：需要数据来解释结果' },
@@ -364,7 +364,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q9',
     title: '主动修饰 people',
-    sentence: 'People choosing simple methods often save more time.',
+    sentence: 'People choosing simple methods under pressure often save more time during revision.',
     prompt: 'choosing simple methods 在句子里干嘛？',
     options: [
       { id: 'a', text: '整句主发动机' },
@@ -386,7 +386,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q10',
     title: '被动修饰 skills',
-    sentence: 'Skills learned through practice become useful in real situations.',
+    sentence: 'Skills learned through repeated practice become useful in real communication situations.',
     prompt: 'learned through practice 在句子里干嘛？',
     options: [
       { id: 'a', text: '目的背景' },
@@ -408,7 +408,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q11',
     title: '两个尾巴',
-    sentence: 'The plan made to support beginners requires careful preparation.',
+    sentence: 'The plan made to support beginners during the final month requires careful preparation.',
     prompt: 'made to support beginners 整体在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰 The plan：被制作出来用于支持初学者' },
@@ -430,7 +430,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q12',
     title: '句首主动背景',
-    sentence: 'Reading the instructions carefully, students avoided common mistakes.',
+    sentence: 'Reading the instructions carefully before answering, students avoided common mistakes in grammar tasks.',
     prompt: 'Reading the instructions carefully 在句子里干嘛？',
     options: [
       { id: 'a', text: '背景/方式：读完说明后再行动' },
@@ -452,7 +452,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q13',
     title: '被动加目的',
-    sentence: 'Materials prepared to explain grammar clearly help students review faster.',
+    sentence: 'Materials prepared to explain grammar clearly before the exam help students review faster.',
     prompt: 'prepared to explain grammar clearly 在句子里干嘛？',
     options: [
       { id: 'a', text: '整句主发动机' },
@@ -474,7 +474,7 @@ export const level5PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l5-q14',
     title: '名词内容',
-    sentence: 'A decision to change the schedule surprised everyone.',
+    sentence: 'A decision to change the schedule at the last minute surprised everyone in the team.',
     prompt: 'to change the schedule 在句子里干嘛？',
     options: [
       { id: 'a', text: '说明 decision 的内容' },
@@ -594,7 +594,7 @@ export const level5Remediations: RemediationItem[] = [
       remediationQuestion(
         'l5-rem-modifier',
         'modifier-as-mainline',
-        'Mistakes marked in red need attention.',
+        'Mistakes marked in red during the first review need attention.',
         '主线是：',
         [
           { id: 'a', text: 'Mistakes need attention.' },
@@ -660,7 +660,7 @@ export const level5Remediations: RemediationItem[] = [
       remediationQuestion(
         'l5-rem-term',
         'term-blocked',
-        'A tool to record new words is useful.',
+        'A tool to record new words during daily reading is useful.',
         'to record new words 在句子里干嘛？',
         [
           { id: 'a', text: '说明 tool 的用途' },

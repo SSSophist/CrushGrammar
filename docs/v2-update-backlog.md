@@ -476,3 +476,22 @@
   - `npm run build` 通过。
   - `npm test` 通过：27 个测试文件，100 个测试。
   - 本记录完成后单独 commit。
+
+### 2026-05-16：完成 V2-018 全站练习难度与词汇标注升级
+
+- 状态：已完成
+- 来源：FB-015
+- 内容：
+  - 按首访诊断的新标准，系统性提升 Level 1-9 通关练习中的短句和低难句。
+  - 保留学习曲线：Level 1-3 主要增加背景和修饰，Level 4-9 增加从句、非谓语、逻辑、时态参照和特殊结构干扰。
+  - 同步补强 11 个过短的补救题，避免补救练习退回低幼短句。
+  - `levelVocab.ts` 新增 29 个中高难词/短语中文释义，包括 `exam preparation`、`timed practice session`、`university research center`、`hidden modifiers`、`hidden assumption` 等。
+  - `levels.test.ts` 新增 3 条内容护栏：通关题不能过短、补救题不能过短、新引入中高难词必须有词汇标注。
+  - 新增执行计划文档 `docs/superpowers/plans/2026-05-16-question-difficulty-vocab.md`，方便后续 AI 接手。
+- 验收：
+  - TDD 红灯：`npm test -- levels` 初次失败，暴露过短通关题、过短补救题、缺少词汇标注。
+  - `npm test -- levels` 通过：1 个测试文件，31 个测试。
+  - `npm run typecheck` 通过。
+  - `npm run build` 通过。
+  - `npm test` 通过：27 个测试文件，103 个测试。
+  - 本记录完成后单独 commit。

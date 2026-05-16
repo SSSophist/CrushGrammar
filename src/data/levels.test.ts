@@ -10,6 +10,17 @@ import { level8Examples, level8PracticeQuestions, level8Remediations, level8Term
 import { level8Traps } from './level8';
 import { level9Examples, level9PracticeQuestions, level9Terms, level9Traps } from './level9';
 import { level10Examples, level10Terms, level10Traps, practiceQuestions as level10PracticeQuestions } from './level10';
+import {
+  level1Vocab,
+  level2Vocab,
+  level3Vocab,
+  level4Vocab,
+  level5Vocab,
+  level6Vocab,
+  level7Vocab,
+  level8Vocab,
+  level9Vocab
+} from './levelVocab';
 import { levels } from './levels';
 
 const levelContent = [
@@ -25,6 +36,43 @@ const levelContent = [
   { level: 10, examples: level10Examples, traps: level10Traps, practice: level10PracticeQuestions }
 ];
 
+const levelRemediationContent = [
+  { level: 1, remediations: [] },
+  { level: 2, remediations: level2Remediations },
+  { level: 3, remediations: level3Remediations },
+  { level: 4, remediations: level4Remediations },
+  { level: 5, remediations: level5Remediations },
+  { level: 6, remediations: level6Remediations },
+  { level: 7, remediations: level7Remediations },
+  { level: 8, remediations: level8Remediations },
+  { level: 9, remediations: [] },
+  { level: 10, remediations: [] }
+];
+
+const levelVocabulary = [
+  { level: 1, vocab: level1Vocab },
+  { level: 2, vocab: level2Vocab },
+  { level: 3, vocab: level3Vocab },
+  { level: 4, vocab: level4Vocab },
+  { level: 5, vocab: level5Vocab },
+  { level: 6, vocab: level6Vocab },
+  { level: 7, vocab: level7Vocab },
+  { level: 8, vocab: level8Vocab },
+  { level: 9, vocab: level9Vocab }
+];
+
+const requiredVocabularyByLevel = [
+  { level: 1, terms: ['exam preparation', 'final week'] },
+  { level: 2, terms: ['online claims', 'timed practice session', 'important deadlines'] },
+  { level: 3, terms: ['study groups', 'university research center', 'working alone'] },
+  { level: 4, terms: ['busy season', 'school library', 'valuable time', 'context'] },
+  { level: 5, terms: ['commuting time', 'checking its source', 'under pressure', 'last minute'] },
+  { level: 6, terms: ['practical examples', 'first attempt', 'accuracy'] },
+  { level: 7, terms: ['digital skills', 'local government', 'social media', 'platforms'] },
+  { level: 8, terms: ['rural areas', 'hidden modifiers', 'community learners', 'local customs'] },
+  { level: 9, terms: ['hidden assumption', 'time pressure', 'different passages'] }
+];
+
 const normalizeSentence = (value: string) =>
   value
     .toLowerCase()
@@ -37,6 +85,8 @@ const sentenceTokens = (value: string) =>
   normalizeSentence(value)
     .split(' ')
     .filter((token) => token.length > 2);
+
+const hasEnglishLetters = (value: string) => /[A-Za-z]/.test(value);
 
 const sentenceSimilarity = (left: string, right: string) => {
   const leftTokens = new Set(sentenceTokens(left));
@@ -344,6 +394,56 @@ describe('levels', () => {
     );
 
     expect(duplicateOptions).toEqual([]);
+  });
+
+  it('keeps English practice sentences exam-like instead of overly short', () => {
+    const shortPracticeSentences = levelContent.flatMap(({ level, practice }) => {
+      const minTokens = level <= 3 ? 8 : 10;
+
+      return practice
+        .filter((question): question is typeof question & { sentence: string } => Boolean(question.sentence))
+        .filter((question) => hasEnglishLetters(question.sentence))
+        .filter((question) => sentenceTokens(question.sentence).length < minTokens)
+        .map(
+          (question) =>
+            `Level ${level} ${question.id} has ${sentenceTokens(question.sentence).length} tokens: "${question.sentence}"`
+        );
+    });
+
+    expect(shortPracticeSentences).toEqual([]);
+  });
+
+  it('keeps English remediation sentences substantial enough for transfer practice', () => {
+    const shortRemediationSentences = levelRemediationContent.flatMap(({ level, remediations }) =>
+      remediations.flatMap((remediation) =>
+        remediation.questions
+          .filter((question): question is typeof question & { sentence: string } => Boolean(question.sentence))
+          .filter((question) => hasEnglishLetters(question.sentence))
+          .filter((question) => sentenceTokens(question.sentence).length < 6)
+          .map(
+            (question) =>
+              `Level ${level} remediation ${remediation.id}/${question.id} has ${sentenceTokens(question.sentence).length} tokens`
+          )
+      )
+    );
+
+    expect(shortRemediationSentences).toEqual([]);
+  });
+
+  it('adds vocabulary hints for newly introduced medium-difficulty practice terms', () => {
+    const missingTerms = requiredVocabularyByLevel.flatMap(({ level, terms }) => {
+      const vocabTerms = new Set(
+        levelVocabulary
+          .find((item) => item.level === level)
+          ?.vocab.map((entry) => entry.term.toLowerCase()) ?? []
+      );
+
+      return terms
+        .filter((term) => !vocabTerms.has(term.toLowerCase()))
+        .map((term) => `Level ${level} missing vocab "${term}"`);
+    });
+
+    expect(missingTerms).toEqual([]);
   });
 
   it('keeps end-of-level term rescue concise', () => {

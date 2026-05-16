@@ -188,7 +188,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q1',
     title: '修饰从句',
-    sentence: 'Students who organize notes clearly solve grammar questions faster.',
+    sentence: 'Students who organize notes clearly after each lesson solve grammar questions faster.',
     prompt: '这句话压缩后的主干是：',
     options: [
       { id: 'a', text: 'Students solve questions.' },
@@ -210,7 +210,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q2',
     title: '介词尾巴',
-    sentence: 'The number of people with basic digital skills is growing.',
+    sentence: 'The number of people with basic digital skills is growing in many industries.',
     prompt: '主语核心是：',
     options: [
       { id: 'a', text: 'people' },
@@ -253,7 +253,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q4',
     title: '插入补充',
-    sentence: 'The policy, introduced last year, has changed daily habits.',
+    sentence: 'The policy, introduced last year by the local government, has changed daily habits.',
     prompt: 'introduced last year 在句子里干嘛？',
     options: [
       { id: 'a', text: '插入补充，说明 policy' },
@@ -275,7 +275,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q5',
     title: '双层介词',
-    sentence: 'The quality of information on social media varies greatly.',
+    sentence: 'The quality of information on social media varies greatly across different platforms.',
     prompt: '这句话压缩后的主干是：',
     options: [
       { id: 'a', text: 'Social media varies greatly.' },
@@ -297,7 +297,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q6',
     title: '非谓语修饰',
-    sentence: 'Teachers using real examples explained the rule more clearly.',
+    sentence: 'Teachers using real examples from student essays explained the rule more clearly.',
     prompt: '主干是：',
     options: [
       { id: 'a', text: 'Teachers explained the rule.' },
@@ -319,7 +319,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q7',
     title: '介词短语',
-    sentence: 'Readers with clear goals usually finish articles more efficiently.',
+    sentence: 'Readers with clear goals before starting usually finish articles more efficiently.',
     prompt: 'with clear goals 在句子里干嘛？',
     options: [
       { id: 'a', text: '修饰 Readers' },
@@ -363,7 +363,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q9',
     title: '逗号插入',
-    sentence: 'Online courses, which are popular among college students, require self-discipline.',
+    sentence: 'Online courses, which are popular among college students preparing for exams, require self-discipline.',
     prompt: '这句话主干是：',
     options: [
       { id: 'a', text: 'Online courses require self-discipline.' },
@@ -385,7 +385,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q10',
     title: '句首方式',
-    sentence: 'By focusing on key words, readers can understand the passage faster.',
+    sentence: 'By focusing on key words before reading, readers can understand the passage faster.',
     prompt: '主干是：',
     options: [
       { id: 'a', text: 'Key words focus readers.' },
@@ -451,7 +451,7 @@ export const level7PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l7-q13',
     title: '原因背景',
-    sentence: 'Because the topic is familiar, many students ignore important details.',
+    sentence: 'Because the topic is familiar from daily life, many students ignore important details.',
     prompt: '主干是：',
     options: [
       { id: 'a', text: 'The topic is familiar.' },

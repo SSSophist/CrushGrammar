@@ -182,7 +182,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q1',
     title: 'every 单数',
-    sentence: 'Every student in the class ___ a clear study plan.',
+    sentence: 'Every student in the class ___ a clear study plan before the final exam.',
     prompt: '这句话动词最稳的是哪个？',
     options: [
       { id: 'a', text: 'needs' },
@@ -204,7 +204,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q2',
     title: 'number of',
-    sentence: 'The number of online learners ___ in recent years.',
+    sentence: 'The number of online learners in rural areas of the country ___ in recent years.',
     prompt: '这句话的正确动词形式是：',
     options: [
       { id: 'a', text: 'have increased' },
@@ -226,7 +226,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q3',
     title: '复数习惯',
-    sentence: 'Many students ___ key points before exams.',
+    sentence: 'Many students ___ key points from several difficult chapters before final exams.',
     prompt: '这句话最自然的动词形式是：',
     options: [
       { id: 'a', text: 'reviews' },
@@ -248,7 +248,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q4',
     title: '过去被动',
-    sentence: 'The rules ___ clearly by the teacher yesterday.',
+    sentence: 'The rules ___ clearly by the teacher before the practice test yesterday.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'explained' },
@@ -270,7 +270,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q5',
     title: '单数事实',
-    sentence: 'This method ___ beginners understand long sentences.',
+    sentence: 'This method ___ beginners understand long sentences with several hidden modifiers.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'helps' },
@@ -292,7 +292,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q6',
     title: '复数被动过去',
-    sentence: 'Several useful apps ___ last year.',
+    sentence: 'Several useful apps for vocabulary review among college students ___ last year.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'introduced' },
@@ -313,7 +313,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q7',
     title: 'was built',
-    sentence: 'The new library ___ near the campus in 2020.',
+    sentence: 'The new library for community learners ___ near the campus in 2020.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'built' },
@@ -335,7 +335,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q8',
     title: '复数主动',
-    sentence: 'Good habits ___ exam preparation easier.',
+    sentence: 'Good habits developed early during the semester ___ exam preparation easier.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'make' },
@@ -357,7 +357,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q9',
     title: 'quality 单数',
-    sentence: 'The quality of the answers ___ on clear thinking.',
+    sentence: 'The quality of the answers in writing tasks during exams ___ on clear thinking.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'depend' },
@@ -379,7 +379,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q10',
     title: '现在被动',
-    sentence: 'These skills ___ in reading and writing.',
+    sentence: 'These skills ___ in reading and writing throughout the whole course.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'are used' },
@@ -400,7 +400,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q11',
     title: 'goal 单数',
-    sentence: 'A clear goal ___ students manage time better.',
+    sentence: 'A clear goal before each practice session ___ students manage time better.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'helps' },
@@ -422,7 +422,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q12',
     title: '节日被庆祝',
-    sentence: 'Many traditional festivals ___ across China.',
+    sentence: 'Many traditional festivals with local customs ___ across China every year.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'are celebrated' },
@@ -443,7 +443,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q13',
     title: 'report shows',
-    sentence: 'The report based on three surveys ___ a clear trend.',
+    sentence: 'The report based on three surveys of college students ___ a clear trend.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'show' },
@@ -465,7 +465,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q14',
     title: 'past signal',
-    sentence: 'In the past, people ___ for most goods in cash.',
+    sentence: 'In the past, people in small markets ___ for most goods in cash.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'paid' },
@@ -487,7 +487,7 @@ export const level8PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l8-q15',
     title: 'although background',
-    sentence: 'Although online learning is convenient, students still ___ self-discipline.',
+    sentence: 'Although online learning is convenient, students still ___ self-discipline during long courses.',
     prompt: '这句话最稳的动词形式是：',
     options: [
       { id: 'a', text: 'need' },
@@ -583,7 +583,7 @@ export const level8Remediations: RemediationItem[] = [
       remediationQuestion(
         'l8-rem-main',
         'mainline-missing',
-        'The price of these books is reasonable.',
+        'The price of these books for exam review is reasonable.',
         '主语核心是：',
         [
           { id: 'a', text: 'books' },
@@ -605,7 +605,7 @@ export const level8Remediations: RemediationItem[] = [
       remediationQuestion(
         'l8-rem-target',
         'modifier-target',
-        'A list of useful words helps beginners.',
+        'A list of useful words from reading passages helps beginners.',
         'helps 跟谁一致？',
         [
           { id: 'a', text: 'A list' },
@@ -649,7 +649,7 @@ export const level8Remediations: RemediationItem[] = [
       remediationQuestion(
         'l8-rem-term',
         'term-blocked',
-        'The answer depends on the question.',
+        'The answer depends on the question in the passage.',
         '“主谓一致”先问哪句话？',
         [
           { id: 'a', text: '真正主语是一个还是多个？' },

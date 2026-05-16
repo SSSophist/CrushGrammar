@@ -196,7 +196,7 @@ export const level6PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l6-q1',
     title: '同向补充',
-    sentence: 'The guide is short and it explains the rules clearly.',
+    sentence: 'The guide is short and it explains the rules clearly with practical examples.',
     prompt: '这句话前后两半是什么关系？',
     options: [
       { id: 'a', text: '同向补充：两个信息都在支持 guide 好用' },
@@ -217,7 +217,7 @@ export const level6PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l6-q2',
     title: '反向转折',
-    sentence: 'The lecture was long, but most students found it useful.',
+    sentence: 'The lecture was long, but most students found it useful for exam preparation.',
     prompt: '作者更想强调哪一边？',
     options: [
       { id: 'a', text: 'lecture was long' },
@@ -238,7 +238,7 @@ export const level6PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l6-q3',
     title: '结果方向',
-    sentence: 'The instructions were unclear, so many users made mistakes.',
+    sentence: 'The instructions were unclear, so many users made mistakes during the first attempt.',
     prompt: '哪一半是结果？',
     options: [
       { id: 'a', text: 'The instructions were unclear.' },
@@ -384,7 +384,7 @@ export const level6PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l6-q10',
     title: '条件结果',
-    sentence: 'If students skip the examples, they may misunderstand the rule.',
+    sentence: 'If students skip the examples in the workbook, they may misunderstand the rule.',
     prompt: '这句话的逻辑方向是：',
     options: [
       { id: 'a', text: '条件：跳过例子；结果：误解规则' },
@@ -404,7 +404,7 @@ export const level6PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l6-q11',
     title: '双重补充',
-    sentence: 'The course is practical and affordable, so many students choose it.',
+    sentence: 'The course is practical and affordable for beginners, so many students choose it.',
     prompt: '整句话的逻辑最稳读法是：',
     options: [
       { id: 'a', text: 'practical 和 affordable 是原因，students choose it 是结果' },
@@ -425,7 +425,7 @@ export const level6PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l6-q12',
     title: '让步加转折感',
-    sentence: 'Even though the task seems easy, it requires careful planning.',
+    sentence: 'Even though the task seems easy at first, it requires careful planning.',
     prompt: '这句话真正强调的是：',
     options: [
       { id: 'a', text: 'the task seems easy' },
@@ -445,7 +445,7 @@ export const level6PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l6-q13',
     title: '前后对比',
-    sentence: 'Some people value speed, while others care more about accuracy.',
+    sentence: 'Some people value speed when answering questions, while others care more about accuracy.',
     prompt: 'while 在这里主要表示：',
     options: [
       { id: 'a', text: '对比：一部分重速度，另一部分重准确' },
@@ -560,7 +560,7 @@ export const level6Remediations: RemediationItem[] = [
       remediationQuestion(
         'l6-rem-main',
         'mainline-missing',
-        'The tool is useful, but it is expensive.',
+        'The tool is useful for online practice, but it is expensive.',
         '转折后的重点是：',
         [
           { id: 'a', text: 'it is expensive' },
@@ -582,7 +582,7 @@ export const level6Remediations: RemediationItem[] = [
       remediationQuestion(
         'l6-rem-clause',
         'clause-function',
-        'Although the answer is short, it is accurate.',
+        'Although the answer is short in the report, it is accurate.',
         '真正评价重点是：',
         [
           { id: 'a', text: 'it is accurate' },
@@ -604,7 +604,7 @@ export const level6Remediations: RemediationItem[] = [
       remediationQuestion(
         'l6-rem-modifier',
         'modifier-as-mainline',
-        'The answer is clear and detailed.',
+        'The answer is clear and detailed in the final paragraph.',
         'and 表示：',
         [
           { id: 'a', text: '同向补充' },

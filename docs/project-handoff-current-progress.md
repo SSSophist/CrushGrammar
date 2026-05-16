@@ -614,3 +614,28 @@ git commit -m "feat: add diagnostic entry flow"
 - `npm run typecheck` 通过。
 - `npm run build` 通过。
 - `npm test` 通过：27 个测试文件，100 个测试。
+
+## 2026-05-16 更新：V2-018 全站练习难度与词汇标注升级
+
+用户反馈：
+- 希望按照首访 8 题的新标准，适当提高全站题目难度。
+- 提高中高难词时，不能忘记中文释义悬停标注功能。
+
+本次实现：
+- 新增执行计划：`docs/superpowers/plans/2026-05-16-question-difficulty-vocab.md`。
+- 系统性升级 Level 1-9 通关练习里明显过短、过低幼的句子。
+- Level 1-3 保留基础递进，只增加考试背景、修饰语和真实语境。
+- Level 4-9 加强从句、非谓语、逻辑、时态参照、特殊结构等真实干扰。
+- 同步补强 11 个过短补救题，避免学生点补救后回到太简单的句子。
+- `src/data/levelVocab.ts` 新增 29 个中高难词/短语中文释义，覆盖本次新增内容。
+- `src/data/levels.test.ts` 新增三条护栏：
+  - 英文通关题不能过短。
+  - 英文补救题不能过短。
+  - 本次新增中高难词必须进入对应关卡词汇表。
+
+验收结果：
+- TDD 红灯：`npm test -- levels` 初次失败，暴露 49 个过短通关题、31 个过短补救题、29 个缺少词汇标注项。
+- 收敛修复后，`npm test -- levels` 通过：1 个测试文件，31 个测试。
+- `npm run typecheck` 通过。
+- `npm run build` 通过。
+- `npm test` 通过：27 个测试文件，103 个测试。

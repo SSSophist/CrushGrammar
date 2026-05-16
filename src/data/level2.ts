@@ -274,7 +274,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q2',
     title: '题 2：名词前面找标签',
-    sentence: 'Readers need ____ sources when they check online claims.',
+    sentence: 'Readers need ____ sources when they check online claims about health and education.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'reliability' },
@@ -298,7 +298,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q3',
     title: '题 3：can 后面先找动作',
-    sentence: 'Regular review can ____ students\' exam performance.',
+    sentence: 'Regular review after each timed practice session can ____ students\' overall exam performance over time.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'improve' },
@@ -322,7 +322,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q4',
     title: '题 4：动作旁边看副词',
-    sentence: 'Students who practice often can communicate ____ in group discussions.',
+    sentence: 'Students who practice explaining ideas often can communicate ____ in group discussions.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'effective' },
@@ -370,7 +370,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q6',
     title: '题 6：be 后面说明状态',
-    sentence: 'Online courses are ____ for students who need flexible schedules.',
+    sentence: 'Online courses are ____ for students who need flexible schedules during exam preparation.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'use' },
@@ -394,7 +394,7 @@ export const level2PracticeQuestions: PracticeQuestion[] = [
   {
     id: 'l2-q7',
     title: '题 7：help 后面的动作',
-    sentence: 'The new app helps students ____ their time more effectively.',
+    sentence: 'The new app helps students ____ their time more effectively before important deadlines.',
     prompt: '空格里最稳的是：',
     options: [
       { id: 'a', text: 'manage' },
@@ -667,7 +667,7 @@ export const level2Remediations: RemediationItem[] = [
       remediationQuestion(
         'na1',
         'noun-adjective-confusion',
-        'Reading builds ____ thinking habits.',
+        'Reading challenging articles builds ____ thinking habits.',
         '空格里最稳的是：',
         [
           { id: 'a', text: 'critical' },

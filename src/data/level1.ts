@@ -430,7 +430,7 @@ export const practiceQuestions: PracticeQuestion[] = [
   {
     id: 'q7',
     title: '题 7：找动作对象',
-    sentence: 'Careful planning helps students avoid unnecessary stress.',
+    sentence: 'Careful planning before the final week helps students avoid unnecessary stress during exam preparation.',
     prompt: 'helps 的直接对象是：',
     options: [
       { id: 'a', text: 'Careful planning' },
